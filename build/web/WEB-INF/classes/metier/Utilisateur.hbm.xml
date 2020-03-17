@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16 mars 2020 19:48:09 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="metier.Utilisateur" table="Utilisateur" catalog="db_21709478" optimistic-lock="version">
+        <id name="codeU" type="int">
+            <column name="codeU" />
+            <generator class="assigned" />
+        </id>
+        <property name="nomU" type="string">
+            <column name="nomU" length="20" not-null="true" />
+        </property>
+        <property name="prenomU" type="string">
+            <column name="prenomU" length="20" not-null="true" />
+        </property>
+        <property name="typeU" type="string">
+            <column name="typeU" length="15" not-null="true" />
+        </property>
+        <property name="identifiant" type="string">
+            <column name="identifiant" length="30" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="15" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
