@@ -32,13 +32,13 @@ public class ServletConnection extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-        processRequest(request, response);
         response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
 		try (PrintWriter out = response.getWriter())
 			{
 			/*----- Ecriture de la page XML -----*/
-                        out.println("connecter");
+                        // out.println("connecter"); // Attention au "out" utilise "System.out" si tu veux voir un affichage en console Netbeans
+			
 			out.println("<?xml version=\"1.0\"?>");
 			out.println("<liste_auteur>");
 
@@ -50,8 +50,8 @@ public class ServletConnection extends HttpServlet {
                         int ret = bd.connection(identifiant,mdp);
                         out.println("<ret>" + ret + "</ret>"); 
                         
-                       
-			
+			// La balise <liste_auteur> n'est pas fermée !
+			out.println("</liste_auteur>");
 			}
         
         
@@ -72,7 +72,7 @@ public class ServletConnection extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        doGet(request, response);
     }
 
     /**
@@ -84,9 +84,4 @@ public class ServletConnection extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    private void processRequest(HttpServletRequest request, HttpServletResponse response) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }
