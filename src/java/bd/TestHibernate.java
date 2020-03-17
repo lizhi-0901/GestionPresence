@@ -16,7 +16,7 @@ import org.hibernate.Transaction;
  */
 public class TestHibernate {
      public static void main (String[] args) throws ParseException{
-         int i=bd.connection("lizhi","lizhi");
-         System.out.println(i);
+         //int i=bd.connection("lizhi","lizhi");
+         //System.out.println(i);
      }
 }
