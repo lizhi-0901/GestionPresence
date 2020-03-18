@@ -1,0 +1,100 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2020-3-18, 17:16:47
+    Author     : 18311
+*/
+
+
+h2{
+    margin-left: 30;
+    color: green;
+}
+
+.info_choisir{
+    display: inline-block;
+    width:200px;   
+    height:100px;     
+    text-align:center;
+}
+
+.div_photo_etu{
+    border-style: solid ;
+    border-width:1px;
+    width:80px;   
+    height:100px; 
+    margin: 10px ;
+}
+.appel{
+      float:left;
+      display:inline;
+}
+
+.btn_present{
+    background-color: greenyellow;
+    width:100px;   
+    height:100px; 
+    text-align:center;
+    line-height: 40px;
+    border-radius: 12px;
+}
+.btn_retard{
+    background-color: yellow;
+    width:100px;   
+    height:100px; 
+    text-align:center;
+    line-height: 40px;  
+    border-radius: 12px;
+    opacity: 0.8;
+}
+.btn_abs_just{
+    background-color: red;
+    width:100px;   
+    height:100px; 
+    text-align:center;
+    line-height: 40px;
+    border-radius: 12px;
+    opacity: 0.8;
+}
+.btn_abs{
+    background-color: grey;
+    width:100px;   
+    height:100px; 
+    text-align:center;
+    line-height: 40px;
+    border-radius: 12px;
+    opacity: 0.8;
+}
+
+.info_presence{
+    clear:left;
+    float: left;
+    margin: 10px;
+    opacity: 0.8;
+}
+.div_commentaire{
+   width:300px;   
+   height:100px; 
+   float: left;
+   margin-left:  10px ;
+   border-style: solid ;
+   border-width:1px;
+}
+.div_bouton{
+    margin: 10px ;
+    clear:left;
+    float:left;
+}
+
+.bouton{
+    margin: 20px ;
+    width:100px;   
+    height:30px;   
+}
+
+.btn_valider{
+      
+}
