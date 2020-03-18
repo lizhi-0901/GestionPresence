@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.Set;
+import metier.Groupe;
 import metier.Matiere;
 import metier.Personnel;
 import org.hibernate.Transaction;
@@ -61,7 +62,19 @@ public class bd {
            return setetudiant;
     }
     
-   
+    
+    /**
+     * c'est une function qui retourne une groupe qui prend entree comme date heuredebut et matiere
+     * @param date
+     * @param heureDeb
+     * @param nommatiere
+     * @return 
+     */
+    public Groupe getGroupe(SimpleDateFormat date, int heureDeb, String nommatiere,String salle){
+        Groupe g = new Groupe();
+        return g;
+    }
+    
     
    
 }
