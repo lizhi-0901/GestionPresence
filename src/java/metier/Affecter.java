@@ -1,5 +1,5 @@
 package metier;
-// Generated Mar 18, 2020 11:52:06 AM by Hibernate Tools 4.3.1
+// Generated Mar 18, 2020 6:08:12 PM by Hibernate Tools 4.3.1
 
 
 
@@ -10,21 +10,20 @@ public class Affecter  implements java.io.Serializable {
 
 
      private AffecterId id;
-     private Creaneau creaneau;
+     private Creneau creneau;
      private Personnel personnel;
-     private String etatPresence;
-     
      private byte[] signatureEnseignant;
+     private String etatPresence;
 
     public Affecter() {
     }
 
-    public Affecter(AffecterId id, Creaneau creaneau, Personnel personnel, String etatPresence, byte[] signatureEnseignant) {
+    public Affecter(AffecterId id, Creneau creneau, Personnel personnel, byte[] signatureEnseignant, String etatPresence) {
        this.id = id;
-       this.creaneau = creaneau;
+       this.creneau = creneau;
        this.personnel = personnel;
-       this.etatPresence = etatPresence;
        this.signatureEnseignant = signatureEnseignant;
+       this.etatPresence = etatPresence;
     }
    
     public AffecterId getId() {
@@ -34,12 +33,12 @@ public class Affecter  implements java.io.Serializable {
     public void setId(AffecterId id) {
         this.id = id;
     }
-    public Creaneau getCreaneau() {
-        return this.creaneau;
+    public Creneau getCreneau() {
+        return this.creneau;
     }
     
-    public void setCreaneau(Creaneau creaneau) {
-        this.creaneau = creaneau;
+    public void setCreneau(Creneau creneau) {
+        this.creneau = creneau;
     }
     public Personnel getPersonnel() {
         return this.personnel;
@@ -48,19 +47,19 @@ public class Affecter  implements java.io.Serializable {
     public void setPersonnel(Personnel personnel) {
         this.personnel = personnel;
     }
-    public String getEtatPresence() {
-        return this.etatPresence;
-    }
-    
-    public void setEtatPresence(String etatPresence) {
-        this.etatPresence = etatPresence;
-    }
     public byte[] getSignatureEnseignant() {
         return this.signatureEnseignant;
     }
     
     public void setSignatureEnseignant(byte[] signatureEnseignant) {
         this.signatureEnseignant = signatureEnseignant;
+    }
+    public String getEtatPresence() {
+        return this.etatPresence;
+    }
+    
+    public void setEtatPresence(String etatPresence) {
+        this.etatPresence = etatPresence;
     }
 
 

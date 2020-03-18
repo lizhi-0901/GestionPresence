@@ -1,5 +1,5 @@
 package metier;
-// Generated Mar 18, 2020 11:52:06 AM by Hibernate Tools 4.3.1
+// Generated Mar 18, 2020 6:08:12 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,23 +12,26 @@ public class Matiere  implements java.io.Serializable {
 
 
      private String libelleMatiere;
+     private Formation formation;
      private Ue ue;
      private Set personnels = new HashSet(0);
-     private Set creaneaus = new HashSet(0);
+     private Set creneaus = new HashSet(0);
 
     public Matiere() {
     }
 
 	
-    public Matiere(String libelleMatiere, Ue ue) {
+    public Matiere(String libelleMatiere, Formation formation, Ue ue) {
         this.libelleMatiere = libelleMatiere;
+        this.formation = formation;
         this.ue = ue;
     }
-    public Matiere(String libelleMatiere, Ue ue, Set personnels, Set creaneaus) {
+    public Matiere(String libelleMatiere, Formation formation, Ue ue, Set personnels, Set creneaus) {
        this.libelleMatiere = libelleMatiere;
+       this.formation = formation;
        this.ue = ue;
        this.personnels = personnels;
-       this.creaneaus = creaneaus;
+       this.creneaus = creneaus;
     }
    
     public String getLibelleMatiere() {
@@ -37,6 +40,13 @@ public class Matiere  implements java.io.Serializable {
     
     public void setLibelleMatiere(String libelleMatiere) {
         this.libelleMatiere = libelleMatiere;
+    }
+    public Formation getFormation() {
+        return this.formation;
+    }
+    
+    public void setFormation(Formation formation) {
+        this.formation = formation;
     }
     public Ue getUe() {
         return this.ue;
@@ -52,12 +62,12 @@ public class Matiere  implements java.io.Serializable {
     public void setPersonnels(Set personnels) {
         this.personnels = personnels;
     }
-    public Set getCreaneaus() {
-        return this.creaneaus;
+    public Set getCreneaus() {
+        return this.creneaus;
     }
     
-    public void setCreaneaus(Set creaneaus) {
-        this.creaneaus = creaneaus;
+    public void setCreneaus(Set creneaus) {
+        this.creneaus = creneaus;
     }
 
 

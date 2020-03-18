@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 18, 2020 11:52:06 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated Mar 18, 2020 6:08:12 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="metier.Fonction" table="Fonction" catalog="db_21613265" optimistic-lock="version">
         <id name="fonction" type="string">

@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 18, 2020 11:52:06 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated Mar 18, 2020 6:08:12 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="metier.Creaneau" table="Creaneau" catalog="db_21613265" optimistic-lock="version">
+    <class name="metier.Creneau" table="Creneau" catalog="db_21613265" optimistic-lock="version">
         <id name="idCreneau" type="string">
             <column name="idCreneau" length="25" />
             <generator class="assigned" />
@@ -40,6 +40,12 @@
                 <column name="idCreneau" length="25" not-null="true" />
             </key>
             <one-to-many class="metier.Affecter" />
+        </set>
+        <set name="justifiers" table="Justifier" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idCreneau" length="25" not-null="true" />
+            </key>
+            <one-to-many class="metier.Justifier" />
         </set>
         <set name="groupes" table="AffecterGroupe" inverse="true" lazy="true" fetch="select">
             <key>

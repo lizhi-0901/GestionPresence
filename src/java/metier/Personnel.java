@@ -1,5 +1,5 @@
 package metier;
-// Generated Mar 18, 2020 11:52:06 AM by Hibernate Tools 4.3.1
+// Generated Mar 18, 2020 6:08:12 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -26,6 +26,7 @@ public class Personnel  implements java.io.Serializable {
      private Set fonctions = new HashSet(0);
      private Set groupes = new HashSet(0);
      private Set matieres = new HashSet(0);
+     private Set justifiers = new HashSet(0);
      private Set affecters = new HashSet(0);
      private Set formations = new HashSet(0);
 
@@ -44,7 +45,7 @@ public class Personnel  implements java.io.Serializable {
         this.numTel = numTel;
         this.adresse = adresse;
     }
-    public Personnel(String idPersonne, String motDePasse, String nom, String prenom, Date dateNaissance, String type, byte[] photo, String adresseMail, int numTel, String prenomUsage, String adresse, Set fonctions, Set groupes, Set matieres, Set affecters, Set formations) {
+    public Personnel(String idPersonne, String motDePasse, String nom, String prenom, Date dateNaissance, String type, byte[] photo, String adresseMail, int numTel, String prenomUsage, String adresse, Set fonctions, Set groupes, Set matieres, Set justifiers, Set affecters, Set formations) {
        this.idPersonne = idPersonne;
        this.motDePasse = motDePasse;
        this.nom = nom;
@@ -59,6 +60,7 @@ public class Personnel  implements java.io.Serializable {
        this.fonctions = fonctions;
        this.groupes = groupes;
        this.matieres = matieres;
+       this.justifiers = justifiers;
        this.affecters = affecters;
        this.formations = formations;
     }
@@ -160,6 +162,13 @@ public class Personnel  implements java.io.Serializable {
     
     public void setMatieres(Set matieres) {
         this.matieres = matieres;
+    }
+    public Set getJustifiers() {
+        return this.justifiers;
+    }
+    
+    public void setJustifiers(Set justifiers) {
+        this.justifiers = justifiers;
     }
     public Set getAffecters() {
         return this.affecters;

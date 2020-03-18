@@ -1,5 +1,5 @@
 package metier;
-// Generated Mar 18, 2020 11:52:06 AM by Hibernate Tools 4.3.1
+// Generated Mar 18, 2020 6:08:12 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -16,7 +16,7 @@ public class Groupe  implements java.io.Serializable {
      private String nomGroupe;
      private Date dateDeb;
      private Date dateFin;
-     private Set creaneaus = new HashSet(0);
+     private Set creneaus = new HashSet(0);
      private Set personnels = new HashSet(0);
 
     public Groupe() {
@@ -29,12 +29,12 @@ public class Groupe  implements java.io.Serializable {
         this.dateDeb = dateDeb;
         this.dateFin = dateFin;
     }
-    public Groupe(String idGroupe, String nomGroupe, Date dateDeb, Date dateFin, Set creaneaus, Set personnels) {
+    public Groupe(String idGroupe, String nomGroupe, Date dateDeb, Date dateFin, Set creneaus, Set personnels) {
        this.idGroupe = idGroupe;
        this.nomGroupe = nomGroupe;
        this.dateDeb = dateDeb;
        this.dateFin = dateFin;
-       this.creaneaus = creaneaus;
+       this.creneaus = creneaus;
        this.personnels = personnels;
     }
    
@@ -66,12 +66,12 @@ public class Groupe  implements java.io.Serializable {
     public void setDateFin(Date dateFin) {
         this.dateFin = dateFin;
     }
-    public Set getCreaneaus() {
-        return this.creaneaus;
+    public Set getCreneaus() {
+        return this.creneaus;
     }
     
-    public void setCreaneaus(Set creaneaus) {
-        this.creaneaus = creaneaus;
+    public void setCreneaus(Set creneaus) {
+        this.creneaus = creneaus;
     }
     public Set getPersonnels() {
         return this.personnels;

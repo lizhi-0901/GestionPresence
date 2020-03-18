@@ -1,5 +1,5 @@
 package metier;
-// Generated Mar 18, 2020 11:52:06 AM by Hibernate Tools 4.3.1
+// Generated Mar 18, 2020 6:08:12 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;

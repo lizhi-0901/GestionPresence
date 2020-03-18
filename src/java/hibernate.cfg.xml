@@ -56,8 +56,9 @@ Contributor(s):
     <mapping resource="metier/Personnel.hbm.xml"/>
     <mapping resource="metier/Groupe.hbm.xml"/>
     <mapping resource="metier/Fonction.hbm.xml"/>
-    <mapping resource="metier/Creaneau.hbm.xml"/>
+    <mapping class="" file="" jar="" package="" resource="metier/Creneau.hbm.xml"/>
     <mapping resource="metier/Ue.hbm.xml"/>
     <mapping resource="metier/Matiere.hbm.xml"/>
+    <mapping resource="metier/Justifier.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
