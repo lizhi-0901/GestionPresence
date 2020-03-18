@@ -22,19 +22,20 @@ public class bd {
      static Transaction t = session.beginTransaction();
     
      /**
-      * 
-      * @param nom
-      
+      * c'est une function qui prends en entree comme identifiant 
+      * et retourne mot de pass
+      * @param identifiant
       * @return 
       */
      
-    public static int connection(String identifiant){
+    public static String connection(String identifiant){
           Personnel p1 = (Personnel) session.get(Personnel.class, "21613265");
           System.out.println(p1);
           
           t.commit();
-          return 0;
+          return "mdp";
     }
+    
     
     
     

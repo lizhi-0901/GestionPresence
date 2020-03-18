@@ -48,7 +48,7 @@ public class ServletConnection extends HttpServlet {
                        // String mdp =request.getParameter("mdp");
                         System.out.println(identifiant);
                           //  System.out.println(mdp);
-                        int ret = bd.connection(identifiant);
+                        String ret = bd.connection(identifiant);
                        // System.out.println("le resultat:::::::::::::"+ret);
                         out.println("<ret>" + ret + "</ret>"); 
                         
