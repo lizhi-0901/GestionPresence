@@ -2,9 +2,10 @@ package bd;
 
 
 import java.text.ParseException;
+import metier.Personnel;
 import org.hibernate.Transaction;
 import org.hibernate.Session;
-import metier.Utilisateur;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -23,13 +24,13 @@ public class bd {
      /**
       * 
       * @param nom
-      * @param mdp
+      
       * @return 
       */
      
-    public static int connection(String nom,String mdp){
-          Utilisateur u1= (Utilisateur)session.get(Utilisateur.class, 1);
-          System.out.println(u1);
+    public static int connection(String identifiant){
+          Personnel p1 = (Personnel) session.get(Personnel.class, "21613265");
+          System.out.println(p1);
           
           t.commit();
           return 0;

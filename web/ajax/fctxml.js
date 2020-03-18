@@ -17,7 +17,7 @@ function connecter ()
 	var xhr = new XMLHttpRequest();
 
 	// Requête au serveur avec les paramètres éventuels.
-	xhr.open("GET","ServletConnection"+"?identifiant="+identifiant+"?mdp="+mdp,true);
+	xhr.open("GET","ServletConnection"+"?identifiant="+identifiant);
 
 	// On précise ce que l'on va faire quand on aura reçu la réponse du serveur.
 	xhr.onload = function()
@@ -26,6 +26,7 @@ function connecter ()
 		if (xhr.status === 200)
 			{
 			// Elément html que l'on va mettre à jour.
+                        alert("retour");
 			var res = xhr.responseXML.getElementsByTagName("ret");
                         alert(res);
 			}

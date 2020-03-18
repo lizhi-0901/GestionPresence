@@ -33,7 +33,7 @@ public class ServletConnection extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/xml;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
 		try (PrintWriter out = response.getWriter())
 			{
@@ -45,10 +45,11 @@ public class ServletConnection extends HttpServlet {
 
 			
 			String identifiant = request.getParameter("identifiant");
-                        String mdp =request.getParameter("mdp");
-                            System.out.println(identifiant);
-                        
-                        int ret = bd.connection(identifiant,mdp);
+                       // String mdp =request.getParameter("mdp");
+                        System.out.println(identifiant);
+                          //  System.out.println(mdp);
+                        int ret = bd.connection(identifiant);
+                       // System.out.println("le resultat:::::::::::::"+ret);
                         out.println("<ret>" + ret + "</ret>"); 
                         
 			// La balise <liste_auteur> n'est pas fermée !
