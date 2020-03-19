@@ -34,12 +34,9 @@ public class bd {
       * @return 
       */
      
-    public static String connection(String identifiant){
-          Personnel p1 = (Personnel) session.get(Personnel.class, "21613265");
-          System.out.println(p1);
-          
-          t.commit();
-          return "mdp";
+    public static Personnel connection(String identifiant){
+          Personnel p = (Personnel) session.get(Personnel.class, identifiant);
+          return p;
     }
     
     /**

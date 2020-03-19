@@ -18,13 +18,9 @@ import org.hibernate.Transaction;
  */
 public class TestHibernate {
      public static void main (String[] args) throws ParseException{
-           Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-           Transaction t = session.beginTransaction();
-           Personnel p1 = (Personnel) session.get(Personnel.class, "21613265");
-           System.out.println(p1);
-          
-            t.commit();
-       //  int i=bd.connection("lizhi");
-       //  System.out.println(i);
+           String mdp =  bd.connection("21613265").getMotDePasse();
+           String type = bd.connection("21613265").getType();
+           System.out.println(mdp);
+           System.out.println(type);
      }
 }

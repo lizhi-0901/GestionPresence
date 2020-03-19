@@ -18,22 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author lizhiwang
  */
 public class ServletConnection extends HttpServlet {
-
-    
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-
-        response.setContentType("application/xml;charset=UTF-8");
+     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+         response.setContentType("application/xml;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
 		try (PrintWriter out = response.getWriter())
 			{
@@ -41,51 +27,56 @@ public class ServletConnection extends HttpServlet {
                         // out.println("connecter"); // Attention au "out" utilise "System.out" si tu veux voir un affichage en console Netbeans
 			
 			out.println("<?xml version=\"1.0\"?>");
-			out.println("<liste_auteur>");
+			
 
 			
 			String identifiant = request.getParameter("identifiant");
+                        String mdp_p = request.getParameter("mdp");
                        // String mdp =request.getParameter("mdp");
-                        System.out.println(identifiant);
+//                        System.out.println("identifiant_param"+identifiant);
+//                        System.out.println("mdp_param"+mdp_p);
                           //  System.out.println(mdp);
-                        String ret = bd.connection(identifiant);
-                       // System.out.println("le resultat:::::::::::::"+ret);
-                        out.println("<ret>" + ret + "</ret>"); 
-                        
-			// La balise <liste_auteur> n'est pas fermée !
-			out.println("</liste_auteur>");
-			}
+                        String mdp =  bd.connection(identifiant).getMotDePasse();
+                        String type = bd.connection(identifiant).getType();
+//                            System.out.println("type::::::"+type);
+//                            System.out.println("mdp::::::"+mdp);
+                        if(! mdp_p.equals(mdp)){
+                            System.out.println("mdp wrong");
+                            String msg="wrong mot de pass";
+                            out.println("<msg>" + msg + "</msg>");
+                        }    
+                        else{
+                        switch(type) {
+                            case "Etudiant": 
+                                request.getRequestDispatcher("etudiantPage").forward(request, response);
+                                break;
+                            case "":
+                                break;
+                            default:
+                        }
+                            
+                        }
+                        }
         
-        
-        /*
-        coonection 
-        */
-        
+     }
+    
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        doGet(request, response);
-
+        processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }
