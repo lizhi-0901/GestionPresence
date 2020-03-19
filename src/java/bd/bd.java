@@ -4,10 +4,12 @@ package bd;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import metier.Groupe;
 import metier.Matiere;
 import metier.Personnel;
+import org.hibernate.SQLQuery;
 import org.hibernate.Transaction;
 import org.hibernate.Session;
 
@@ -54,9 +56,13 @@ public class bd {
      * @param idgroupe
      * @return retourne la liste etudiant qui est dans ce group TD
      */
-    public Set<Personnel> getEtudiant(String idgroupe){
-           Set<Personnel> setetudiant =new HashSet<>();
-           return setetudiant;
+    public List<Personnel> getEtudiant(String  idGroupe){
+           List<Personnel> listEtudiants=session.createSQLQuery("select p.nom,p.prenom "+
+                                                            "from Personnel p, Appartenir a "+
+                                                            "where p.idPersonne=a.idPersonne "+
+                                                            "and a.idGroupe=" +"'"+idGroupe+"'").list();
+        
+        return listEtudiants;
     }
     
     
@@ -67,8 +73,29 @@ public class bd {
      * @param nommatiere
      * @return 
      */
+    /**
+     * c'est une function qui retourne une groupe qui prend entree comme date heuredebut et matiere
+     * @param date
+     * @param heureDeb
+     * @param nommatiere
+     * @return 
+     */
     public Groupe getGroupe(SimpleDateFormat date, int heureDeb, String nommatiere,String salle){
         Groupe g = new Groupe();
+        
+        String sql = "SELECT * FROM Creneau C, Groupe G, AffecterGroupe A "
+                + "WHERE C.id_Creneau = A.id_Creneau and A. and C.idGroupe =  A.idGroupe and salle =:salle  "
+                + "and heureDeb =:heure and libelleMatiere =:nommatiere ";
+        
+        SQLQuery query = session.createSQLQuery(sql);
+        query.addEntity(Groupe.class);
+        
+        query.setParameter("heure", heureDeb);
+        query.setParameter("nommatiere", nommatiere);
+        query.setParameter("salle", salle);
+        List results = query.list();  
+        g =(Groupe)results.get(1);
+        
         return g;
     }
     
