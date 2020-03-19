@@ -74,8 +74,8 @@ and open the template in the editor.
                 <button type="button">afficher</button>
             </form>
       </div>           
-<!--  liste étudiant -->  
-    <div class=""> 
+<!--  liste étudiant -->  <hr/>
+    <div class="div_etudiant"> 
                 <div> 
                     <div class="div_photo_etu appel"  >
                         <img alt="" src="" >  
@@ -92,10 +92,10 @@ and open the template in the editor.
              
                 <div>    
                     <div class="info_presence">
-                        <span> nombre présence : </span>
-                        <span> nombre retard : </span>
-                        <span> nombre absent justifié: </span>
-                        <span> nombre absent : </span>
+                        <span class="text_nb"> nombre présence : </span>
+                        <span class="text_nb"> nombre retard : </span>
+                        <span class="text_nb"> nombre absent justifié: </span>
+                        <span class="text_nb"> nombre absent : </span>
                     </div>
                     
                       <div class="info_presence">
@@ -108,10 +108,79 @@ and open the template in the editor.
                     </div>                    
                     
                 </div>
-               
-            
-        </div>
+                           
+        </div><br>
         
+        <div class="div_etudiant"> 
+                <div> 
+                    <div class="div_photo_etu appel"  >
+                        <img alt="" src="" >  
+                        (photo)
+                    </div>
+                    <div> 
+                        <button class="btn_present appel" value="">Présent</button>
+                         <button class="btn_retard appel" value="">Retard</button>
+                         <button class="btn_abs_just appel" value="">abs justifié:</button>
+                         <button class="btn_abs appel" value="">absent</button>
+                    </div>
+                </div>  
+             <br/>
+             
+                <div>    
+                    <div class="info_presence">
+                        <span class="text_nb"> nombre présence : </span>
+                        <span class="text_nb"> nombre retard : </span>
+                        <span class="text_nb"> nombre absent justifié: </span>
+                        <span class="text_nb"> nombre absent : </span>
+                    </div>
+                    
+                      <div class="info_presence">
+                        <div>nom: TRUMP </div><br/>
+                        <div>prenom: Donald </div>                                                                       
+                    </div>
+                    
+                    <div class=" div_commentaire">
+                        <span class="commentaire">commentaire</span>                                                                      
+                    </div>                    
+                    
+                </div>
+            </div> 
+        
+            <div class="div_etudiant"> 
+                <div> 
+                    <div class="div_photo_etu appel"  >
+                        <img alt="" src="" >  
+                        (photo)
+                    </div>
+                    <div> 
+                        <button class="btn_present appel" value="">Présent</button>
+                         <button class="btn_retard appel" value="">Retard</button>
+                         <button class="btn_abs_just appel" value="">abs justifié:</button>
+                         <button class="btn_abs appel" value="">absent</button>
+                    </div>
+                </div>  
+             <br/>
+             
+                <div>    
+                    <div class="info_presence">
+                        <span class="text_nb"> nombre présence : </span>
+                        <span class="text_nb"> nombre retard : </span>
+                        <span class="text_nb"> nombre absent justifié: </span>
+                        <span class="text_nb"> nombre absent : </span>
+                    </div>
+                    
+                      <div class="info_presence">
+                        <div>nom: TRUMP </div><br/>
+                        <div>prenom: Donald </div>                                                                       
+                    </div>
+                    
+                    <div class=" div_commentaire">
+                        <span class="commentaire">commentaire</span>                                                                      
+                    </div>                    
+                    
+                </div>
+            </div>  
+
       <div class = "div_bouton">        
         <input type="reset" value="initialiser" class="bouton"/> 
         <input type="submit" value="valider"  class="bouton btn_valider" />

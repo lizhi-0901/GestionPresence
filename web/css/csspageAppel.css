@@ -10,7 +10,7 @@ and open the template in the editor.
 
 
 h2{
-    margin-left: 30;
+    margin-left: 30px;
     color: green;
 }
 
@@ -21,6 +21,15 @@ h2{
     text-align:center;
 }
 
+.div_etudiant{
+    float:left;
+    clear:left;
+    border-style: solid ;
+    border-width:1px;
+    border-radius:10px;
+    margin:5px;
+    padding: 2px;
+}
 .div_photo_etu{
     border-style: solid ;
     border-width:1px;
@@ -75,6 +84,7 @@ h2{
     margin: 10px;
     opacity: 0.8;
 }
+
 .div_commentaire{
    width:300px;   
    height:100px; 
