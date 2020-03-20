@@ -12,8 +12,6 @@ function getCours ()
         {
         //recuperer la valeur
         var formation = document.getElementById("formation").value;
-        //faire l'affichir 
-        alert(formation);
         
 	// Objet XMLHttpRequest.
 	var xhr = new XMLHttpRequest();
@@ -28,17 +26,13 @@ function getCours ()
 		if (xhr.status === 200)
 			{
 			// Elément html que l'on va mettre à jour.
-                        
-			var matiere = xhr.responseXML.getElementsByTagName("matiere");
-                        var res = xhr.responseXML.getElementByTagName("res");
-                        var cours = document.getElementById("cours");
-                        var s= document.getElementById("s");
-                        s.innerHTML=res;
-                        for ( i=0;i<matiere.length;i++)
-                        {
-                            cours.insertAdjacentHTML('beforeend',"<option>"+matiere[i].firstChild.nodeValue+"</option>") ;
-                        }
-                        alert(matiere);
+                            var elt = document.getElementById("cours");
+                            var tab=xhr.responseXML.getElementsByTagName("matiere")
+                            elt.innerHTML="";
+                            for ( i=0;i<tab.length;i++)
+                            {
+                                elt.insertAdjacentHTML("beforeend","<option>"+tab[i].firstChild.nodeValue+"</option>");
+                            }
 			}
 		};
 	
