@@ -11,6 +11,9 @@
         <property name="nomGroupe" type="string">
             <column name="nomGroupe" length="25" not-null="true" />
         </property>
+        <property name="typeGroupe" type="string">
+            <column name="typeGroupe" length="25" not-null="true" />
+        </property>
         <property name="dateDeb" type="date">
             <column name="dateDeb" length="10" not-null="true" />
         </property>

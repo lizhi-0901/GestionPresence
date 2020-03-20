@@ -81,20 +81,23 @@ public class bd {
      * c'est une function qui retourne une groupe qui prend entree comme date heuredebut et matiere
      * @param date
      * @param heureDeb
-     * @param nommatiere
+     * @param libelleMatiere
      * @return 
      */
-    public static List<Groupe> getGroupe(Date date, int heureDeb, String libelleMatiere){
-        Query query=session.createQuery("select new metier.Groupe(*) " +
-                                        "from Creneau c, Groupe g, AffecterGroupe a "+
-                                        "where c.idCreneau =a.idCreneau "+
-                                        "and a.idGroupe=g.idGroupe "+ 
-                                        "and c.dateDeb=:date "+
+     public static List<Groupe> getGroupe(Date date,int heureDeb, String libelleMatiere) throws ParseException{
+        SimpleDateFormat df =new SimpleDateFormat("yyyy-mm-dd");
+        String d=df.format(date);
+        Query query=session.createQuery("select new metier.Groupe(gs.idGroupe,gs.nomGroupe,gs.typeGroupe) " +
+                                        "from Creneau c join c.groupes gs,Creneau c "+
+                                        "where c.dateDeb=:date "+
                                         "and c.heureDeb=:heure "+
-                                        "and c.libelleMatiere=:libelle");
-        query.setParameter("date", date);
+                                        "and c.matiere.libelleMatiere=:libelle");
+        query.setParameter("date", d);
         query.setParameter("heure", heureDeb);
         query.setParameter("libelle", libelleMatiere);
+        
+        
+        
         List<Groupe> listGroupe=query.list();
         
         return listGroupe;
@@ -135,15 +138,19 @@ public class bd {
                 
                 
                 
-//	public static void main (String[] s) throws ParseException
-//		{
+	public static void main (String[] s) throws ParseException
+		{
 //                    
 ////                    List<Personnel> l = bd.getEtudiants("MIAGEIPM2019TD1");
 ////                    List<Matiere> l = bd.getMatieres("MIAGE IPM");
-////                    SimpleDateFormat df =new SimpleDateFormat("yyyy-mm-dd");
-////                    Date d=df.parse("2019-10-01");
-////                    List<Groupe> l=bd.getGroupe(d, 570, "Management de projet");
-////                    bd.affichage(l);
+                    SimpleDateFormat df =new SimpleDateFormat("yyyy-mm-dd");
+                    Date d=df.parse("2019-10-01");
+                    List<Groupe> l=bd.getGroupe(d, 570, "Management de projet");
+                    for(Groupe g:l){
+                        System.out.println(g.getTypeGroupe());
+                    }
+                    
+//                    bd.affichage(l);
 //                    
 ////                     List<Personnel> plist=bd.getEtudiants("MIAGEIPM2019TD2");
 ////                    bd.affichage(plist);
@@ -153,7 +160,7 @@ public class bd {
 //           for(String p : ps){
 //               System.out.println(p);
 //           }
-//		}
+		}
     
     
    
