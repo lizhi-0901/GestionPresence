@@ -127,9 +127,7 @@ public class bd {
 		while (e.hasNext())
 			{
 			tab_obj = ((Object[]) e.next());
-                        
                         str.add(String.valueOf(tab_obj[0])); 
-                        
                         }
                         return str;
 
@@ -137,25 +135,25 @@ public class bd {
                 
                 
                 
-	public static void main (String[] s) throws ParseException
-		{
-                    
-//                    List<Personnel> l = bd.getEtudiants("MIAGEIPM2019TD1");
-//                    List<Matiere> l = bd.getMatieres("MIAGE IPM");
-//                    SimpleDateFormat df =new SimpleDateFormat("yyyy-mm-dd");
-//                    Date d=df.parse("2019-10-01");
-//                    List<Groupe> l=bd.getGroupe(d, 570, "Management de projet");
-//                    bd.affichage(l);
-                    
-//                     List<Personnel> plist=bd.getEtudiants("MIAGEIPM2019TD2");
-//                    bd.affichage(plist);
-//           
-           List<Matiere> m = bd.getMatieres("MIAGEIPM");
-           ArrayList<String> ps = bd.output(m);
-           for(String p : ps){
-               System.out.println(p);
-           }
-		}
+//	public static void main (String[] s) throws ParseException
+//		{
+//                    
+////                    List<Personnel> l = bd.getEtudiants("MIAGEIPM2019TD1");
+////                    List<Matiere> l = bd.getMatieres("MIAGE IPM");
+////                    SimpleDateFormat df =new SimpleDateFormat("yyyy-mm-dd");
+////                    Date d=df.parse("2019-10-01");
+////                    List<Groupe> l=bd.getGroupe(d, 570, "Management de projet");
+////                    bd.affichage(l);
+//                    
+////                     List<Personnel> plist=bd.getEtudiants("MIAGEIPM2019TD2");
+////                    bd.affichage(plist);
+////           
+//           List<Matiere> m = bd.getMatieres("MIAGEIPM");
+//           ArrayList<String> ps = bd.output(m);
+//           for(String p : ps){
+//               System.out.println(p);
+//           }
+//		}
     
     
    

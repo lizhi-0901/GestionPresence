@@ -40,24 +40,20 @@ public class ServletCours extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		try (PrintWriter out = response.getWriter())
 			{
-			/*----- Ecriture de la page XML -----*/
-			out.println("<?xml version=\"1.0\"?>");
-                        String res="hahahahahaha";
-			out.println("<res>" +res+ "</res>");
-//
-			/*----- Récupération des paramètres -----*/
-			String formation = request.getParameter("formation");
-                        System.out.println(formation);
-                        ArrayList<String> mlist =bd.output(bd.getMatieres(formation));
-                        System.out.println(mlist.size());
-                        for(String m: mlist){
-                          
-                        out.println("<matiere>" + m + "</matiere>");
-                         
-            
-			
-			}
-    }
+                            /*----- Ecriture de la page XML -----*/
+                            out.println("<?xml version=\"1.0\"?>");
+                            out.println("<liste_matiere>");
+    //
+                            /*----- Récupération des paramètres -----*/
+                            String formation = request.getParameter("formation");
+                            System.out.println(formation);
+                            ArrayList<String> mlist =bd.output(bd.getMatieres(formation));
+                            System.out.println(mlist.size());
+                            for(String m: mlist){
+                                out.println("<matiere>" + m + "</matiere>");
+                            }
+                            out.println("</liste_matiere>");
+                        }
     }
     @Override
     protected void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { doGet(request, response); }

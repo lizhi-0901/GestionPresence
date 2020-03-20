@@ -7,6 +7,9 @@ package bd;
 
 import static bd.bd.session;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import metier.Matiere;
 import metier.Personnel;
@@ -20,10 +23,24 @@ import org.hibernate.Transaction;
  */
 public class TestHibernate {
      public static void main (String[] args) throws ParseException{
-//           List<Personnel> plist=bd.getEtudiants("MIAGEIPM2019TD2");
-//           plist.forEach((p) -> {
-//               System.out.println(p.getNom());
-                    List<Matiere> mlist = bd.getMatieres("MIAGEIPM");
+         SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+            Date date =df.parse("2019-10-01");
+                        String libelleMatiere ="Donnee,integration";
+                        int heureDeb =570;
+                        System.out.println(heureDeb);
+                        System.out.println(libelleMatiere);
+                        System.out.println(date);
+                        
+                        ArrayList<String> glist =bd.output(bd.getGroupe(date, heureDeb, libelleMatiere));
+                        
+                        System.out.println(glist.size());
+                        for(String g: glist){
+                          
+                        
+                            System.out.println("groupe"+g); 
+                            // retourne idgroupe
+			
+			}
                     
      }
      

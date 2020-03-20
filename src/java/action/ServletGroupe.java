@@ -9,10 +9,13 @@ import bd.bd;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,27 +37,35 @@ public class ServletGroupe extends HttpServlet {
 			{
 			/*----- Ecriture de la page XML -----*/
 			out.println("<?xml version=\"1.0\"?>");
-                        String res="hahahahahaha";
-			out.println("<res>" +res+ "</res>");
+                        
 //
 			/*----- Récupération des paramètres -----*/
-			SimpleDateFormat date = new SimpleDateFormat("dd-mm-yyyy");
-//                        date = SimpleDateFormat.parse(request.getParameter("date"));
-                        String libelleMatiere = request.getParameter("cours");
-                        int heureDeb= Integer.parseInt(request.getParameter("heure"));
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+//                        Date date = df.parse(request.getParameter("date"));
+//                        String libelleMatiere = request.getParameter("cours");
+//                        int heureDeb= Integer.parseInt(request.getParameter("heure"));
+//                        
+                        Date date =df.parse("2019-10-01");
+                        String libelleMatiere ="Donnee,integration";
+                        int heureDeb =570;
                         System.out.println(heureDeb);
                         System.out.println(libelleMatiere);
                         System.out.println(date);
-//                        ArrayList<String> mlist =bd.output(bd.getGroupe(Date date, int heureDeb, String libelleMatiere));
-//                        System.out.println(mlist.size());
-//                        for(String m: mlist){
-//                          
-//                        out.println("<matiere>" + m + "</matiere>");
-                         
-            
+                        
+                        ArrayList<String> glist =bd.output(bd.getGroupe(date, heureDeb, libelleMatiere));
+                        
+                        System.out.println(glist.size());
+                        for(String g: glist){
+                          
+                        out.println("<groupe>" + g + "</groupe>");
+                            System.out.println("groupe"+g); 
+                            // retourne idgroupe
 			
 			}
     
+    }   catch (ParseException ex) {
+            Logger.getLogger(ServletGroupe.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     @Override
     protected void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { doGet(request, response); }
@@ -79,7 +90,7 @@ public class ServletGroupe extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }// </editor-fold>// </editor-fold>
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
