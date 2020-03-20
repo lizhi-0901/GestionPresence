@@ -12,7 +12,7 @@ public class Ue  implements java.io.Serializable {
 
 
      private String codeUe;
-     private int libelleUe;
+     private String libelleUe;
      private int coefficienUe;
      private Set matieres = new HashSet(0);
 
@@ -20,12 +20,12 @@ public class Ue  implements java.io.Serializable {
     }
 
 	
-    public Ue(String codeUe, int libelleUe, int coefficienUe) {
+    public Ue(String codeUe, String libelleUe, int coefficienUe) {
         this.codeUe = codeUe;
         this.libelleUe = libelleUe;
         this.coefficienUe = coefficienUe;
     }
-    public Ue(String codeUe, int libelleUe, int coefficienUe, Set matieres) {
+    public Ue(String codeUe, String libelleUe, int coefficienUe, Set matieres) {
        this.codeUe = codeUe;
        this.libelleUe = libelleUe;
        this.coefficienUe = coefficienUe;
@@ -39,11 +39,11 @@ public class Ue  implements java.io.Serializable {
     public void setCodeUe(String codeUe) {
         this.codeUe = codeUe;
     }
-    public int getLibelleUe() {
+    public String getLibelleUe() {
         return this.libelleUe;
     }
     
-    public void setLibelleUe(int libelleUe) {
+    public void setLibelleUe(String libelleUe) {
         this.libelleUe = libelleUe;
     }
     public int getCoefficienUe() {

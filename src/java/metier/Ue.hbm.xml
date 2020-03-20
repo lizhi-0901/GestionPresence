@@ -9,7 +9,7 @@
             <generator class="assigned" />
         </id>
         <property name="libelleUe" type="string">
-            <column name="libelleUE" not-null="true" />
+            <column name="libelleUE" length="25" not-null="true" />
         </property>
         <property name="coefficienUe" type="int">
             <column name="coefficienUE" not-null="true" />
