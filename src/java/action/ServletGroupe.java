@@ -37,7 +37,7 @@ public class ServletGroupe extends HttpServlet {
 			{
 			/*----- Ecriture de la page XML -----*/
 			out.println("<?xml version=\"1.0\"?>");
-                        
+                        out.println("<liste_groupe>");
 //
 			/*----- Récupération des paramètres -----*/
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");

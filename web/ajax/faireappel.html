@@ -10,6 +10,15 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="ajax/csspageAppel.css" type="text/css" />
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="/resources/demos/style.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            $( function() {
+              $( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' }).value;
+            } );
+        </script>
     </head>
     
     <body>
@@ -20,6 +29,7 @@ and open the template in the editor.
                 <div class="info_choisir">
                     <span class=""> choisir formation </span><br/>
                     <select name="formation" id="formation">
+                        <option value="Formation">Formation</option>
                         <option value="MIAGEIPM"> IPM</option>
                         <option value="MIAGEISIAD"> ISIAD </option>
                         <p id="s"></p>
@@ -51,17 +61,16 @@ and open the template in the editor.
                
                 
                 <div class="info_choisir">
-                    <span id="date"> Choisir Date: </span><br/>
-                    <input type="text" placeholder="co "><br/>
+                    <p>Date: <input type="text" id="datepicker"></p>
                 </div>
                  
                 <div class="info_choisir">
-                    <span id="heure"> heure Début: </span><br/>
+                    <span id="heure"> heure D&eacutebut: </span><br/>
                    <input type="text" placeholder="co "><br/>
                 </div>
                  
                 <div class="info_choisir">
-                <span> Durée:</span><br/>
+                <span> Dur&eacutee:</span><br/>
                     <select name="duree" id="duree">
                         <option value="1.5">1h 30min </option>
                         <option value="3"> 3h </option>
@@ -81,9 +90,9 @@ and open the template in the editor.
                         (photo)
                     </div>
                     <div> 
-                        <button class="btn_present appel" value="">Présent</button>
+                        <button class="btn_present appel" value="">Pr&eacutesent</button>
                          <button class="btn_retard appel" value="">Retard</button>
-                         <button class="btn_abs_just appel" value="">abs justifié:</button>
+                         <button class="btn_abs_just appel" value="">abs justifi&eacute:</button>
                          <button class="btn_abs appel" value="">absent</button>
                     </div>
                 </div>  
@@ -91,7 +100,7 @@ and open the template in the editor.
              
                 <div>    
                     <div class="info_presence">
-                        <span class="text_nb"> nombre présence : </span>
+                        <span class="text_nb"> nombre pr&eacutesence : </span>
                         <span class="text_nb"> nombre retard : </span>
                         <span class="text_nb"> nombre absent justifié: </span>
                         <span class="text_nb"> nombre absent : </span>
@@ -117,9 +126,9 @@ and open the template in the editor.
                         (photo)
                     </div>
                     <div> 
-                        <button class="btn_present appel" value="">Présent</button>
+                        <button class="btn_present appel" value="">Pr&eacutesent</button>
                          <button class="btn_retard appel" value="">Retard</button>
-                         <button class="btn_abs_just appel" value="">abs justifié:</button>
+                         <button class="btn_abs_just appel" value="">abs justifi&eacute:</button>
                          <button class="btn_abs appel" value="">absent</button>
                     </div>
                 </div>  
@@ -127,9 +136,9 @@ and open the template in the editor.
              
                 <div>    
                     <div class="info_presence">
-                        <span class="text_nb"> nombre présence : </span>
+                        <span class="text_nb"> nombre pr&eacutesence : </span>
                         <span class="text_nb"> nombre retard : </span>
-                        <span class="text_nb"> nombre absent justifié: </span>
+                        <span class="text_nb"> nombre absent justifi&eacute: </span>
                         <span class="text_nb"> nombre absent : </span>
                     </div>
                     
