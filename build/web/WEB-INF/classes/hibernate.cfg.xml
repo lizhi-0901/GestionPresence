@@ -42,7 +42,7 @@ Contributor(s):
 <hibernate-configuration>
   <session-factory>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/db_21613265</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3307/db_21613265</property>
     <property name="hibernate.connection.username">21613265</property>
     <property name="hibernate.connection.password">R026G8</property>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
