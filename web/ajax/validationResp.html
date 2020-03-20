@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href='ajax/cssRespo.css' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <div>
+            <span > saisir numéro etudiant</span><br/>
+            <input id="idetudiant" type="text" placeholder="21509151"><br/>
+            <input type="button" id="affecter" value="chercher">
+        </div>    
+        <div id ="div_etu" class="etudiant">
+        <div >
+            <div class="div_photo_etu appel infos_haut"  >
+                            <img alt="" src="" >  
+                            (photo)
+            </div>
+           
+                <ul class="div_name infos_haut">
+                    <li>num&eacute;ro INE : 21509128</li>
+                    <li>Nom &eacute;tuduant : micheal</li>
+                    <li>pr&eacute;nom &eacute;tudiant: augustin </li>
+                </ul>
+           
+        </div>
+        
+        <h3>fichier stagiaire mensuelle</h3>
+        <div>
+            <table class="tab_presence" border="1" id="table_presence">
+                <th>p&eacute;riode</th>
+                <th>Nombre heures par jours</th>
+                <th >commentaire</th>
+            
+            
+             
+        </table>
+            
+         <table class="tab_presence">    
+            <!-- laisser à boutons-->
+            <tr>
+                <td><button><< mois pr&eacute;c&eacute;dent</button></td>
+                
+                <td><button>mois suivant >></button></td>
+            </tr>
+        </table>    
+        </div>
+        <div class="div_bouton">
+        
+        
+        <button>retour</button>
+        <button>valider</button>
+    </div>
+        </div>
+        <script type="text/JavaScript" src="ajax/valider.js"></script>
+    </body>
+</html>

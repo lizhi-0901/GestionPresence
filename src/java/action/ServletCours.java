@@ -44,10 +44,11 @@ public class ServletCours extends HttpServlet {
                             out.println("<?xml version=\"1.0\"?>");
                             out.println("<liste_matiere>");
     //
-                            /*----- Récupération des paramètres -----*/
+                          
+    /*----- Récupération des paramètres -----*/
                             String formation = request.getParameter("formation");
                             System.out.println(formation);
-                            ArrayList<String> mlist =bd.output(bd.getMatieres(formation));
+                            ArrayList<String> mlist =bd.output(bd.getMatieres(formation),0);
                             System.out.println(mlist.size());
                             for(String m: mlist){
                                 out.println("<matiere>" + m + "</matiere>");

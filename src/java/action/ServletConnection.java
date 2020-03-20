@@ -44,6 +44,9 @@ public class ServletConnection extends HttpServlet {
 						case "Enseigant":
                                                         request.getRequestDispatcher("faireappelPage").forward(request, response);
 							break;
+                                                case "Responsable":
+                                                        request.getRequestDispatcher("responsablePage").forward(request, response);
+							break;       
 						default:
 						}
 					}

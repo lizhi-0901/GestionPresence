@@ -37,22 +37,22 @@ public class ServletGroupe extends HttpServlet {
 			{
 			/*----- Ecriture de la page XML -----*/
 			out.println("<?xml version=\"1.0\"?>");
-                        
+                        out.println("<liste_groupe>");
 //
 			/*----- Récupération des paramètres -----*/
-			SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+			
 //                        Date date = df.parse(request.getParameter("date"));
 //                        String libelleMatiere = request.getParameter("cours");
 //                        int heureDeb= Integer.parseInt(request.getParameter("heure"));
 //                        
-                        Date date =df.parse("2019-10-01");
+                        Date date =new Date(2019-10-01);
                         String libelleMatiere ="Donnee,integration";
                         int heureDeb =570;
                         System.out.println(heureDeb);
                         System.out.println(libelleMatiere);
                         System.out.println(date);
                         
-                        ArrayList<String> glist =bd.output(bd.getGroupe(date, heureDeb, libelleMatiere));
+                        ArrayList<String> glist =bd.output(bd.getGroupe(date, heureDeb, libelleMatiere),0);
                         
                         System.out.println(glist.size());
                         for(String g: glist){
@@ -62,7 +62,7 @@ public class ServletGroupe extends HttpServlet {
                             // retourne idgroupe
 			
 			}
-    
+                        out.println("<liste_groupe>");
     }   catch (ParseException ex) {
             Logger.getLogger(ServletGroupe.class.getName()).log(Level.SEVERE, null, ex);
         }

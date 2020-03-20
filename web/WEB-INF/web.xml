@@ -28,6 +28,14 @@
         <servlet-name>ServletGroupe</servlet-name>
         <servlet-class>action.ServletGroupe</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletRespon</servlet-name>
+        <servlet-class>action.ServletRespon</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>validerPage</servlet-name>
+        <jsp-file>/ajax/validationResp.html</jsp-file>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletConnection</servlet-name>
         <url-pattern>/ServletConnection</url-pattern>
@@ -55,6 +63,14 @@
     <servlet-mapping>
         <servlet-name>ServletGroupe</servlet-name>
         <url-pattern>/ServletGroupe</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletRespon</servlet-name>
+        <url-pattern>/ServletRespon</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>validerPage</servlet-name>
+        <url-pattern>/validerResp</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

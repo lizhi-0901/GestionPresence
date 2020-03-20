@@ -9,6 +9,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import metier.Affecter;
+import metier.Creneau;
 import metier.Groupe;
 import metier.Matiere;
 import metier.Personnel;
@@ -84,20 +86,48 @@ public class bd {
      * @param nommatiere
      * @return 
      */
-    public static List<Groupe> getGroupe(Date date, int heureDeb, String libelleMatiere){
-        Query query=session.createQuery("select new metier.Groupe(*) " +
-                                        "from Creneau c, Groupe g, AffecterGroupe a "+
-                                        "where c.idCreneau =a.idCreneau "+
-                                        "and a.idGroupe=g.idGroupe "+ 
-                                        "and c.dateDeb=:date "+
+    public static List<Groupe> getGroupe(Date date,int heureDeb, String libelleMatiere) throws ParseException{
+        SimpleDateFormat df =new SimpleDateFormat("yyyy-mm-dd");
+        String d=df.format(date);
+        Query query=session.createQuery("select new metier.Groupe(gs.idGroupe,gs.nomGroupe,gs.typeGroupe) " +
+                                        "from Creneau c join c.groupes gs,Creneau c "+
+                                        "where c.dateDeb=:date "+
                                         "and c.heureDeb=:heure "+
-                                        "and c.libelleMatiere=:libelle");
-        query.setParameter("date", date);
+                                        "and c.matiere.libelleMatiere=:libelle");
+        query.setParameter("date", d);
         query.setParameter("heure", heureDeb);
         query.setParameter("libelle", libelleMatiere);
+        
         List<Groupe> listGroupe=query.list();
         
         return listGroupe;
+    }
+    
+    public static List<String> getAffecter(String idetudiant){
+        List<String> listaffecter =session.createSQLQuery("select a.idCreneau "+
+                                                          "from Affecter a "+
+                                                          "where a.etatPresence= 'present' ").list();
+       
+        return listaffecter;
+    }
+    
+    public static List<Creneau> getHeurePresent(String idetudiant){
+        List<Creneau> listcreneau =session.createSQLQuery("select  c.dateDeb,sum(duree) "+
+                                                          "from Creneau c,Affecter a "+
+                                                          "where c.idCreneau=a.idCreneau "+
+                                                          "and a.etatPresence= 'present' "+
+                                                          "and a.idPersonne =" +"'"+idetudiant+"' "+
+                                                          "group by c.dateDeb").list();
+       
+        return listcreneau;
+    }
+    
+    public static List<Personnel> getEtudiantinfo(String idetudiant){
+        List<Personnel> listetu =session.createSQLQuery("select a.idCreneau "+
+                                                          "from Affecter a "+
+                                                          "where a.etatPresence= 'present' ").list();
+       
+        return listetu;
     }
     
     
@@ -118,8 +148,12 @@ public class bd {
 			System.out.println("");
 			}
 		}
-        
-        public  static ArrayList<String> output (List l)
+        /**
+         * 
+         * @param l
+         * @return 
+         */
+        public  static ArrayList<String> output (List l,int i)
 		{
 		Iterator e = l.iterator();
                 Object[] tab_obj = null;
@@ -127,7 +161,7 @@ public class bd {
 		while (e.hasNext())
 			{
 			tab_obj = ((Object[]) e.next());
-                        str.add(String.valueOf(tab_obj[0])); 
+                        str.add(String.valueOf(tab_obj[i])); 
                         }
                         return str;
 
@@ -135,25 +169,19 @@ public class bd {
                 
                 
                 
-//	public static void main (String[] s) throws ParseException
-//		{
-//                    
-////                    List<Personnel> l = bd.getEtudiants("MIAGEIPM2019TD1");
-////                    List<Matiere> l = bd.getMatieres("MIAGE IPM");
-////                    SimpleDateFormat df =new SimpleDateFormat("yyyy-mm-dd");
-////                    Date d=df.parse("2019-10-01");
-////                    List<Groupe> l=bd.getGroupe(d, 570, "Management de projet");
-////                    bd.affichage(l);
-//                    
-////                     List<Personnel> plist=bd.getEtudiants("MIAGEIPM2019TD2");
-////                    bd.affichage(plist);
-////           
-//           List<Matiere> m = bd.getMatieres("MIAGEIPM");
-//           ArrayList<String> ps = bd.output(m);
-//           for(String p : ps){
-//               System.out.println(p);
-//           }
-//		}
+	public static void main (String[] s) throws ParseException
+		{
+                    
+//                   
+                    List<Creneau> lista= bd.getHeurePresent("21509151") ;
+                    
+                    for(String str :bd.output(lista,0)){
+                        System.out.println(str);
+                    }
+                    for(String str :bd.output(lista,1)){
+                        System.out.println(str);
+                    }
+		}
     
     
    

@@ -27,7 +27,7 @@ function getCours ()
 			{
 			// Elément html que l'on va mettre à jour.
                             var elt = document.getElementById("cours");
-                            var tab=xhr.responseXML.getElementsByTagName("matiere")
+                            var tab=xhr.responseXML.getElementsByTagName("matiere");
                             elt.innerHTML="";
                             for ( i=0;i<tab.length;i++)
                             {
@@ -60,7 +60,7 @@ function getGroupe ()
 	var xhr = new XMLHttpRequest();
 
 	// Requête au serveur avec les paramètres éventuels.
-	xhr.open("GET","ServletGroupe"+"?cours="+cours+"&heure"+heure+"&date"+date);
+	xhr.open("GET","ServletGroupe"+"?cours="+cours+"&heure="+heure+"&date="+date);
 
 	// On précise ce que l'on va faire quand on aura reçu la réponse du serveur.
 	xhr.onload = function()
