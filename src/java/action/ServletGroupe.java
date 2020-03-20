@@ -9,7 +9,9 @@ import bd.bd;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,18 +23,8 @@ import metier.Matiere;
  *
  * @author lizhiwang
  */
-public class ServletCours extends HttpServlet {
+public class ServletGroupe extends HttpServlet {
 
-    
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
@@ -46,18 +38,23 @@ public class ServletCours extends HttpServlet {
 			out.println("<res>" +res+ "</res>");
 //
 			/*----- Récupération des paramètres -----*/
-			String formation = request.getParameter("formation");
-                        System.out.println(formation);
-                        ArrayList<String> mlist =bd.output(bd.getMatieres(formation));
-                        System.out.println(mlist.size());
-                        for(String m: mlist){
-                          
-                        out.println("<matiere>" + m + "</matiere>");
+			SimpleDateFormat date = new SimpleDateFormat("dd-mm-yyyy");
+//                        date = SimpleDateFormat.parse(request.getParameter("date"));
+                        String libelleMatiere = request.getParameter("cours");
+                        int heureDeb= Integer.parseInt(request.getParameter("heure"));
+                        System.out.println(heureDeb);
+                        System.out.println(libelleMatiere);
+                        System.out.println(date);
+//                        ArrayList<String> mlist =bd.output(bd.getGroupe(Date date, int heureDeb, String libelleMatiere));
+//                        System.out.println(mlist.size());
+//                        for(String m: mlist){
+//                          
+//                        out.println("<matiere>" + m + "</matiere>");
                          
             
 			
 			}
-    }
+    
     }
     @Override
     protected void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { doGet(request, response); }

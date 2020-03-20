@@ -30,10 +30,13 @@ function getCours ()
 			// Elément html que l'on va mettre à jour.
                         
 			var matiere = xhr.responseXML.getElementsByTagName("matiere");
-                        var cours = document.getElementById("cours").value;
+                        var res = xhr.responseXML.getElementByTagName("res");
+                        var cours = document.getElementById("cours");
+                        var s= document.getElementById("s");
+                        s.innerHTML=res;
                         for ( i=0;i<matiere.length;i++)
                         {
-                        cours.insertAdjacentHTML('beforeend',"<option>"+matiere[i].firstChild.nodeValue+"</option>") ;
+                            cours.insertAdjacentHTML('beforeend',"<option>"+matiere[i].firstChild.nodeValue+"</option>") ;
                         }
                         alert(matiere);
 			}
