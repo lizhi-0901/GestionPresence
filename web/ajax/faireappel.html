@@ -9,7 +9,7 @@ and open the template in the editor.
         <title>PageAppel</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="csspageAppel.css" type="text/css" />
+        <link rel="stylesheet" href="ajax/csspageAppel.css" type="text/css" />
     </head>
     
     <body>
@@ -19,18 +19,17 @@ and open the template in the editor.
             <form method ="" action="" name="" >
                 <div class="info_choisir">
                     <span class=""> choisir formation </span><br/>
-                    <select name="cours" id="">
-                        <option value="id_groupe1"> IPM</option>
-                        <option value="id_groupe2"> ISIAD </option>
-                        <option value="id_groupe3"> IM</option>
-                        <option value="id_groupe4"> MIAGE </option>
+                    <select name="cours" id="formation">
+                        <option value="MIAGEIPM"> IPM</option>
+                        <option value="MIAGEISIAD"> ISIAD </option>
+                        
                     </select>
                 </div>
                 
                 
                 <div class="info_choisir">
                  <span> Choisir cours: </span><br/>
-                    <select name="cours" id="">
+                    <select name="cours" id="cours">
                         <option value="">groupe FA</option>
                         <option value=""> groupe FI </option>
                         <option value="id_groupe3"> groupe anglais</option>
@@ -52,18 +51,18 @@ and open the template in the editor.
                
                 
                 <div class="info_choisir">
-                    <span> Choisir Date: </span><br/>
+                    <span id="date"> Choisir Date: </span><br/>
                     <input type="text" placeholder="co "><br/>
                 </div>
                  
                 <div class="info_choisir">
-                    <span> heure Début: </span><br/>
+                    <span id="heure"> heure Début: </span><br/>
                    <input type="text" placeholder="co "><br/>
                 </div>
                  
                 <div class="info_choisir">
                 <span> Durée:</span><br/>
-                    <select name="duree">
+                    <select name="duree" id="duree">
                         <option value="1.5">1h 30min </option>
                         <option value="3"> 3h </option>
                         <option value="1">examan 1h </option>
@@ -185,6 +184,6 @@ and open the template in the editor.
         <input type="reset" value="initialiser" class="bouton"/> 
         <input type="submit" value="valider"  class="bouton btn_valider" />
       </div>
-     <script type="text/JavaScript" src="faireappel.js"></script>
+     <script type="text/JavaScript" src="ajax/faireappel.js"></script>
     </body>
 </html>

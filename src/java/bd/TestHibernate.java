@@ -7,6 +7,8 @@ package bd;
 
 import static bd.bd.session;
 import java.text.ParseException;
+import java.util.List;
+import metier.Matiere;
 import metier.Personnel;
 
 import org.hibernate.Session;
@@ -18,9 +20,11 @@ import org.hibernate.Transaction;
  */
 public class TestHibernate {
      public static void main (String[] args) throws ParseException{
-           String mdp =  bd.connection("21613265").getMotDePasse();
-           String type = bd.connection("21613265").getType();
-           System.out.println(mdp);
-           System.out.println(type);
+//           List<Personnel> plist=bd.getEtudiants("MIAGEIPM2019TD2");
+//           plist.forEach((p) -> {
+//               System.out.println(p.getNom());
+                    List<Matiere> mlist = bd.getMatieres("MIAGEIPM");
+                    
      }
+     
 }

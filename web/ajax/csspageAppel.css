@@ -29,6 +29,7 @@ h2{
     border-radius:10px;
     margin:5px;
     padding: 2px;
+    display: none;
 }
 .div_photo_etu{
     border-style: solid ;

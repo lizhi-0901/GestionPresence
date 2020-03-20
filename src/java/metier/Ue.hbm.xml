@@ -8,7 +8,7 @@
             <column name="codeUE" length="25" />
             <generator class="assigned" />
         </id>
-        <property name="libelleUe" type="int">
+        <property name="libelleUe" type="string">
             <column name="libelleUE" not-null="true" />
         </property>
         <property name="coefficienUe" type="int">

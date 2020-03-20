@@ -1,48 +1,35 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="ajax/css.css" type="text/css" />
     </head>
-    <body>
+<body>
         
-
 <!-- Where all the magic happens -->
 <!-- LOGIN FORM -->
 <div  style="padding:50px 0">
 	<div >login</div>
 	<!-- Main Form -->
-	<div>
-		<div >
-			<div >
-						<label for="lg_username" >Username</label>
-						<input type="text"  id="lg_username" name="lg_username" placeholder="username">
-			</div>
-					<div >
-						<label for="lg_password" >Password</label>
-						<input type="password"  id="lg_password" name="lg_password" placeholder="password">
-					</div>
-					<div >
-						<input type="checkbox" id="lg_remember" name="lg_remember">
-						<label for="lg_remember">remember</label>
-					</div>
-				</div>
-				<button type="submit"  id="btn_login"><i ></i></button>
-			</div>
-                        <div id="espace_msg">
-				
+	<form method="get" action="ServletConnection">
+			<div>
+				<label for="lg_username" >Username</label>
+				<input type="text"  id="lg_username" name="lg_username" placeholder="alain.berro@gmail.com">
 			</div>
 			<div >
-				<p>forgot your password? <a href="#">click here</a></p>
-				
+				<label for="lg_password" >Password</label>
+				<input type="password"  id="lg_password" name="lg_password" placeholder="alain">
 			</div>
-		
+			<div >
+				<input type="checkbox" id="lg_remember" name="lg_remember">
+				<label for="lg_remember">remember</label>
+			</div>
+		<button type="submit"  id="btn_login"><i ></i></button>
+	</form>
+
+		<div>${requestScope.msg_erreur}</div>
+	
 	</div>
 
 

@@ -11,15 +11,15 @@
 function getCours ()
         {
         //recuperer la valeur
-        var elt = document.getElementById("lg_username").value;
+        var formation = document.getElementById("formation").value;
         //faire l'affichir 
-        alert(elt);
+        alert(formation);
         
 	// Objet XMLHttpRequest.
 	var xhr = new XMLHttpRequest();
 
 	// Requête au serveur avec les paramètres éventuels.
-	xhr.open("GET","ServletEtudiant"+"?identifiant="+identifiant);
+	xhr.open("GET","ServletCours"+"?formation="+formation);
 
 	// On précise ce que l'on va faire quand on aura reçu la réponse du serveur.
 	xhr.onload = function()
@@ -28,9 +28,14 @@ function getCours ()
 		if (xhr.status === 200)
 			{
 			// Elément html que l'on va mettre à jour.
-                        alert("retour");
-			var res = xhr.responseXML.getElementsByTagName("mdp");
-                        alert(res);
+                        
+			var matiere = xhr.responseXML.getElementsByTagName("matiere");
+                        var cours = document.getElementById("cours").value;
+                        for ( i=0;i<matiere.length;i++)
+                        {
+                        cours.insertAdjacentHTML('beforeend',"<option>"+matiere[i].firstChild.nodeValue+"</option>") ;
+                        }
+                        alert(matiere);
 			}
 		};
 	
@@ -46,15 +51,15 @@ function getCours ()
 function getGroupe ()
         {
         //recuperer la valeur
-        var elt = document.getElementById("lg_username").value;
+        var cours = document.getElementById("cours").value;
         //faire l'affichir 
-        alert(elt);
+        alert("cours"+cours);
         
 	// Objet XMLHttpRequest.
 	var xhr = new XMLHttpRequest();
 
 	// Requête au serveur avec les paramètres éventuels.
-	xhr.open("GET","ServletEtudiant"+"?identifiant="+identifiant);
+	xhr.open("GET","ServletEtudiant"+"?cours="+cours);
 
 	// On précise ce que l'on va faire quand on aura reçu la réponse du serveur.
 	xhr.onload = function()
@@ -82,7 +87,7 @@ function getEtudiant ()
         //recuperer la valeur
         var groupe = document.getElementById("groupe").value;
         //faire l'affichir 
-        alert(groupe);
+        alert("groupe"+groupe);
         
 	// Objet XMLHttpRequest.
 	var xhr = new XMLHttpRequest();
@@ -106,6 +111,69 @@ function getEtudiant ()
 	// Envoie de la requête.
 	xhr.send();
 	}     
+    
+
+     function getDate ()
+        {
+        //recuperer la valeur
+        var date = document.getElementById("date").value;
+        //faire l'affichir 
+        alert("date"+date);
+        
+	// Objet XMLHttpRequest.
+	var xhr = new XMLHttpRequest();
+
+	// Requête au serveur avec les paramètres éventuels.
+	xhr.open("GET","ServletEtudiant"+"?groupe="+groupe);
+
+	// On précise ce que l'on va faire quand on aura reçu la réponse du serveur.
+	xhr.onload = function()
+		{
+		// Si la requête http s'est bien passée.
+		if (xhr.status === 200)
+			{
+			// Elément html que l'on va mettre à jour.
+                        alert("retour");
+			var res = xhr.responseXML.getElementsByTagName("mdp");
+                        alert(res);
+			}
+		};
+	
+	// Envoie de la requête.
+	xhr.send();
+	}     
+        
+        function getHeure ()
+        {
+        //recuperer la valeur
+        var heure = document.getElementById("heure").value;
+        //faire l'affichir 
+        alert("heure"+heure);
+        
+	// Objet XMLHttpRequest.
+	var xhr = new XMLHttpRequest();
+
+	// Requête au serveur avec les paramètres éventuels.
+	xhr.open("GET","ServletEtudiant"+"?groupe="+groupe);
+
+	// On précise ce que l'on va faire quand on aura reçu la réponse du serveur.
+	xhr.onload = function()
+		{
+		// Si la requête http s'est bien passée.
+		if (xhr.status === 200)
+			{
+			// Elément html que l'on va mettre à jour.
+                        alert("retour");
+			var res = xhr.responseXML.getElementsByTagName("mdp");
+                        alert(res);
+			}
+		};
+	
+	// Envoie de la requête.
+	xhr.send();
+	}     
+        
+        
         /**
  * Lancement après le chargement du DOM.
  */
@@ -113,5 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	
 	document.getElementById("groupe").addEventListener("change",getEtudiant);
+        document.getElementById("formation").addEventListener("change",getCours);
+        document.getElementById("cours").addEventListener("change",getGroupe);
         
 });
