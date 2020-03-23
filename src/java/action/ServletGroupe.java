@@ -20,6 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import metier.Groupe;
 import metier.Matiere;
 
 /**
@@ -33,6 +34,7 @@ public class ServletGroupe extends HttpServlet {
     {
         response.setContentType("application/xml;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
+                
 		try (PrintWriter out = response.getWriter())
 			{
 			/*----- Ecriture de la page XML -----*/
@@ -40,28 +42,21 @@ public class ServletGroupe extends HttpServlet {
                         out.println("<liste_groupe>");
 //
 			/*----- Récupération des paramètres -----*/
-			SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
-//                        Date date = df.parse(request.getParameter("date"));
-//                        String libelleMatiere = request.getParameter("cours");
-//                        int heureDeb= Integer.parseInt(request.getParameter("heure"));
-//                        
-                        Date date =df.parse("2019-10-01");
-                        String libelleMatiere ="Donnee,integration";
-                        int heureDeb =570;
-                        System.out.println(heureDeb);
-                        System.out.println(libelleMatiere);
-                        System.out.println(date);
+                        String dateString=request.getParameter("date");
+                        String libelleMatiere = request.getParameter("cours");
+                        String heure=request.getParameter("heure");
+                        SimpleDateFormat df = new SimpleDateFormat("yy-mm-dd");
+                        Date date = df.parse(dateString);
+                        int heureDeb= Integer.parseInt(heure);
                         
-                        ArrayList<String> glist =bd.output(bd.getGroupe(date, heureDeb, libelleMatiere));
                         
-                        System.out.println(glist.size());
-                        for(String g: glist){
-                          
-                        out.println("<groupe>" + g + "</groupe>");
-                            System.out.println("groupe"+g); 
-                            // retourne idgroupe
-			
-			}
+                        List<Groupe> listGroupes=bd.getGroupe(date, heureDeb, libelleMatiere);
+                        for(Groupe g:listGroupes){
+                            String idGroupe=g.getIdGroupe();
+                            out.println("<groupe>" + idGroupe + "</groupe>");
+                        }
+                        out.println("</liste_groupe>");
+
     
     }   catch (ParseException ex) {
             Logger.getLogger(ServletGroupe.class.getName()).log(Level.SEVERE, null, ex);
