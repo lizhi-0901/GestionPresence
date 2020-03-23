@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import metier.Creneau;
 import metier.Groupe;
 import metier.Matiere;
 import metier.Personnel;
@@ -30,7 +31,7 @@ import org.hibernate.Session;
 public class bd {
     
      static Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-     static Transaction t = session.beginTransaction();
+     static Transaction transaction = null;
      SimpleDateFormat df = new SimpleDateFormat("dd-mm-yyyy");
     
      /**
@@ -41,13 +42,11 @@ public class bd {
       */
      
     public static Personnel connection(String identifiant){
-//          try{
-          Personnel p = (Personnel) session.get(Personnel.class, identifiant);
-          return p;
-//          }
-//          catch(SQLexception ){
-//              
-//          }
+        if(transaction==null){
+            transaction=session.beginTransaction();
+        } 
+        Personnel p = (Personnel) session.get(Personnel.class, identifiant);
+        return p;
     }
     
      /**
@@ -56,6 +55,9 @@ public class bd {
      * @return afficher la liste de formation qui est relie avec ce formation
      */
     public static List<Matiere> getMatieres(String libelleFormation){
+        if(transaction==null){
+            transaction=session.beginTransaction();
+        } 
           List<Matiere> listMatieres =session.createSQLQuery("select  m.libelleMatiere,m.idFormation "+ 
                                                              "from Matiere m, Formation f "+
                                                              "where f.idFormation =m.idFormation "+ 
@@ -68,10 +70,16 @@ public class bd {
      * @return retourne la liste etudiant qui est dans ce group TD
      */
     public static List<Personnel> getEtudiants(String idGroupe){
-        List<Personnel> listEtudiants=session.createSQLQuery("select p.nom,p.prenom "+
-                                                            "from Personnel p, Appartenir a "+
-                                                            "where p.idPersonne=a.idPersonne "+
-                                                            "and a.idGroupe=" +"'"+idGroupe+"'").list();
+        if(transaction==null){
+            transaction=session.beginTransaction();
+        } 
+
+        Query query=session.createQuery("select new metier.Personnel(p.idPersonne,p.nom,p.prenom,p.photo) "+
+                                        "from Personnel p inner join p.groupes pg, Groupe g "+
+                                        "where g.idGroupe=:idGroupe "+
+                                        "and pg.idGroupe=g.idGroupe ");
+        query.setParameter("idGroupe", idGroupe);
+        List<Personnel> listEtudiants=query.list();
         
         return listEtudiants;
     }
@@ -85,13 +93,18 @@ public class bd {
      * @return 
      */
      public static List<Groupe> getGroupe(Date date,int heureDeb, String libelleMatiere) throws ParseException{
+         
+        if(transaction==null){
+            transaction=session.beginTransaction();
+        }
+        
         SimpleDateFormat df =new SimpleDateFormat("yyyy-mm-dd");
         String d=df.format(date);
         Query query=session.createQuery("select new metier.Groupe(gs.idGroupe,gs.nomGroupe,gs.typeGroupe) " +
                                         "from Creneau c join c.groupes gs,Creneau c "+
                                         "where c.dateDeb=:date "+
                                         "and c.heureDeb=:heure "+
-                                        "and c.matiere.libelleMatiere=:libelle");
+                                        "and c.matiere.libelleMatiere=:libelle "); 
         query.setParameter("date", d);
         query.setParameter("heure", heureDeb);
         query.setParameter("libelle", libelleMatiere);
@@ -102,6 +115,51 @@ public class bd {
         
         return listGroupe;
     }
+     
+     public static List<Creneau> getIdCreneau(Date date,int heureDeb, String libelleMatiere)throws ParseException{
+        if(transaction==null){
+            transaction=session.beginTransaction();
+        } 
+        SimpleDateFormat df =new SimpleDateFormat("yyyy-mm-dd");
+        String d=df.format(date);
+        
+        Query query=session.createQuery("select new metier.Creneau(c.idCreneau) "+
+                                        "from Creneau c "+
+                                        "where c.dateDeb=:date "+
+                                        "and c.heureDeb=:heure "+
+                                        "and c.matiere.libelleMatiere=:libelle ");
+        
+        query.setParameter("date", d);
+        query.setParameter("heure", heureDeb);
+        query.setParameter("libelle", libelleMatiere);
+        
+        List<Creneau> idCreneau=query.list();
+        return idCreneau;
+     };
+     
+     public static void EnregistrerEtat(String idEtudiant, String idCreneau, String etat){
+        session=null;
+        try{
+            session=HibernateUtil.getSessionFactory().getCurrentSession();
+            transaction=session.beginTransaction();
+            Query query =session.createSQLQuery("update Affecter set etatPresence=:etat "+
+                                         "where idPersonne=:idP "+
+                                         "and idCreneau=:idC ");
+            query.setParameter("etat", etat);
+            query.setParameter("idP", idEtudiant);
+            query.setParameter("idC", idCreneau);
+            query.executeUpdate();
+            transaction.commit();
+            }
+            catch(RuntimeException e){
+                transaction.rollback();
+                throw e;
+            }
+        
+        
+    }
+     
+    
     
     
 	/*----------------------------*/
@@ -139,29 +197,20 @@ public class bd {
                 
                 
 	public static void main (String[] s) throws ParseException
-		{
-//                    
-////                    List<Personnel> l = bd.getEtudiants("MIAGEIPM2019TD1");
-////                    List<Matiere> l = bd.getMatieres("MIAGE IPM");
-                    SimpleDateFormat df =new SimpleDateFormat("yyyy-mm-dd");
-                    Date d=df.parse("2019-10-01");
-                    List<Groupe> l=bd.getGroupe(d, 570, "Management de projet");
-                    for(Groupe g:l){
-                        System.out.println(g.getTypeGroupe());
-                    }
-                    
-//                    bd.affichage(l);
-//                    
-////                     List<Personnel> plist=bd.getEtudiants("MIAGEIPM2019TD2");
-////                    bd.affichage(plist);
-////           
-//           List<Matiere> m = bd.getMatieres("MIAGEIPM");
-//           ArrayList<String> ps = bd.output(m);
-//           for(String p : ps){
-//               System.out.println(p);
-//           }
-		}
-    
-    
-   
+		{                  
+//                    for(Groupe g:l){
+//                        System.out.println(g.getNomGroupe());
+//                    }
+//                    SimpleDateFormat df =new SimpleDateFormat("yyyy-mm-dd");
+//                    Date d=df.parse("2019-10-01");
+//                    List<Creneau> id=bd.getIdCreneau(d, 570, "Management de projet");
+//                    for(Creneau c:id){
+//                        System.out.println(c.getIdCreneau());
+//                    }
+                    String idEtudiant="21613265";
+                    String idCreneau="MP201910010930";
+                    String etat="Retard";
+                    bd.EnregistrerEtat(idEtudiant, idCreneau, etat);
+
+		}  
 }

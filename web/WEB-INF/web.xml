@@ -28,6 +28,14 @@
         <servlet-name>ServletGroupe</servlet-name>
         <servlet-class>action.ServletGroupe</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletCreneau</servlet-name>
+        <servlet-class>action.ServletCreneau</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletInsertEtat</servlet-name>
+        <servlet-class>action.ServletInsertEtat</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletConnection</servlet-name>
         <url-pattern>/ServletConnection</url-pattern>
@@ -55,6 +63,14 @@
     <servlet-mapping>
         <servlet-name>ServletGroupe</servlet-name>
         <url-pattern>/ServletGroupe</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletCreneau</servlet-name>
+        <url-pattern>/ServletCreneau</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletInsertEtat</servlet-name>
+        <url-pattern>/ServletInsertEtat</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

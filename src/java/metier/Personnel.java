@@ -18,7 +18,7 @@ public class Personnel  implements java.io.Serializable {
      private String prenom;
      private Date dateNaissance;
      private String type;
-     private byte[] photo;
+     private String photo;
      private String adresseMail;
      private int numTel;
      private String prenomUsage;
@@ -31,6 +31,13 @@ public class Personnel  implements java.io.Serializable {
      private Set formations = new HashSet(0);
 
     public Personnel() {
+    }
+    
+    public Personnel(String idPersonne,String nom,String prenom,String photo){
+        this.idPersonne = idPersonne;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.photo = photo;
     }
 
 	
@@ -45,7 +52,7 @@ public class Personnel  implements java.io.Serializable {
         this.numTel = numTel;
         this.adresse = adresse;
     }
-    public Personnel(String idPersonne, String motDePasse, String nom, String prenom, Date dateNaissance, String type, byte[] photo, String adresseMail, int numTel, String prenomUsage, String adresse, Set fonctions, Set groupes, Set matieres, Set justifiers, Set affecters, Set formations) {
+    public Personnel(String idPersonne, String motDePasse, String nom, String prenom, Date dateNaissance, String type, String photo, String adresseMail, int numTel, String prenomUsage, String adresse, Set fonctions, Set groupes, Set matieres, Set justifiers, Set affecters, Set formations) {
        this.idPersonne = idPersonne;
        this.motDePasse = motDePasse;
        this.nom = nom;
@@ -107,11 +114,11 @@ public class Personnel  implements java.io.Serializable {
     public void setType(String type) {
         this.type = type;
     }
-    public byte[] getPhoto() {
+    public String getPhoto() {
         return this.photo;
     }
     
-    public void setPhoto(byte[] photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
     public String getAdresseMail() {
