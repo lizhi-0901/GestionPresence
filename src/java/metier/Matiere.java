@@ -12,6 +12,7 @@ public class Matiere  implements java.io.Serializable {
 
 
      private String libelleMatiere;
+     private String initiale;
      private Formation formation;
      private Ue ue;
      private Set personnels = new HashSet(0);
@@ -21,17 +22,27 @@ public class Matiere  implements java.io.Serializable {
     }
 
 	
-    public Matiere(String libelleMatiere, Formation formation, Ue ue) {
+    public Matiere(String libelleMatiere, Formation formation, Ue ue,String initiale) {
         this.libelleMatiere = libelleMatiere;
         this.formation = formation;
         this.ue = ue;
+        this.initiale=initiale;
     }
-    public Matiere(String libelleMatiere, Formation formation, Ue ue, Set personnels, Set creneaus) {
+    public Matiere(String libelleMatiere, Formation formation, Ue ue, Set personnels, Set creneaus,String initiale) {
        this.libelleMatiere = libelleMatiere;
        this.formation = formation;
        this.ue = ue;
        this.personnels = personnels;
        this.creneaus = creneaus;
+       this.initiale=initiale;
+    }
+
+    public void setInitiale(String initiale) {
+        this.initiale = initiale;
+    }
+
+    public String getInitiale() {
+        return initiale;
     }
    
     public String getLibelleMatiere() {

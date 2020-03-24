@@ -47,23 +47,26 @@ and open the template in the editor.
                  
                 <div class="info_choisir">
                     <span> Heure:  </span><input type="text" id="heure" style="width:30px"><br/>
-                    <span> Minute:</span><input type="text" id="minute" style="width:30px">
+                    <span> Minute:</span><input type="text" id="minute" style="width:30px"><br/>
+                    <span> Dur&eacutee:</span><input type="text" id="duree" style="width:30px">Mins
                 </div><br/>
                  
                  <div class="info_choisir">
                 <span>Choisir groupeTD : </span><br/>
                     <select name="groupe" id="groupe">                       
-
+                        <option>IPM1920TD1</option>
+                        <option>IPM1920TD2</option>
+                        <option>IPM1920FI</option>
+                        <option>IPM1920FA</option>
                     </select>
                 </div><br/> 
-                <button type="button" id="btn_afficher">afficher</button>
             </form>
       </div>           
 <!--  liste étudiant -->  <hr/>
     <div class="list_etudiant"> 
         <table id="listEtudiant" border="2">
             <th>Photo</th>
-            <th>Identifiant</th>
+            <th style="display:none;">Identifiant</th>
             <th>Nom</th>
             <th>Pr&eacutenom</th>
             <th>Etat Preacutesent</th>
@@ -72,7 +75,6 @@ and open the template in the editor.
     </div>  
 
       <div class = "div_bouton">        
-        <input type="reset" value="initialiser" class="bouton" id="btn_initialiser"/> 
         <input type="submit" value="valider"  class="bouton btn_valider" id="btn_valider"/>
       </div>
      <script type="text/JavaScript" src="ajax/faireappel.js"></script>

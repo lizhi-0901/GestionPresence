@@ -12,6 +12,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import metier.Personnel;
 
 /**
  *
@@ -22,19 +24,30 @@ public class ServletConnection extends HttpServlet {
 		{
 	    String identifiant = request.getParameter("lg_username");
             String mdp_p = request.getParameter("lg_password");
-            System.out.println("identifiant"+identifiant);						  
-        String mdp =  bd.connection(identifiant).getMotDePasse();
-	  System.out.println("mdp "+mdp);		 
-        String type = bd.connection(identifiant).getType();
-	  System.out.println("type "+type);		 
-//            String mdp="123456";
-//            String type ="Enseignat";
-			if(! mdp_p.equals(mdp))
+            System.out.println("identifiant"+identifiant);
+            Personnel p = bd.connection(identifiant);
+            if(p==null){
+                request.setAttribute("msg_erreur", "identifiant n'existe pas !");
+		request.getRequestDispatcher("login").forward(request, response);
+            }else{
+                    
+                    String mdp =  p.getMotDePasse();
+                    System.out.println("mdp "+mdp);		 
+                    String type = bd.connection(identifiant).getType();
+                    System.out.println("type "+type);	
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("nometudiant", p.getNom());
+                    session.setAttribute("prenometudiant", p.getPrenom());
+                    session.setAttribute("idetudiant",identifiant );
+        //            String mdp="123456";
+        //            String type ="Enseignat";
+                      
+                            if(! mdp_p.equals(mdp))
 					{
 					request.setAttribute("msg_erreur", "Mot de passe erroné !");
 					request.getRequestDispatcher("login").forward(request, response);
 					}
-               else
+                                 else
 					{
 					switch(type)
 						{
@@ -44,10 +57,20 @@ public class ServletConnection extends HttpServlet {
 						case "Enseigant":
                                                         request.getRequestDispatcher("faireappelPage").forward(request, response);
 							break;
+                                                case "Responsable":
+                                                        request.getRequestDispatcher("Responpage").forward(request, response);
+							break;       
+                                                case "Gestionnaire":
+                                                        request.getRequestDispatcher("GestionnairePage").forward(request, response);
+							break;
 						default:
 						}
 					}
-        }
+                        }
+                    }
+            
+			
+        
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

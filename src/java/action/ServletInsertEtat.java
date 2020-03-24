@@ -20,6 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import metier.Creneau;
 import metier.Groupe;
 import metier.Matiere;
@@ -32,26 +33,25 @@ public class ServletInsertEtat extends HttpServlet
 {
     protected void processRequest (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException
         {
-             /*----- Récupération des paramètres -----*/
-            String dateString=request.getParameter("date");
+            
             String libelleMatiere = request.getParameter("cours");
             String heure=request.getParameter("heure");
+            String duree=request.getParameter("duree");
+            String dateString=request.getParameter("date");
             SimpleDateFormat df = new SimpleDateFormat("yy-mm-dd");
             Date date = df.parse(dateString);
             int heureDeb= Integer.parseInt(heure);
-            String idCreneau="";
-            System.out.println();
-
-            List<Creneau> listCreneau=bd.getIdCreneau(date, heureDeb, libelleMatiere);
-            for(Creneau c:listCreneau){
-                idCreneau=c.getIdCreneau();
-            }
+            int dureeInt=Integer.parseInt(duree);
+            String idCreneau=bd.creationIdCreneau(libelleMatiere, date, heureDeb, dureeInt);
+             /*----- Récupération des paramètres -----*/
+//            HttpSession session=request.getSession();
+//            String idCreneau=(String)session.getAttribute("idCreneau");
             
+            System.out.println("idCCCC:"+idCreneau);
             String idEtudiant=request.getParameter("id");
             String etat=request.getParameter("etat");
-            System.out.println(listCreneau);
-            System.out.println(idEtudiant);
-            System.out.println(etat);
+            System.out.println("idEEE:"+idEtudiant);
+            System.out.println("ETAT: "+etat);
             bd.EnregistrerEtat(idEtudiant, idCreneau, etat);
         }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -9,6 +9,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import metier.Affecter;
+import metier.AffecterId;
 import metier.Creneau;
 import metier.Groupe;
 import metier.Matiere;
@@ -52,17 +54,29 @@ public class bd {
      /**
      * 
      * @param libelleFormation
-     * @return afficher la liste de formation qui est relie avec ce formation
+     * @param idEnseignant
+     * @return afficher la liste de formation qui est relie avec ce formation et enseignant.
      */
-    public static List<Matiere> getMatieres(String libelleFormation){
+    public static List<Matiere> getMatieres(String libelleFormation,String idEnseignant){
         if(transaction==null){
             transaction=session.beginTransaction();
         } 
           List<Matiere> listMatieres =session.createSQLQuery("select  m.libelleMatiere,m.idFormation "+ 
-                                                             "from Matiere m, Formation f "+
-                                                             "where f.idFormation =m.idFormation "+ 
+                                                             "from Matiere m, Formation f,Enseigner e "+
+                                                             "where f.idFormation =m.idFormation "+
+                                                             "and e.libelleMatiere=m.libelleMatiere "+
+                                                             "and e.idPersonne="+"'"+idEnseignant+"'"+
                                                              "and f.libelleFormation=" +"'"+libelleFormation+"'").list();
           return listMatieres;
+    }
+    
+    public static void getEnseignant(String idPersonne){
+        if(transaction==null){
+            transaction=session.beginTransaction();
+        }
+        Personnel e=(Personnel)session.load(Personnel.class, idPersonne);
+        System.out.println(e.getIdPersonne());
+        
     }
     
     /**
@@ -137,26 +151,59 @@ public class bd {
         return idCreneau;
      };
      
+     public static String getInitialeMatiere(String nomMatiere){
+          if(transaction==null){
+            transaction=session.beginTransaction();
+          }
+        Matiere m=(Matiere)session.load(Matiere.class, nomMatiere);
+        System.out.println(m.getInitiale());
+        String str=m.getInitiale();
+        
+        return str;
+     }
+     
+     public static String creationIdCreneau(String libelleMatiere,Date date,int heureDeb,int duree) throws ParseException{
+            SimpleDateFormat df =new SimpleDateFormat("yyyy-mm-dd");
+            String dateStr=df.format(date);
+            String dateString=dateStr.substring(0, 4)+dateStr.substring(5, 7)+dateStr.substring(8);
+            String heureString=String.valueOf(heureDeb);
+            String dureeString=String.valueOf(duree);
+            
+            String initiale=bd.getInitialeMatiere(libelleMatiere);
+            
+            String idCreneau=initiale+dateString+heureString+dureeString;
+         return idCreneau;
+     }
+     
+     public static void creationCreneau(String idCreneau,Date date,int heureDeb,int duree) throws ParseException{
+         session=null;
+                session=HibernateUtil.getSessionFactory().openSession();
+                transaction=session.beginTransaction();
+        
+        
+        Creneau c=new Creneau(idCreneau,date,heureDeb,duree);
+        
+        session.save(c);
+        transaction.commit();
+     }
+     
      public static void EnregistrerEtat(String idEtudiant, String idCreneau, String etat){
         session=null;
-        try{
-            session=HibernateUtil.getSessionFactory().getCurrentSession();
+//        try{
+            session=HibernateUtil.getSessionFactory().openSession();
             transaction=session.beginTransaction();
-            Query query =session.createSQLQuery("update Affecter set etatPresence=:etat "+
-                                         "where idPersonne=:idP "+
-                                         "and idCreneau=:idC ");
-            query.setParameter("etat", etat);
-            query.setParameter("idP", idEtudiant);
-            query.setParameter("idC", idCreneau);
-            query.executeUpdate();
+//        if(transaction==null){
+//            transaction=session.beginTransaction();
+//
+//          }
+
+            AffecterId id=new AffecterId();
+            id.setIdCreneau(idCreneau);
+            id.setIdPersonne(idEtudiant);
+          
+            Affecter affecter= new Affecter(id,etat);
+            session.save(affecter);
             transaction.commit();
-            }
-            catch(RuntimeException e){
-                transaction.rollback();
-                throw e;
-            }
-        
-        
     }
      
     
@@ -203,14 +250,29 @@ public class bd {
 //                    }
 //                    SimpleDateFormat df =new SimpleDateFormat("yyyy-mm-dd");
 //                    Date d=df.parse("2019-10-01");
-//                    List<Creneau> id=bd.getIdCreneau(d, 570, "Management de projet");
-//                    for(Creneau c:id){
-//                        System.out.println(c.getIdCreneau());
-//                    }
-                    String idEtudiant="21613265";
-                    String idCreneau="MP201910010930";
-                    String etat="Retard";
-                    bd.EnregistrerEtat(idEtudiant, idCreneau, etat);
+//                    
+//                    String str="Developpement Applications Internet";
+//                    int heure=570;
+//                    int duree=180;
+//                    
+//                    String idCreneau=bd.creationIdCreneau(str, d, heure, duree);
+//                    System.out.println(idCreneau);
+                    
+//                    
+                    List<String> list=new ArrayList<>();
+                    list.add("21613265");
+                    list.add("21511000");
+                    list.add("21511001");
+                    list.add("21509151");
+                    String etat="PPP";
+                    for(String str:list){                         
+
+                           bd.EnregistrerEtat(str, "MP201910010930", etat);
+                    }
+//
+//                    String str="Developpement Applications Internet";
+//                    String sigle=bd.getInitialeMatiere(str);
+//                    System.out.println(sigle);
 
 		}  
 }
