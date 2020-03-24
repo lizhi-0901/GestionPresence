@@ -34,16 +34,11 @@ import org.hibernate.Session;
  */
 public class bd {
     
-<<<<<<< HEAD
+
         static Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         static Transaction transaction = null;
-        
-        
-=======
-     static Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-     static Transaction transaction = null;
->>>>>>> 3af4b5158a28b8a1b93533b472ced4fcedfefef5
-     SimpleDateFormat df = new SimpleDateFormat("dd-mm-yyyy");
+    
+        static SimpleDateFormat df = new SimpleDateFormat("dd-mm-yyyy");
     
      /**
       * c'est une function qui prends en entree comme identifiant 
@@ -53,7 +48,7 @@ public class bd {
       */
      
     public static Personnel connection(String identifiant){
-<<<<<<< HEAD
+
           if(transaction==null){
             transaction  = session.beginTransaction();
         }
@@ -71,13 +66,8 @@ public class bd {
           }
 //       
             return p;
-=======
-        if(transaction==null){
-            transaction=session.beginTransaction();
-        } 
-        Personnel p = (Personnel) session.get(Personnel.class, identifiant);
-        return p;
->>>>>>> 3af4b5158a28b8a1b93533b472ced4fcedfefef5
+
+     
     }
     
      /**
@@ -86,28 +76,20 @@ public class bd {
      * @param idEnseignant
      * @return afficher la liste de formation qui est relie avec ce formation et enseignant.
      */
-<<<<<<< HEAD
-    public static List<Matiere> getMatieres(String libelleFormation){
-          if(transaction==null){
-            transaction  = session.beginTransaction();
-        } 
-          List<Matiere> listMatieres =new ArrayList<>();
+
+   
           
-          try{
-            listMatieres =session.createSQLQuery("select  m.libelleMatiere,m.idFormation "+ 
-                                                             "from Matiere m, Formation f "+
-                                                             "where f.idFormation =m.idFormation "+ 
-=======
     public static List<Matiere> getMatieres(String libelleFormation,String idEnseignant){
         if(transaction==null){
             transaction=session.beginTransaction();
         } 
-          List<Matiere> listMatieres =session.createSQLQuery("select  m.libelleMatiere,m.idFormation "+ 
+        List<Matiere> listMatieres=new ArrayList<>();
+        try{
+         listMatieres =session.createSQLQuery( "select  m.libelleMatiere,m.idFormation "+ 
                                                              "from Matiere m, Formation f,Enseigner e "+
                                                              "where f.idFormation =m.idFormation "+
                                                              "and e.libelleMatiere=m.libelleMatiere "+
                                                              "and e.idPersonne="+"'"+idEnseignant+"'"+
->>>>>>> 3af4b5158a28b8a1b93533b472ced4fcedfefef5
                                                              "and f.libelleFormation=" +"'"+libelleFormation+"'").list();
            
         }catch(HibernateException hibernateEx){
@@ -120,8 +102,7 @@ public class bd {
     }
     return listMatieres;
     }
-<<<<<<< HEAD
-=======
+
     
     public static void getEnseignant(String idPersonne){
         if(transaction==null){
@@ -132,25 +113,26 @@ public class bd {
         
     }
     
->>>>>>> 3af4b5158a28b8a1b93533b472ced4fcedfefef5
+
     /**
      * @param idGroupe
      * @return retourne la liste etudiant qui est dans ce group TD
      */
     public static List<Personnel> getEtudiants(String idGroupe){
         if(transaction==null){
-<<<<<<< HEAD
             transaction  = session.beginTransaction();
         } 
         List<Personnel> listEtudiants =new ArrayList<>();
         try{
-            listEtudiants=session.createSQLQuery("select p.nom,p.prenom "+
-                                                            "from Personnel p, Appartenir a "+
-                                                            "where p.idPersonne=a.idPersonne "+
-                                                            "and a.idGroupe=" +"'"+idGroupe+"'").list();
-        }
+            Query query=session.createQuery("select new metier.Personnel(p.idPersonne,p.nom,p.prenom,p.photo) "+
+                                        "from Personnel p inner join p.groupes pg, Groupe g "+
+                                        "where g.idGroupe=:idGroupe "+
+                                        "and pg.idGroupe=g.idGroupe ");
         
-        catch(HibernateException hibernateEx){
+            query.setParameter("idGroupe", idGroupe);
+            listEtudiants=query.list();
+            
+        }catch(HibernateException hibernateEx){
               try {
                 transaction.rollback();
             } catch(RuntimeException runtimeEx){
@@ -158,19 +140,8 @@ public class bd {
                 listEtudiants= null;
             }
     }
-=======
-            transaction=session.beginTransaction();
-        } 
 
-        Query query=session.createQuery("select new metier.Personnel(p.idPersonne,p.nom,p.prenom,p.photo) "+
-                                        "from Personnel p inner join p.groupes pg, Groupe g "+
-                                        "where g.idGroupe=:idGroupe "+
-                                        "and pg.idGroupe=g.idGroupe ");
-        query.setParameter("idGroupe", idGroupe);
-        List<Personnel> listEtudiants=query.list();
->>>>>>> 3af4b5158a28b8a1b93533b472ced4fcedfefef5
-        
-        return listEtudiants;
+     return listEtudiants;
     }
     
     
@@ -181,44 +152,31 @@ public class bd {
      * @param libelleMatiere
      * @return 
      */
-<<<<<<< HEAD
+
     public static List<Groupe> getGroupe(Date date,int heureDeb, String libelleMatiere) throws ParseException{
         if(transaction==null){
             transaction  = session.beginTransaction();
         }
-=======
-     public static List<Groupe> getGroupe(Date date,int heureDeb, String libelleMatiere) throws ParseException{
-         
-        if(transaction==null){
-            transaction=session.beginTransaction();
-        }
-        
->>>>>>> 3af4b5158a28b8a1b93533b472ced4fcedfefef5
+
         SimpleDateFormat df =new SimpleDateFormat("yyyy-mm-dd");
         String d=df.format(date);
         Query query=session.createQuery("select new metier.Groupe(gs.idGroupe,gs.nomGroupe,gs.typeGroupe) " +
                                         "from Creneau c join c.groupes gs,Creneau c "+
                                         "where c.dateDeb=:date "+
                                         "and c.heureDeb=:heure "+
-<<<<<<< HEAD
                                         "and c.matiere.libelleMatiere=:libelle");
-=======
-                                        "and c.matiere.libelleMatiere=:libelle "); 
->>>>>>> 3af4b5158a28b8a1b93533b472ced4fcedfefef5
         query.setParameter("date", d);
         query.setParameter("heure", heureDeb);
         query.setParameter("libelle", libelleMatiere);
-        
-<<<<<<< HEAD
-=======
-        
-        
->>>>>>> 3af4b5158a28b8a1b93533b472ced4fcedfefef5
+
         List<Groupe> listGroupe=query.list();
         
         return listGroupe;
     }
      
+
+
+
      public static List<Creneau> getIdCreneau(Date date,int heureDeb, String libelleMatiere)throws ParseException{
         if(transaction==null){
             transaction=session.beginTransaction();
@@ -240,6 +198,7 @@ public class bd {
         return idCreneau;
      };
      
+
      public static String getInitialeMatiere(String nomMatiere){
           if(transaction==null){
             transaction=session.beginTransaction();
@@ -264,13 +223,13 @@ public class bd {
          return idCreneau;
      }
      
-     public static void creationCreneau(String idCreneau,Date date,int heureDeb,int duree) throws ParseException{
+     public static void creationCreneau(String idCreneau,Date date,int heureDeb,int duree,String nomCreneau) throws ParseException{
          session=null;
                 session=HibernateUtil.getSessionFactory().openSession();
                 transaction=session.beginTransaction();
         
         
-        Creneau c=new Creneau(idCreneau,date,heureDeb,duree);
+        Creneau c=new Creneau(idCreneau,date,heureDeb,duree,nomCreneau);
         
         session.save(c);
         transaction.commit();
@@ -278,19 +237,18 @@ public class bd {
      
      public static void EnregistrerEtat(String idEtudiant, String idCreneau, String etat){
         session=null;
-//        try{
-            session=HibernateUtil.getSessionFactory().openSession();
+        
+         if(transaction==null){
             transaction=session.beginTransaction();
-//        if(transaction==null){
-//            transaction=session.beginTransaction();
-//
-//          }
 
-            AffecterId id=new AffecterId();
+          }
+        session=HibernateUtil.getSessionFactory().openSession();
+           AffecterId id=new AffecterId();
             id.setIdCreneau(idCreneau);
             id.setIdPersonne(idEtudiant);
-          
-            Affecter affecter= new Affecter(id,etat);
+            Affecter affecter= new Affecter();
+            affecter.setId(id);
+            affecter.setEtatPresence(etat);
             session.save(affecter);
             transaction.commit();
     }
@@ -464,52 +422,12 @@ public class bd {
                 
                 
 	public static void main (String[] s) throws ParseException
-<<<<<<< HEAD
-		{
-                    bd.EnregistereSaisirheure("projet20200301","21509151", "present"); 
+
+		{   
+                    
+                    bd.creationCreneau("BD202010021402",df.parse("03-01-2020"),9,30,"Big Data");
                      
                     
                     }        
-                    
-                        
-                        
-                    
-                     
-		
-    
-    
-   
-=======
-		{                  
-//                    for(Groupe g:l){
-//                        System.out.println(g.getNomGroupe());
-//                    }
-//                    SimpleDateFormat df =new SimpleDateFormat("yyyy-mm-dd");
-//                    Date d=df.parse("2019-10-01");
-//                    
-//                    String str="Developpement Applications Internet";
-//                    int heure=570;
-//                    int duree=180;
-//                    
-//                    String idCreneau=bd.creationIdCreneau(str, d, heure, duree);
-//                    System.out.println(idCreneau);
-                    
-//                    
-                    List<String> list=new ArrayList<>();
-                    list.add("21613265");
-                    list.add("21511000");
-                    list.add("21511001");
-                    list.add("21509151");
-                    String etat="PPP";
-                    for(String str:list){                         
-
-                           bd.EnregistrerEtat(str, "MP201910010930", etat);
-                    }
-//
-//                    String str="Developpement Applications Internet";
-//                    String sigle=bd.getInitialeMatiere(str);
-//                    System.out.println(sigle);
-
-		}  
->>>>>>> 3af4b5158a28b8a1b93533b472ced4fcedfefef5
+ 
 }

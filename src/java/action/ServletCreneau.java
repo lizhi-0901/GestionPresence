@@ -48,13 +48,13 @@ public class ServletCreneau extends HttpServlet {
             int heureDeb= Integer.parseInt(heure);
             int dureeInt=Integer.parseInt(duree);
             String idCreneau=bd.creationIdCreneau(libelleMatiere, date, heureDeb, dureeInt);
-            System.out.println(idCreneau);
-            System.out.println(date);
-            System.out.println(heureDeb);
-            System.out.println(dureeInt);
+            System.out.println("idc"+idCreneau);
+            System.out.println("date"+date);
+            System.out.println("heure"+heureDeb);
+            System.out.println("duree"+dureeInt);
 
             
-            bd.creationCreneau(idCreneau, date, heureDeb, dureeInt);
+            //bd.creationCreneau(idCreneau, date, heureDeb, dureeInt);
 
 
     //

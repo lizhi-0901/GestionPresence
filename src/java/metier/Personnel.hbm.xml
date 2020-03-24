@@ -24,11 +24,7 @@
             <column name="type" length="25" not-null="true" />
         </property>
         <property name="photo" type="string">
-<<<<<<< HEAD
-            <column name="photo" length="100" />
-=======
             <column name="photo" length="250" />
->>>>>>> 3af4b5158a28b8a1b93533b472ced4fcedfefef5
         </property>
         <property name="adresseMail" type="string">
             <column name="adresseMail" length="25" not-null="true" />

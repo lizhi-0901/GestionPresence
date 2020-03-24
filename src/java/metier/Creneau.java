@@ -67,6 +67,15 @@ public class Creneau  implements java.io.Serializable {
         this.duree=duree;
         this.justifiers=null;
     }
+    public Creneau(String idCreneau,Date dateDeb, int heureDeb, int duree,String nomCreneau){
+        this.idCreneau=idCreneau;
+        this.dateDeb=dateDeb;
+        this.heureDeb=heureDeb;
+        this.duree=duree;
+        this.nomCreneau=nomCreneau;
+        this.justifiers=null;
+    }
+    
     
    
     public String getIdCreneau() {

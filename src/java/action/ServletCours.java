@@ -53,11 +53,7 @@ public class ServletCours extends HttpServlet {
                             String identifiant=(String)session.getAttribute("idetudiant");
                             System.out.println(identifiant);
                             System.out.println(formation);
-<<<<<<< HEAD
-                            ArrayList<String> mlist =bd.output(bd.getMatieres(formation),0);
-=======
-                            ArrayList<String> mlist =bd.output(bd.getMatieres(formation,identifiant));
->>>>>>> 3af4b5158a28b8a1b93533b472ced4fcedfefef5
+                            ArrayList<String> mlist =bd.output(bd.getMatieres(formation,identifiant),0);
                             System.out.println(mlist.size());
                             for(String m: mlist){
                                 out.println("<matiere>" + m + "</matiere>");

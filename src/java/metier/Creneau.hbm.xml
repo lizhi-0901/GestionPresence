@@ -12,13 +12,13 @@
             <column name="libelleMatiere" length="25" not-null="true" />
         </many-to-one>
         <property name="nomCreneau" type="string">
-            <column name="nomCreneau" length="25" not-null="true" />
+            <column name="nomCreneau" length="25"  />
         </property>
         <property name="salle" type="string">
             <column name="salle" length="25" />
         </property>
         <property name="enseignant" type="string">
-            <column name="enseignant" length="25" not-null="true" />
+            <column name="enseignant" length="25"  />
         </property>
         <property name="dateDeb" type="date">
             <column name="dateDeb" length="10" not-null="true" />

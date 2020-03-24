@@ -34,7 +34,7 @@
 	var xhr = new XMLHttpRequest();
 
 	// Requête au serveur avec les paramètres éventuels.
-	xhr.open("GET","ServletEtudiant"+"?heure="+heure+"&typeCreneau="+typeCreneau+"&date="+d+"&minute="+minute+"&presence"+presence);
+	xhr.open("GET","ServletSaisir"+"?heure="+heure+"&typeCreneau="+typeCreneau+"&date="+d+"&minute="+minute+"&presence"+presence);
 
 	// On précise ce que l'on va faire quand on aura reçu la réponse du serveur.
 	xhr.onload = function()
@@ -43,27 +43,10 @@
 		if (xhr.status === 200)
 			{
 			// Elément html que l'on va mettre à jour.
-                        var elt = document.getElementById("nomCreneau");
-			var tab = xhr.responseXML.getElementsByTagName("nomCreneau");
-                        for ( i=0;i<tab.length;i++)
-                            {
-                                elt.insertAdjacentHTML("beforeend","<option>"+tab[i].firstChild.nodeValue+"</option>");
-                                alert(tab[i].firstChild.nodeValue);
-                            }
-                        var elt = document.getElementById("heureDeb");
-			var tab = xhr.responseXML.getElementsByTagName("heureDeb");
-                        for ( i=0;i<tab.length;i++)
-                            {
-                                elt.insertAdjacentHTML("beforeend","<option>"+tab[i].firstChild.nodeValue+"</option>");
-                                alert(tab[i].firstChild.nodeValue);
-                            }
-                        var elt = document.getElementById("duree");
-			var tab = xhr.responseXML.getElementsByTagName("duree");
-                        for ( i=0;i<tab.length;i++)
-                            {
-                                elt.insertAdjacentHTML("beforeend","<option>"+tab[i].firstChild.nodeValue+"</option>");
-                                alert(tab[i].firstChild.nodeValue);
-                            }    
+                          var nom = document.getElementById("nom");
+                          var prenom =document.getElementById("prenom");
+                          
+                          //nom.innerHTML=
 			}
 		};
 	

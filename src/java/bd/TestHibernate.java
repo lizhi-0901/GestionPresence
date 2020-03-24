@@ -23,7 +23,7 @@ import org.hibernate.Transaction;
  *
  * @author lizhiwang
  */
-<<<<<<< HEAD
+
 public class TestHibernate {
      public static void main (String[] args) throws ParseException{
          List<String> list = new ArrayList<>();
@@ -40,29 +40,4 @@ public class TestHibernate {
      
 }
 }
-=======
-//public class TestHibernate {
-//     public static void main (String[] args) throws ParseException{
-//         SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
-//            Date date =df.parse("2019-10-01");
-//                        String libelleMatiere ="Donnee,integration";
-//                        int heureDeb =570;
-//                        System.out.println(heureDeb);
-//                        System.out.println(libelleMatiere);
-//                        System.out.println(date);
-//                        
-//                        ArrayList<String> glist =bd.output(bd.getGroupe(date, heureDeb, libelleMatiere));
-//                        
-//                        System.out.println(glist.size());
-//                        for(String g: glist){
-//                          
-//                        
-//                            System.out.println("groupe"+g); 
-//                            // retourne idgroupe
-//			
-//			}
-//                    
-//     }
-//     
-//}
->>>>>>> 3af4b5158a28b8a1b93533b472ced4fcedfefef5
+

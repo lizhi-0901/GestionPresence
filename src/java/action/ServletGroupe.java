@@ -42,8 +42,7 @@ public class ServletGroupe extends HttpServlet {
                         out.println("<liste_groupe>");
 //
 			/*----- Récupération des paramètres -----*/
-<<<<<<< HEAD
-			
+	
 //                        Date date = df.parse(request.getParameter("date"));
 //                        String libelleMatiere = request.getParameter("cours");
 //                        int heureDeb= Integer.parseInt(request.getParameter("heure"));
@@ -66,14 +65,13 @@ public class ServletGroupe extends HttpServlet {
 			
 			}
                         out.println("<liste_groupe>");
-=======
-                        String dateString=request.getParameter("date");
-                        String libelleMatiere = request.getParameter("cours");
-                        String heure=request.getParameter("heure");
-                        SimpleDateFormat df = new SimpleDateFormat("yy-mm-dd");
-                        Date date = df.parse(dateString);
-                        int heureDeb= Integer.parseInt(heure);
-                        
+//                        String dateString=request.getParameter("date");
+//                        String libelleMatiere = request.getParameter("cours");
+//                        String heure=request.getParameter("heure");
+//                        SimpleDateFormat df = new SimpleDateFormat("yy-mm-dd");
+//                        Date date = df.parse(dateString);
+//                        int heureDeb= Integer.parseInt(heure);
+//                        
                         
                         List<Groupe> listGroupes=bd.getGroupe(date, heureDeb, libelleMatiere);
                         for(Groupe g:listGroupes){
@@ -81,9 +79,6 @@ public class ServletGroupe extends HttpServlet {
                             out.println("<groupe>" + idGroupe + "</groupe>");
                         }
                         out.println("</liste_groupe>");
-
-    
->>>>>>> 3af4b5158a28b8a1b93533b472ced4fcedfefef5
     }   catch (ParseException ex) {
             Logger.getLogger(ServletGroupe.class.getName()).log(Level.SEVERE, null, ex);
         }
