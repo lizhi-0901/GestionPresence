@@ -54,31 +54,35 @@ function getAffecter ()
                              */
                             var tab_c=[];
                             var elt = document.getElementById("table_presence");
+                            alert("tab_length"+tab_date.length);
                             for(i=0;i <tab_date.length;i++){
+                                    alert("la "+i+"fois");
                                     var tr=document.createElement("tr");//创建行
-                                    for(j=0;j<5; j++){
+                                    for(j=0;j<4; j++){
                                         if(j===0){
                                          var td_1=document.createElement("td");//创建列
                                          td_1.innerText="";
                                          td_1.innerText=tab_date[i].firstChild.nodeValue;
+                                         alert("la "+i+"row "+j+" col"+tab_date[i].firstChild.nodeValue);
                                          tr.appendChild(td_1);//向行中添加子节点列
                                          }
                                         else if(j===1){
                                          var td_2=document.createElement("td");//创建列
                                          td_2.innerText="";
                                          td_2.innerText=tab_heure[i].firstChild.nodeValue;
+                                         alert("la "+i+"row "+j+" col"+tab_heure[i].firstChild.nodeValue);
                                          tr.appendChild(td_2);//向行中添加子节点列
                                         }else if(j===2){
                                          var td_3=document.createElement("td");//创建列
-                                         alert(tab_absheure[i].firstChild.nodeValue);
                                          td_3.innerText="";
                                          td_3.innerText=tab_absheure[i].firstChild.nodeValue;
+                                         alert("la "+i+"row "+j+" col"+tab_absheure[i].firstChild.nodeValue);
                                          tr.appendChild(td_3);//  
                                         }else{
                                          var td_4=document.createElement("td");//创建列
-                                         alert(tab_reheure[i].firstChild.nodeValue);
                                          td_4.innerText="";
                                          td_4.innerText=tab_reheure[i].firstChild.nodeValue;
+                                         alert("la "+i+"row "+j+" col"+tab_reheure[i].firstChild.nodeValue);
                                          tr.appendChild(td_4);//   
                                         }
                                     }

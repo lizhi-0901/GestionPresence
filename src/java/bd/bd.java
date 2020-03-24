@@ -432,9 +432,9 @@ public class bd {
 
 		{   
                     
-                    System.out.println(bd.output(bd.getHeurePresent("21509151", "2020-02", "absent"),0));
-                    System.out.println(bd.output(bd.getHeurePresent("21509151", "2020-02", "present"),0));
-                    System.out.println(bd.output(bd.getHeurePresent("21509151", "2020-02", "retard"),0));
+//                    System.out.println(bd.output(bd.getHeurePresent("21509151", "2020-02", "absent"),0));
+//                    System.out.println(bd.output(bd.getHeurePresent("21509151", "2020-02", "present"),0));
+                    System.out.println(bd.output(bd.getHeurePresent("21509151", "2019-10", "retard"),1));
                      
                     
                     }        

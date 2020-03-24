@@ -5,9 +5,14 @@
         <group>
             <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/hibernate.cfg.xml</file>
             <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/metier/Affecter.java</file>
+            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/action/ServletValide.java</file>
             <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/metier/Groupe.java</file>
             <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/web/ajax/valider.js</file>
+            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/action/ServletRespon.java</file>
             <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/action/ServletSaisir.java</file>
+            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/web/ajax/validationResp.html</file>
+            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/bd/bd.java</file>
         </group>
     </open-files>
 </project-private>
