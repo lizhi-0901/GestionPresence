@@ -1,6 +1,9 @@
 package metier;
 // Generated Mar 18, 2020 6:08:12 PM by Hibernate Tools 4.3.1
 
+import java.util.Objects;
+
+
 
 
 /**
@@ -24,6 +27,11 @@ public class Affecter  implements java.io.Serializable {
        this.personnel = personnel;
        this.signatureEnseignant = signatureEnseignant;
        this.etatPresence = etatPresence;
+    }
+    public Affecter(AffecterId id,String etatPresence){
+        this.id=id;
+        this.etatPresence=etatPresence;
+        this.signatureEnseignant=null;
     }
    
     public AffecterId getId() {
@@ -60,6 +68,44 @@ public class Affecter  implements java.io.Serializable {
     
     public void setEtatPresence(String etatPresence) {
         this.etatPresence = etatPresence;
+    }
+
+    @Override
+    public String toString() {
+        return "Affecter{" + "id=" + id + ", creneau=" + creneau + ", personnel=" + personnel + ", signatureEnseignant=" + signatureEnseignant + ", etatPresence=" + etatPresence + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.id);
+        hash = 67 * hash + Objects.hashCode(this.creneau);
+        hash = 67 * hash + Objects.hashCode(this.personnel);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Affecter other = (Affecter) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.creneau, other.creneau)) {
+            return false;
+        }
+        if (!Objects.equals(this.personnel, other.personnel)) {
+            return false;
+        }
+        return true;
     }
 
 

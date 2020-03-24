@@ -12,7 +12,8 @@ function getCours ()
         {
         //recuperer la valeur
         var formation = document.getElementById("formation").value;
-        
+//        var identifiant=document.getElementById("lg_username").value;
+//        alert(identifiant);
 	// Objet XMLHttpRequest.
 	var xhr = new XMLHttpRequest();
 
@@ -80,13 +81,6 @@ function getGroupe ()
 	// Envoie de la requête.
 	xhr.send();
 	}     
-function compterEtudiantList(){
-    
-    var elt=document.getElementById("listEtudiant");
-    var nbEtudiant=elt.rows.length;
-    
-    return nbEtudiant;
-};   
     /**
  * affichir les etudiant selon groupe
  * @returns {undefined}
@@ -97,7 +91,6 @@ function getEtudiant ()
         var groupe = document.getElementById("groupe").value;
 	// Objet XMLHttpRequest.
 	var xhr = new XMLHttpRequest();
-
 	// Requête au serveur avec les paramètres éventuels.
 	xhr.open("GET","ServletEtudiant"+"?groupe="+groupe);
 
@@ -107,45 +100,53 @@ function getEtudiant ()
 		// Si la requête http s'est bien passée.
 		if (xhr.status === 200)
 			{
+                        var initialise = document.getElementById("listEtudiant");
+                        initialise.innerHTML="";
+                        initialise.insertAdjacentHTML("beforeend","<th>Photo</th>"+
+                                                      "<th style=\"display:none;\">Identifiant</th>"+
+                                                      "<th>Nom</th>"+
+                                                      "<th>Pr&eacutenom</th>"+
+                                                      "<th>Etat Pr&eacutesent</th>");
+
 			// Elément html que l'on va mettre à jour.
-                        var nbAvant=compterEtudiantList();
                         var elt = document.getElementById("listEtudiant");
+                        
                         var tabphoto=xhr.responseXML.getElementsByTagName("photo");
 			var tabid = xhr.responseXML.getElementsByTagName("id");
                         var tabnom=xhr.responseXML.getElementsByTagName("nom");
                         var tabprenom=xhr.responseXML.getElementsByTagName("prenom");
                         for ( i=0;i<tabid.length;i++)
                             {
-                                elt.insertAdjacentHTML("beforeend","<tr id=\"contents\"><td><img src=\""+tabphoto[i].firstChild.nodeValue+"\"height=\"50\" width=\"50\"alt=\"Photo\"></td>"+
-                                                                    "<td>"+tabid[i].firstChild.nodeValue+"</td>"+
+                                elt.insertAdjacentHTML("beforeend","<tr id=\"contenu\"><td><img src=\""+tabphoto[i].firstChild.nodeValue+"\"height=\"50\" width=\"50\"alt=\"Photo\"></td>"+
+                                                                    "<td style=\"display:none;\">"+tabid[i].firstChild.nodeValue+"</td>"+
                                                                     "<td>"+tabnom[i].firstChild.nodeValue+"</td>"+
                                                                     "<td>"+tabprenom[i].firstChild.nodeValue+"</td>"+
-                                                                    " <td><select "+"id=\"etatPre"+(nbAvant-1)+
+                                                                    " <td><select "+"id=\"etatPre"+(i+1)+
                                                                     "\"><option>Pr&eacutesent</option><option>Retard</option><option>Absent</option><option>AbsentJustifi&eacute</option></select></td>");
-//                                                                    "<td><input type=\"checkbox\" id=\"present\" name=\"present\" checked></td>"+
-//                                                                    "<td><input type=\"checkbox\" id=\"retard\" name=\"retard\"></td>"+
-//                                                                    "<td><input type=\"checkbox\" id=\"abs\" name=\"abs\"></td>"+
-//                                                                    "<td><input type=\"checkbox\" id=\"absj\" name=\"absj\"></td>");
-                                nbAvant=nbAvant+1;
-                            }
-			}
+                            };
+			};
 		};
 	
 	// Envoie de la requête.
 	xhr.send();
 	}
         
+    function creationCreneau(){
+        //recuperer la valeur
         
-    function iniListEtudient(){
-        var elt = document.getElementById("listEtudiant");
-        elt.innerHTML="";
-        elt.insertAdjacentHTML("beforeend","<th>Photo</th>"+
-                "<th>Identifiant</th>"+
-                "<th>Nom</th>"+
-                "<th>Pr&eacutenom</th>"+
-                "<th>Etat Pr&eacutesent</th>");
-    }
-    
+        var cours = document.getElementById("cours").value;
+        alert(cours);
+        var date  =document.getElementById("datepicker").value;
+        alert(date);
+        var heureSaisir = parseInt(document.getElementById("heure").value);
+        var min=parseInt(document.getElementById("minute").value);
+        var heure=heureSaisir*60+min;
+        var duree=document.getElementById("duree").value;
+        
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET","ServletCreneau?cours="+cours+"&heure="+heure+"&date="+date+"&duree="+duree,true);
+            xhr.send();
+        };
     
     function valider(){
         var mytable=document.getElementById("listEtudiant"); 
@@ -155,20 +156,24 @@ function getEtudiant ()
         var heureSaisir = parseInt(document.getElementById("heure").value);
         var min=parseInt(document.getElementById("minute").value);
         var heure=heureSaisir*60+min;
+        var duree=document.getElementById("duree").value;
+              
         
-        for(var i=1;nbEtudiant;i++){
+        for(var i=1;nbEtudiant-1;i++){
             //obtenir les id et etat des etudiant dans la table
+
             var id=mytable.rows[i].cells[1].innerHTML;
-            var idEtat="etatPre"+(i-1);
+            var idEtat="etatPre"+i;
             var obj=document.getElementById(idEtat);
             var index = obj.selectedIndex;
             var etat = obj.options[index].text;
             
             var xhr = new XMLHttpRequest();
             // Requête au serveur avec les paramètres éventuels.
-            xhr.open("GET","ServletInsertEtat?cours="+cours+"&heure="+heure+"&date="+date+"&id="+id+"&etat="+etat,true);
-	// Envoie de la requête.
-	xhr.send();           
+                xhr.open("GET","ServletInsertEtat?id="+id+"&etat="+etat+"&cours="+cours+"&heure="+heure+"&date="+date+"&duree="+duree,true);
+                
+            // Envoie de la requête.
+            xhr.send();           
         }
 
     }
@@ -186,9 +191,9 @@ function getEtudiant ()
 document.addEventListener("DOMContentLoaded", () => {
 
 	
-	document.getElementById("btn_afficher").addEventListener("click",getEtudiant);
+	document.getElementById("groupe").addEventListener("change",getEtudiant);
         document.getElementById("formation").addEventListener("change",getCours);
-        document.getElementById("minute").addEventListener("change",getGroupe);
-        document.getElementById("btn_initialiser").addEventListener("click",iniListEtudient);
         document.getElementById("btn_valider").addEventListener("click",valider);
+        document.getElementById("duree").addEventListener("change",creationCreneau);
 });
+

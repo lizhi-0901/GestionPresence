@@ -13,7 +13,7 @@ public class Groupe  implements java.io.Serializable {
 
 
      private String idGroupe;
-     private String nomGroupe;
+     private String typeFormation;
      private String typeGroupe;
      private Date dateDeb;
      private Date dateFin;
@@ -24,16 +24,16 @@ public class Groupe  implements java.io.Serializable {
     }
 
 	
-    public Groupe(String idGroupe, String nomGroupe, String typeGroupe, Date dateDeb, Date dateFin) {
+    public Groupe(String idGroupe, String typeFormation, String typeGroupe, Date dateDeb, Date dateFin) {
         this.idGroupe = idGroupe;
-        this.nomGroupe = nomGroupe;
+        this.typeFormation = typeFormation;
         this.typeGroupe=typeGroupe;
         this.dateDeb = dateDeb;
         this.dateFin = dateFin;
     }
-    public Groupe(String idGroupe, String nomGroupe, String typeGroupe, Date dateDeb, Date dateFin, Set creneaus, Set personnels) {
+    public Groupe(String idGroupe, String typeFormation, String typeGroupe, Date dateDeb, Date dateFin, Set creneaus, Set personnels) {
        this.idGroupe = idGroupe;
-       this.nomGroupe = nomGroupe;
+       this.typeFormation = typeFormation;
        this.typeGroupe=typeGroupe;
        this.dateDeb = dateDeb;
        this.dateFin = dateFin;
@@ -41,9 +41,9 @@ public class Groupe  implements java.io.Serializable {
        this.personnels = personnels;
     }
     
-    public Groupe(String idGroupe,String nomGroupe,String typeGroupe){
+    public Groupe(String idGroupe,String typeFormation,String typeGroupe){
         this.idGroupe = idGroupe;
-        this.nomGroupe = nomGroupe;
+        this.typeFormation = typeFormation;
         this.typeGroupe=typeGroupe;
     }
    
@@ -55,11 +55,11 @@ public class Groupe  implements java.io.Serializable {
         this.idGroupe = idGroupe;
     }
     public String getNomGroupe() {
-        return this.nomGroupe;
+        return this.typeFormation;
     }
     
-    public void setNomGroupe(String nomGroupe) {
-        this.nomGroupe = nomGroupe;
+    public void setNomGroupe(String typeFormation) {
+        this.typeFormation = typeFormation;
     }
     public Date getDateDeb() {
         return this.dateDeb;

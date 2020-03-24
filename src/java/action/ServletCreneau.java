@@ -8,11 +8,17 @@ package action;
 import bd.bd;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,25 +36,33 @@ public class ServletCreneau extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("application/xml;charset=UTF-8");
-        try (PrintWriter out = response.getWriter())
-			{
-                            /*----- Ecriture de la page XML -----*/
-                            out.println("<?xml version=\"1.0\"?>");
-                            out.println("<liste_matiere>");
+            throws ServletException, IOException, ParseException {
+        
+            
+            String libelleMatiere = request.getParameter("cours");
+            String heure=request.getParameter("heure");
+            String duree=request.getParameter("duree");
+            String dateString=request.getParameter("date");
+            SimpleDateFormat df = new SimpleDateFormat("yy-mm-dd");
+            Date date = df.parse(dateString);
+            int heureDeb= Integer.parseInt(heure);
+            int dureeInt=Integer.parseInt(duree);
+            String idCreneau=bd.creationIdCreneau(libelleMatiere, date, heureDeb, dureeInt);
+            System.out.println(idCreneau);
+            System.out.println(date);
+            System.out.println(heureDeb);
+            System.out.println(dureeInt);
+
+            
+            bd.creationCreneau(idCreneau, date, heureDeb, dureeInt);
+
+
     //
-                            /*----- Récupération des paramètres -----*/
-                            String formation = request.getParameter("formation");
-                            System.out.println(formation);
-                            ArrayList<String> mlist =bd.output(bd.getMatieres(formation));
-                            System.out.println(mlist.size());
-                            for(String m: mlist){
-                                out.println("<matiere>" + m + "</matiere>");
-                            }
-                            out.println("</liste_matiere>");
+
+
+
                         }
-    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -62,7 +76,11 @@ public class ServletCreneau extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(ServletCreneau.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -76,7 +94,11 @@ public class ServletCreneau extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(ServletCreneau.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

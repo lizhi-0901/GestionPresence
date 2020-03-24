@@ -5,9 +5,12 @@
 <hibernate-mapping>
     <class name="metier.Matiere" table="Matiere" catalog="db_21613265" optimistic-lock="version">
         <id name="libelleMatiere" type="string">
-            <column name="libelleMatiere" length="25" />
+            <column name="libelleMatiere" length="50" />
             <generator class="assigned" />
         </id>
+        <property name="initiale" type="string">
+            <column name="initiale" length="5" not-null="true" />
+        </property>
         <many-to-one name="formation" class="metier.Formation" fetch="select">
             <column name="idFormation" length="25" not-null="true" />
         </many-to-one>

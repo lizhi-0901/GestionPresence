@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import metier.Matiere;
 
 /**
@@ -46,8 +47,12 @@ public class ServletCours extends HttpServlet {
     //
                             /*----- Récupération des paramètres -----*/
                             String formation = request.getParameter("formation");
+//                            session.setAttribute("idetudiant",identifiant );
+                            HttpSession session=request.getSession();
+                            String identifiant=(String)session.getAttribute("idetudiant");
+                            System.out.println(identifiant);
                             System.out.println(formation);
-                            ArrayList<String> mlist =bd.output(bd.getMatieres(formation));
+                            ArrayList<String> mlist =bd.output(bd.getMatieres(formation,identifiant));
                             System.out.println(mlist.size());
                             for(String m: mlist){
                                 out.println("<matiere>" + m + "</matiere>");
