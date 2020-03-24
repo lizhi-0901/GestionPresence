@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -20,8 +21,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import metier.Creneau;
 import metier.Matiere;
+import metier.Personnel;
 
 /**
  *
@@ -38,11 +41,31 @@ public class ServletRespon extends HttpServlet {
 			{
 			/*----- Ecriture de la page XML -----*/
 			out.println("<?xml version=\"1.0\"?>");
-                        out.println("<liste_etatpresence>");
-                       
+                        
+                        Calendar cal = Calendar.getInstance();
+                        int year = cal.get(Calendar.YEAR);
                         String idetudiant = request.getParameter("idetudiant");
-                        System.out.println(idetudiant);
-                        List<Creneau> clist =bd.getHeurePresent(idetudiant);
+                        String mois = request.getParameter("mois");
+                        String annee =request.getParameter("annee");
+                        String anneemois =""; 
+                        if(annee.equals(null)){
+                            System.out.println("not select year");
+                             anneemois = Integer.toString(year)+"-"+mois;
+                        }else{
+                             anneemois =annee+"-"+mois;
+                        }
+                        out.println("<liste_etatpresence>");
+//                        System.out.println(idetudiant);
+                        List<Creneau> clist =bd.getHeurePresent(idetudiant,anneemois);
+                        Personnel p =bd.getEtudiantinfo(idetudiant);
+                        String nom =p.getNom();
+                        String prenom =p.getPrenom();
+                        String photo =p.getPhoto();
+                        List<String> listCreneau= new ArrayList<>();    
+                        
+                        out.println("<nom>" + nom + "</nom>");
+                        out.println("<prenom>" + prenom + "</prenom>");
+                        out.println("<photo>" + photo + "</photo>");        
                         for(String str :bd.output(clist,0)){
                             out.println("<date>" + str + "</date>");
                         }
@@ -50,6 +73,13 @@ public class ServletRespon extends HttpServlet {
                             out.println("<heure>" + str + "</heure>");
                         }  
                         
+                        
+                        for(String str :bd.getHeurePresentidCreneau(idetudiant, anneemois)){
+                            out.println("<idCreneau>" + str + "</idCreneau>");
+                            listCreneau.add(str);
+                        }  
+                        HttpSession session = request.getSession(true);
+                        session.setAttribute("id", listCreneau);
                         out.println("</liste_etatpresence>");
     }    }
     @Override

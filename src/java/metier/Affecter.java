@@ -14,6 +14,15 @@ public class Affecter  implements java.io.Serializable {
      private Personnel personnel;
      private byte[] signatureEnseignant;
      private String etatPresence;
+     private String etatValide;
+
+    public void setEtatValide(String etatValide) {
+        this.etatValide = etatValide;
+    }
+
+    public String getEtatValide() {
+        return etatValide;
+    }
 
     public Affecter() {
     }

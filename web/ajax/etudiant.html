@@ -1,69 +1,90 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
+
     <head>
-        <title>TODO supply a title</title>
+        <title>Saisir Presence Etudiant</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href='ajax/cssetudiant.css' rel='stylesheet' type='text/css'>
+        <link href='saisirpresenceetudiant.css' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="/resources/demos/style.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            $( function() {
+              $( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' }).value;
+            } );
+        </script>
     </head>
-    <body>
-        <div>
-            <div class="div_photo_etu appel infos_haut"  >
-                            <img alt="" src="" >  
-                            (photo)
-            </div>
-           
-                <ul class="div_name infos_haut">
-                    <li>num&eacute;ro INE : 21509128</li>
-                    <li>Nom &eacute;tuduant : micheal</li>
-                    <li>pr&eacute;nom &eacute;tudiant: augustin </li>
-                </ul>
-           
+     <h1>Saisissez vos heures de presence</h1>
+     <body>
+         <div class="infos_etudiant">
+            <Table class="infos_etudiant_tab" border="1">
+                <tr>
+                    <th>Bienvenu</th>
+                    <th>prenom</th>
+                    <th>Nom</th>
+                    <th><img alt="" src="" >(photo)</th>
+                </tr>
+            </table>       
         </div>
-        
-        <h3>fichier stagiaire mensuelle</h3>
-        <div>
-            <table class="tab_presence" border="1">
-                <th>p&eacute;riode</th>
-                <th>Nombre heures par jours</th>
-                <th>commentaire</th>
-            
-            <tr>
-                <td>03/01/2020</td>
-                <td>pr&eacute;sent 6/6 h</td>
-                <td> </td>
-            </tr>
-            <tr>
-                <td>04/01/2020</td>
-                <td>pr&eacute;sent 4.5/6 h</td>
-                <td><button>+</button></td>
-            </tr>   
-            <tr>
-                <td>05/01/2020</td>
-                <td>pr&eacute;sent 6/6 h</td>
-                <td> </td>
-            </tr>            
-        </table>
-            
-         <table class="tab_presence">    
-            <!-- laisser à boutons-->
-            <tr>
-                <td><button><< mois pr&eacute;c&eacute;dent</button></td>
-                
-                <td><button>mois suivant >></button></td>
-            </tr>
-        </table>    
+        <div class="infos_creneau">
+            <h3>Selectionnez les informations sur les creneaux que vous souhaitez renseigner</h3>
+                <Table class="infos_creneau_tab" border="1">    
+                    <tr>
+                        <th>
+                            Choisir date
+                        </th>
+                        <th>
+                            Choisir heure 
+                        </th>
+                        <th>
+                            Choisir minute
+                        </th>
+                        <th>
+                            Choisir type creneau
+                        </th>
+                        <th>
+                            choisir etat presence
+                        </th>  
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" id="datepicker">
+                        </td>
+                        <td>
+                            <input type="text" id="heureDeb">
+                        </td>
+                        <td>
+                            <input type="text" id="minute">
+                        </td>
+                            
+                        <td>
+                            <select name="typeCreneau" id="typeCreneau">
+                                <option value="">--Choisissez un type de creneau--</option>
+                                <option value="projet">projet</option>
+                                <option value="conference">conference</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" id="prsence">
+                        </td>
+                    </tr>
+                    
+                </Table>
         </div>
+   
+        <br>
         <div class="div_bouton">
-        
-        
-        <button>retour</button>
-        <button>valider</button>
-    </div>
-    </body>
-</html>
+            <button id="btn_valider">Valider</button>
+            
+        </div>
+        <script type="text/JavaScript" src="ajax/saisirpresenceetudiant.js"></script>
+     </body>
+
+
+
+<!--  
+                                <input type="checkbox" id="present"   title="present">
+                                <input type="checkbox" id="retard"    title="retard">
+                                <input type="checkbox" id="abscencej" title="abscencej">
+                                <input type="checkbox" id="abscent"   title="abscent" >-->

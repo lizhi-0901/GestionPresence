@@ -15,17 +15,17 @@
 	<form method="get" action="ServletConnection">
 			<div>
 				<label for="lg_username" >Username</label>
-				<input type="text"  id="lg_username" name="lg_username" placeholder="alain.berro@gmail.com">
+				<input class="login" type="text"  id="lg_username" name="lg_username" >
 			</div>
 			<div >
 				<label for="lg_password" >Password</label>
-				<input type="password"  id="lg_password" name="lg_password" placeholder="alain">
+				<input class="login" type="password"  id="lg_password" name="lg_password" >
 			</div>
 			<div >
 				<input type="checkbox" id="lg_remember" name="lg_remember">
 				<label for="lg_remember">remember</label>
 			</div>
-		<button type="submit"  id="btn_login"><i ></i></button>
+            <button class="loginbutton" type="submit"  id="btn_login"><i ></i></button>
 	</form>
 
 		<div>${requestScope.msg_erreur}</div>

@@ -13,21 +13,47 @@ and open the template in the editor.
     </head>
     <body>
         <div>
-            <span > saisir numéro etudiant</span><br/>
+            <span > saisir numero etudiant</span><br/>
             <input id="idetudiant" type="text" placeholder="21509151"><br/>
+            <span > choisr l'annee</span><br/>
+            <select name="annee" id="annee">
+                        <option value=""> annee</option>
+                        <option value="2018"> 2018</option>
+                        <option value="2019"> 2019 </option>
+                        <option value="2020"> 2020</option>
+            </select>
+            <br>
+            <span > choisr un mois</span><br/>
+            <select name="mois" id="mois">
+                        <option value="01"> 01</option>
+                        <option value="02"> 02 </option>
+                        <option value="03"> 03</option>
+                        <option value="04"> 04 </option>
+                        <option value="05"> 05</option>
+                        <option value="06"> 06 </option>
+                        <option value="07"> 07</option>
+                        <option value="08"> 08 </option>
+                        <option value="09"> 09</option>
+                        <option value="10"> 10 </option>
+                        <option value="11"> 11</option>
+                        <option value="12"> 12 </option>
+                    </select>
+            <br>
+            
             <input type="button" id="affecter" value="chercher">
         </div>    
+        
         <div id ="div_etu" class="etudiant">
         <div >
             <div class="div_photo_etu appel infos_haut"  >
-                            <img alt="" src="" >  
+                            <img  alt="" src="" >  
                             (photo)
             </div>
            
                 <ul class="div_name infos_haut">
-                    <li>num&eacute;ro INE : 21509128</li>
-                    <li>Nom &eacute;tuduant : micheal</li>
-                    <li>pr&eacute;nom &eacute;tudiant: augustin </li>
+                    <li id="nom"></li>
+                    <li id="prenom"></li>
+                    
                 </ul>
            
         </div>
@@ -43,20 +69,19 @@ and open the template in the editor.
              
         </table>
             
-         <table class="tab_presence">    
-            <!-- laisser à boutons-->
-            <tr>
-                <td><button><< mois pr&eacute;c&eacute;dent</button></td>
-                
-                <td><button>mois suivant >></button></td>
-            </tr>
-        </table>    
+          
         </div>
         <div class="div_bouton">
         
         
         <button>retour</button>
-        <button>valider</button>
+        <select name="valide" id="etatvalide">
+                        <option value="oui"> valide</option>
+                        <option value="non"> nonvalide </option>
+        </select>
+        <button class="btn_v" id="valide" >valider</button>
+        
+        
     </div>
         </div>
         <script type="text/JavaScript" src="ajax/valider.js"></script>

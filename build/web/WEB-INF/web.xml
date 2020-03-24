@@ -36,6 +36,18 @@
         <servlet-name>validerPage</servlet-name>
         <jsp-file>/ajax/validationResp.html</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>ServletValide</servlet-name>
+        <servlet-class>action.ServletValide</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>responpage</servlet-name>
+        <jsp-file>/ajax/Respo.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>gestionaire</servlet-name>
+        <jsp-file>/ajax/Gestionnaire.jsp</jsp-file>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletConnection</servlet-name>
         <url-pattern>/ServletConnection</url-pattern>
@@ -71,6 +83,18 @@
     <servlet-mapping>
         <servlet-name>validerPage</servlet-name>
         <url-pattern>/validerResp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletValide</servlet-name>
+        <url-pattern>/ServletValide</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>responpage</servlet-name>
+        <url-pattern>/Responpage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>gestionaire</servlet-name>
+        <url-pattern>/GestionnairePage</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -18,11 +18,14 @@
         <many-to-one name="personnel" class="metier.Personnel" update="false" insert="false" fetch="select">
             <column name="idPersonne" length="25" not-null="true" />
         </many-to-one>
-        <property name="signatureEnseignant" type="binary">
+        <property name="signatureEnseignant"  type="binary">
             <column name="signatureEnseignant" not-null="true" />
         </property>
         <property name="etatPresence" type="string">
             <column name="etatPresence" length="25" not-null="true" />
+        </property>
+         <property name="etatValide" type="string">
+            <column name="etatValide" length="5" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>
