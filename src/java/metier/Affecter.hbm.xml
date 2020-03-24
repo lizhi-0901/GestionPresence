@@ -16,13 +16,18 @@
             <column name="idCreneau" length="25" not-null="true" />
         </many-to-one>
         <many-to-one name="personnel" class="metier.Personnel" update="false" insert="false" fetch="select">
-            <column name="idPersonne" length="25" not-null="true" />
+            <column name="idPersonne" length="25"/>
         </many-to-one>
+<<<<<<< HEAD
         <property name="signatureEnseignant"  type="binary">
             <column name="signatureEnseignant" not-null="true" />
+=======
+        <property name="signatureEnseignant" type="binary">
+            <column name="signatureEnseignant"  />
+>>>>>>> 3af4b5158a28b8a1b93533b472ced4fcedfefef5
         </property>
         <property name="etatPresence" type="string">
-            <column name="etatPresence" length="25" not-null="true" />
+            <column name="etatPresence" length="25" />
         </property>
          <property name="etatValide" type="string">
             <column name="etatValide" length="5" not-null="true" />

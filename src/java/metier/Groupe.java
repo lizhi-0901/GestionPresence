@@ -13,7 +13,11 @@ public class Groupe  implements java.io.Serializable {
 
 
      private String idGroupe;
+<<<<<<< HEAD
      private String nomGroupe;
+=======
+     private String typeFormation;
+>>>>>>> 3af4b5158a28b8a1b93533b472ced4fcedfefef5
      private String typeGroupe;
      private Date dateDeb;
      private Date dateFin;
@@ -24,16 +28,28 @@ public class Groupe  implements java.io.Serializable {
     }
 
 	
+<<<<<<< HEAD
     public Groupe(String idGroupe, String nomGroupe, String typeGroupe, Date dateDeb, Date dateFin) {
         this.idGroupe = idGroupe;
         this.nomGroupe = nomGroupe;
+=======
+    public Groupe(String idGroupe, String typeFormation, String typeGroupe, Date dateDeb, Date dateFin) {
+        this.idGroupe = idGroupe;
+        this.typeFormation = typeFormation;
+>>>>>>> 3af4b5158a28b8a1b93533b472ced4fcedfefef5
         this.typeGroupe=typeGroupe;
         this.dateDeb = dateDeb;
         this.dateFin = dateFin;
     }
+<<<<<<< HEAD
     public Groupe(String idGroupe, String nomGroupe, String typeGroupe, Date dateDeb, Date dateFin, Set creneaus, Set personnels) {
        this.idGroupe = idGroupe;
        this.nomGroupe = nomGroupe;
+=======
+    public Groupe(String idGroupe, String typeFormation, String typeGroupe, Date dateDeb, Date dateFin, Set creneaus, Set personnels) {
+       this.idGroupe = idGroupe;
+       this.typeFormation = typeFormation;
+>>>>>>> 3af4b5158a28b8a1b93533b472ced4fcedfefef5
        this.typeGroupe=typeGroupe;
        this.dateDeb = dateDeb;
        this.dateFin = dateFin;
@@ -41,9 +57,15 @@ public class Groupe  implements java.io.Serializable {
        this.personnels = personnels;
     }
     
+<<<<<<< HEAD
     public Groupe(String idGroupe,String nomGroupe,String typeGroupe){
         this.idGroupe = idGroupe;
         this.nomGroupe = nomGroupe;
+=======
+    public Groupe(String idGroupe,String typeFormation,String typeGroupe){
+        this.idGroupe = idGroupe;
+        this.typeFormation = typeFormation;
+>>>>>>> 3af4b5158a28b8a1b93533b472ced4fcedfefef5
         this.typeGroupe=typeGroupe;
     }
    
@@ -55,11 +77,11 @@ public class Groupe  implements java.io.Serializable {
         this.idGroupe = idGroupe;
     }
     public String getNomGroupe() {
-        return this.nomGroupe;
+        return this.typeFormation;
     }
     
-    public void setNomGroupe(String nomGroupe) {
-        this.nomGroupe = nomGroupe;
+    public void setNomGroupe(String typeFormation) {
+        this.typeFormation = typeFormation;
     }
     public Date getDateDeb() {
         return this.dateDeb;
@@ -93,6 +115,14 @@ public class Groupe  implements java.io.Serializable {
     public void setTypeGroupe(String typeGroupe) {
         this.typeGroupe = typeGroupe;
     }
+<<<<<<< HEAD
+=======
+
+    public String getTypeGroupe() {
+        return typeGroupe;
+    }
+
+>>>>>>> 3af4b5158a28b8a1b93533b472ced4fcedfefef5
 
     public String getTypeGroupe() {
         return typeGroupe;

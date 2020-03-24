@@ -10,47 +10,39 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="ajax/csspageAppel.css" type="text/css" />
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="/resources/demos/style.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            $( function() {
+              $( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' }).value;
+            } );
+        </script>
     </head>
     
     <body>
-        <div><h2> nom  prenom Enseignant</h2> </div>
+        <div><h2>Bonjour</h2> </div>
         <div>
             
-            <form method ="" action="" name="" >
                 <div class="info_choisir">
-                    <span class=""> choisir formation </span><br/>
+                    <span class=""> Choisir formation </span><br/>
                     <select name="formation" id="formation">
+                        <option value="Formation">Formation</option>
                         <option value="MIAGEIPM"> IPM</option>
                         <option value="MIAGEISIAD"> ISIAD </option>
-                        <p id="s"></p>
                     </select>
                 </div>
-                
-                
+               
                 <div class="info_choisir">
                  <span> Choisir cours: </span><br/>
                     <select name="cours" id="cours">
-<!--                        <option value="">groupe FA</option>
-                        <option value=""> groupe FI </option>
-                        <option value="id_groupe3"> groupe anglais</option>
-                        <option value="id_groupe4"> groupe melange </option>-->
+
                     </select>
-                 </div>
-                 <button id="choisir_g" type="button">choisir groupe</button>
-                
+                 </div><br/>
+             
                 <div class="info_choisir">
-                <span>Choisir groupeTD : </span><br/>
-                    <select name="groupe" id="groupe">                       
-<!--                        <option value="id_groupe_1">TD1 M1 IM</option>
-                        <option value="id_groupe_2"> TD1 M1 IM </option>
-                        <option value="id_groupe_3">TD FI M2 IPM</option>
-                        <option value="id_groupe_4">TD FA M2 IPM</option>-->
-                    </select>
-                </div>
-                <br/>
-               
-                
-                <div class="info_choisir">
+<<<<<<< HEAD
                     <span > Choisir Date: </span><br/>
                     <input id="date" type="text" placeholder="co "><br/>
                 </div>
@@ -59,130 +51,42 @@ and open the template in the editor.
                     <span > heure Début: </span><br/>
                    <input id="heure" type="text" placeholder="co "><br/>
                 </div>
+=======
+                    <p>Date: <input type="text" id="datepicker" ></p>
+                </div>
                  
                 <div class="info_choisir">
-                <span> Durée:</span><br/>
-                    <select name="duree" id="duree">
-                        <option value="1.5">1h 30min </option>
-                        <option value="3"> 3h </option>
-                        <option value="1">examan 1h </option>
-                        <option value="2">examan 2h</option>
+                    <span> Heure:  </span><input type="text" id="heure" style="width:30px"><br/>
+                    <span> Minute:</span><input type="text" id="minute" style="width:30px"><br/>
+                    <span> Dur&eacutee:</span><input type="text" id="duree" style="width:30px">Mins
+                </div><br/>
+>>>>>>> 3af4b5158a28b8a1b93533b472ced4fcedfefef5
+                 
+                 <div class="info_choisir">
+                <span>Choisir groupeTD : </span><br/>
+                    <select name="groupe" id="groupe">                       
+                        <option>IPM1920TD1</option>
+                        <option>IPM1920TD2</option>
+                        <option>IPM1920FI</option>
+                        <option>IPM1920FA</option>
                     </select>
-                 </div> <br/> 
-                
-                <button type="button">afficher</button>
+                </div><br/> 
             </form>
       </div>           
 <!--  liste étudiant -->  <hr/>
-    <div class="div_etudiant"> 
-                <div> 
-                    <div class="div_photo_etu appel"  >
-                        <img alt="" src="" >  
-                        (photo)
-                    </div>
-                    <div> 
-                        <button class="btn_present appel" value="">Présent</button>
-                         <button class="btn_retard appel" value="">Retard</button>
-                         <button class="btn_abs_just appel" value="">abs justifié:</button>
-                         <button class="btn_abs appel" value="">absent</button>
-                    </div>
-                </div>  
-             <br/>
-             
-                <div>    
-                    <div class="info_presence">
-                        <span class="text_nb"> nombre présence : </span>
-                        <span class="text_nb"> nombre retard : </span>
-                        <span class="text_nb"> nombre absent justifié: </span>
-                        <span class="text_nb"> nombre absent : </span>
-                    </div>
-                    
-                      <div class="info_presence">
-                        <div>nom: TRUMP </div><br/>
-                        <div>prenom: Donald </div>                                                                       
-                    </div>
-                    
-                    <div class=" div_commentaire">
-                        <span class="commentaire">commentaire</span>                                                                      
-                    </div>                    
-                    
-                </div>
-                           
-        </div><br>
-        
-        <div class="div_etudiant"> 
-                <div> 
-                    <div class="div_photo_etu appel"  >
-                        <img alt="" src="" >  
-                        (photo)
-                    </div>
-                    <div> 
-                        <button class="btn_present appel" value="">Présent</button>
-                         <button class="btn_retard appel" value="">Retard</button>
-                         <button class="btn_abs_just appel" value="">abs justifié:</button>
-                         <button class="btn_abs appel" value="">absent</button>
-                    </div>
-                </div>  
-             <br/>
-             
-                <div>    
-                    <div class="info_presence">
-                        <span class="text_nb"> nombre présence : </span>
-                        <span class="text_nb"> nombre retard : </span>
-                        <span class="text_nb"> nombre absent justifié: </span>
-                        <span class="text_nb"> nombre absent : </span>
-                    </div>
-                    
-                      <div class="info_presence">
-                        <div>nom: TRUMP </div><br/>
-                        <div>prenom: Donald </div>                                                                       
-                    </div>
-                    
-                    <div class=" div_commentaire">
-                        <span class="commentaire">commentaire</span>                                                                      
-                    </div>                    
-                    
-                </div>
-            </div> 
-        
-            <div class="div_etudiant"> 
-                <div> 
-                    <div class="div_photo_etu appel"  >
-                        <img alt="" src="" >  
-                        (photo)
-                    </div>
-                    <div> 
-                        <button class="btn_present appel" value="">Présent</button>
-                         <button class="btn_retard appel" value="">Retard</button>
-                         <button class="btn_abs_just appel" value="">abs justifié:</button>
-                         <button class="btn_abs appel" value="">absent</button>
-                    </div>
-                </div>  
-             <br/>
-             
-                <div>    
-                    <div class="info_presence">
-                        <span class="text_nb"> nombre présence : </span>
-                        <span class="text_nb"> nombre retard : </span>
-                        <span class="text_nb"> nombre absent justifié: </span>
-                        <span class="text_nb"> nombre absent : </span>
-                    </div>
-                    
-                      <div class="info_presence">
-                        <div>nom: TRUMP </div><br/>
-                        <div>prenom: Donald </div>                                                                       
-                    </div>
-                    
-                    <div class=" div_commentaire">
-                        <span class="commentaire">commentaire</span>                                                                      
-                    </div>                    
-                    
-                </div>
-            </div>  
+    <div class="list_etudiant"> 
+        <table id="listEtudiant" border="2">
+            <th>Photo</th>
+            <th style="display:none;">Identifiant</th>
+            <th>Nom</th>
+            <th>Pr&eacutenom</th>
+            <th>Etat Preacutesent</th>
+        </table>  
+
+    </div>  
 
       <div class = "div_bouton">        
-        <input type="reset" value="initialiser" class="bouton"/> 
-        <input type="submit" value="valider"  class="bouton btn_valider" />
+        <input type="submit" value="valider"  class="bouton btn_valider" id="btn_valider"/>
       </div>
      <script type="text/JavaScript" src="ajax/faireappel.js"></script>
     </body>

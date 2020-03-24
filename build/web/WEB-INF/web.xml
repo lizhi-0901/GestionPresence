@@ -29,6 +29,7 @@
         <servlet-class>action.ServletGroupe</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>ServletRespon</servlet-name>
         <servlet-class>action.ServletRespon</servlet-class>
     </servlet>
@@ -47,6 +48,14 @@
     <servlet>
         <servlet-name>gestionaire</servlet-name>
         <jsp-file>/ajax/Gestionnaire.jsp</jsp-file>
+=======
+        <servlet-name>ServletCreneau</servlet-name>
+        <servlet-class>action.ServletCreneau</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletInsertEtat</servlet-name>
+        <servlet-class>action.ServletInsertEtat</servlet-class>
+>>>>>>> 3af4b5158a28b8a1b93533b472ced4fcedfefef5
     </servlet>
     <servlet-mapping>
         <servlet-name>ServletConnection</servlet-name>
@@ -77,6 +86,7 @@
         <url-pattern>/ServletGroupe</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>ServletRespon</servlet-name>
         <url-pattern>/ServletRespon</url-pattern>
     </servlet-mapping>
@@ -95,6 +105,14 @@
     <servlet-mapping>
         <servlet-name>gestionaire</servlet-name>
         <url-pattern>/GestionnairePage</url-pattern>
+=======
+        <servlet-name>ServletCreneau</servlet-name>
+        <url-pattern>/ServletCreneau</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletInsertEtat</servlet-name>
+        <url-pattern>/ServletInsertEtat</url-pattern>
+>>>>>>> 3af4b5158a28b8a1b93533b472ced4fcedfefef5
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -54,6 +54,11 @@ public class AffecterId  implements java.io.Serializable {
          return result;
    }   
 
+    @Override
+    public String toString() {
+        return "AffecterId{" + "idPersonne=" + idPersonne + ", idCreneau=" + idCreneau + '}';
+    }
+
 
 }
 

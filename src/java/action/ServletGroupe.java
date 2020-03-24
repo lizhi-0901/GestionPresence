@@ -20,6 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import metier.Groupe;
 import metier.Matiere;
 
 /**
@@ -33,6 +34,7 @@ public class ServletGroupe extends HttpServlet {
     {
         response.setContentType("application/xml;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
+                
 		try (PrintWriter out = response.getWriter())
 			{
 			/*----- Ecriture de la page XML -----*/
@@ -40,6 +42,7 @@ public class ServletGroupe extends HttpServlet {
                         out.println("<liste_groupe>");
 //
 			/*----- Récupération des paramètres -----*/
+<<<<<<< HEAD
 			
 //                        Date date = df.parse(request.getParameter("date"));
 //                        String libelleMatiere = request.getParameter("cours");
@@ -63,6 +66,24 @@ public class ServletGroupe extends HttpServlet {
 			
 			}
                         out.println("<liste_groupe>");
+=======
+                        String dateString=request.getParameter("date");
+                        String libelleMatiere = request.getParameter("cours");
+                        String heure=request.getParameter("heure");
+                        SimpleDateFormat df = new SimpleDateFormat("yy-mm-dd");
+                        Date date = df.parse(dateString);
+                        int heureDeb= Integer.parseInt(heure);
+                        
+                        
+                        List<Groupe> listGroupes=bd.getGroupe(date, heureDeb, libelleMatiere);
+                        for(Groupe g:listGroupes){
+                            String idGroupe=g.getIdGroupe();
+                            out.println("<groupe>" + idGroupe + "</groupe>");
+                        }
+                        out.println("</liste_groupe>");
+
+    
+>>>>>>> 3af4b5158a28b8a1b93533b472ced4fcedfefef5
     }   catch (ParseException ex) {
             Logger.getLogger(ServletGroupe.class.getName()).log(Level.SEVERE, null, ex);
         }

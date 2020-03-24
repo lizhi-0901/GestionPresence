@@ -12,7 +12,10 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Calendar;
+=======
+>>>>>>> 3af4b5158a28b8a1b93533b472ced4fcedfefef5
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -21,8 +24,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
 import javax.servlet.http.HttpSession;
 import metier.Creneau;
+=======
+import metier.Groupe;
+>>>>>>> 3af4b5158a28b8a1b93533b472ced4fcedfefef5
 import metier.Matiere;
 import metier.Personnel;
 
@@ -36,6 +43,7 @@ public class ServletEtudiant extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
         response.setContentType("application/xml;charset=UTF-8");
+<<<<<<< HEAD
 		response.setCharacterEncoding("UTF-8");
 		try (PrintWriter out = response.getWriter())
 			{
@@ -68,6 +76,32 @@ public class ServletEtudiant extends HttpServlet {
     }    
     }
     
+=======
+            response.setCharacterEncoding("UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /*----- Ecriture de la page XML -----*/
+            out.println("<?xml version=\"1.0\"?>");
+            out.println("<liste_etudiant>");
+            /*----- Récupération des paramètres -----*/
+            String idGroupe = request.getParameter("groupe");
+            
+            List<Personnel> listEtudiants=bd.getEtudiants(idGroupe);
+            for(Personnel p:listEtudiants){
+                out.println("<etudiant>");
+                    String id=p.getIdPersonne();
+                    String nom=p.getNom();
+                    String prenom=p.getPrenom();
+                    String photo=p.getPhoto();
+                    out.println("<id>" + id + "</id>");
+                    out.println("<nom>" + nom + "</nom>");
+                    out.println("<prenom>" + prenom + "</prenom>");
+                    out.println("<photo>" + photo + "</photo>");              
+                out.println("</etudiant>");
+            }           
+            out.println("</liste_etudiant>");
+        }
+    }
+>>>>>>> 3af4b5158a28b8a1b93533b472ced4fcedfefef5
     @Override
     protected void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { doGet(request, response); }
 
