@@ -6,17 +6,24 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>validation responsable</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href='ajax/cssRespo.css' rel='stylesheet' type='text/css'>
     </head>
     <body>
-        <div>
+        <div class="top_decor">
+            <div class="logo"><img src="" alt="">(logo)</div>
+        </div>
+
+        <h2>valider ficher stagiaire</h2>
+        <div class="saisirDiv">
+            
+
             <span > saisir numero etudiant</span><br/>
-            <input id="idetudiant" type="text" placeholder="21509151"><br/>
+            <input id="idetudiant" type="text" placeholder="21509151" class="textboxId info_saisi"><br/>
             <span > choisr l'annee</span><br/>
-            <select name="annee" id="annee">
+            <select name="annee" id="annee" class="select1 info_saisi">
                         <option value=""> annee</option>
                         <option value="2018"> 2018</option>
                         <option value="2019"> 2019 </option>
@@ -24,7 +31,7 @@ and open the template in the editor.
             </select>
             <br>
             <span > choisr un mois</span><br/>
-            <select name="mois" id="mois">
+            <select name="mois" id="mois" class="info_saisi">
                         <option value="01"> 01</option>
                         <option value="02"> 02 </option>
                         <option value="03"> 03</option>
@@ -40,21 +47,22 @@ and open the template in the editor.
                     </select>
             <br>
             
-            <input type="button" id="affecter" value="chercher">
-        </div>    
+            <input type="button" id="affecter" value="chercher" class="btn_v">
+        </div>   <hr> 
         
         <div id ="div_etu" class="etudiant">
-        <div >
+        <div>
             <div class="div_photo_etu appel infos_haut"  >
                             <img  alt="" src="" >  
                             (photo)
             </div>
-           
+            
                 <ul class="div_name infos_haut">
-                    <li id="nom"></li>
-                    <li id="prenom"></li>
-                    
+                    <li id="nom"> nom </li>
+                    <li id="prenom"> prenom </li>                    
                 </ul>
+
+
            
         </div>
         
@@ -62,10 +70,10 @@ and open the template in the editor.
         <div>
             <table class="tab_presence" border="1" id="table_presence">
                 <th>p&eacute;riode</th>
-                <th>Nombre heures par jours</th>
-                <th >commentaire</th>
-            
-            
+                <th>Nombre heures present par jours</th>
+                <th>Nombre heures absent par jours</th>
+                <th>Nombre heures retard par jours</th>
+                <th ></th>                            
              
         </table>
             
@@ -74,7 +82,7 @@ and open the template in the editor.
         <div class="div_bouton">
         
         
-        <button>retour</button>
+        <button class="btn_v" >retour</button>
         <select name="valide" id="etatvalide">
                         <option value="oui"> valide</option>
                         <option value="non"> nonvalide </option>

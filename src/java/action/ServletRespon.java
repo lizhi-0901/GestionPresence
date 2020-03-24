@@ -56,7 +56,12 @@ public class ServletRespon extends HttpServlet {
                         }
                         out.println("<liste_etatpresence>");
 //                        System.out.println(idetudiant);
-                        List<Creneau> clist =bd.getHeurePresent(idetudiant,anneemois);
+                        //present
+                        List<Creneau> clist =bd.getHeurePresent(idetudiant,anneemois,"present");
+                        //absent
+                        List<Creneau> abslist =bd.getHeurePresent(idetudiant,anneemois,"absent");
+                        //retard
+                        List<Creneau> retalist =bd.getHeurePresent(idetudiant,anneemois,"retard");
                         Personnel p =bd.getEtudiantinfo(idetudiant);
                         String nom =p.getNom();
                         String prenom =p.getPrenom();
@@ -65,15 +70,37 @@ public class ServletRespon extends HttpServlet {
                         
                         out.println("<nom>" + nom + "</nom>");
                         out.println("<prenom>" + prenom + "</prenom>");
-                        out.println("<photo>" + photo + "</photo>");        
-                        for(String str :bd.output(clist,0)){
+                        out.println("<photo>" + photo + "</photo>"); 
+                        
+                        int max=0;
+                        List<Creneau> list=new ArrayList<>();
+                        max=clist.size();
+                        list=clist;
+                        if(max<abslist.size()){
+                            max=abslist.size();
+                            list=abslist;
+                            if(max<retalist.size()){
+                                max=retalist.size();
+                                list=retalist;
+                            }
+                        }else{
+                            if(max<retalist.size()){
+                                max=retalist.size();
+                                list=retalist;
+                            }
+                        }
+                        for(String str :bd.output(list,0)){
                             out.println("<date>" + str + "</date>");
                         }
                         for(String str :bd.output(clist,1)){
-                            out.println("<heure>" + str + "</heure>");
+                            out.println("<heure>" + (Integer.parseInt(str)/60) + "</heure>");
                         }  
-                        
-                        
+                        for(String str :bd.output(abslist,1)){
+                            out.println("<absheure>" + (Integer.parseInt(str)/60) + "</absheure>");
+                        }
+                        for(String str :bd.output(retalist,1)){
+                            out.println("<reheure>" + (Integer.parseInt(str)/60) + "</reheure>");
+                        }
                         for(String str :bd.getHeurePresentidCreneau(idetudiant, anneemois)){
                             out.println("<idCreneau>" + str + "</idCreneau>");
                             listCreneau.add(str);

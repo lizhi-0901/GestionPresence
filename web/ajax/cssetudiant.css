@@ -4,47 +4,98 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 2020-3-20, 8:25:37
-    Author     : 18311
+    Created on : 2020-3-23, 21:44:06
+    Author     : dell
 */
 
-
-td{
-    text-align: center;
+.logo{
     
+    border-style: solid ;
+    border-width:1px;
+    width:80px;   
+    height:100px; 
+    margin: 10px ;
+    margin-left: -5px ;
+}
+.top_decor{
+    background-color: grey ; 
 }
 
-.div_photo_etu{    
+
+.infos_creneau{
+  
+  margin-left: 3%;
+}
+
+.infos_etudiant_tab{
+  margin-left:5%;
+}
+.div_photo_etu{
     border-style: solid ;
     border-width:1px;
     width:80px;   
     height:100px; 
     margin: 10px ;
 }
+
 ul{
-    list-style:none;
+    list-style: none; 
+    font-size: 1em;
+    padding: 10px;
 }
-.infos_haut{
-    float: left;
-    margin: 10px ;
-}
-
-h3{
-    clear: left;
-    left:20px;
-}
-.tab_presence{
-    clear: left;
-    margin-left: 30px;
+.info_etu{
+   display: block;
 }
 
-.div_bouton{
-    margin: 20px;
+
+table {
+  border: 1px solid #429fff; 
+  font-family: Arial;
+  border-collapse: collapse; 
+}
+
+tr:hover {
+  background-color: #c4e4ff; 
+}
+
+th {
+  border: 1px solid #429fff; 
+  background-color: #d2e8ff;
+  font-weight: bold;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+}
+
+td {
+  border: 1px solid #429fff; 
+  text-align: right;
+  padding: 4px;
+}
+
+button {
+    background-color:#e7e7e7;
+    border: none;
+    color: black;
+    margin-left: 30%;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
     
+    transition-property: width;
+    transition-duration: 1s;
+    transition-timing-function: ease;
+          
 }
-
-button{
-    left: 50px;
-    margin: 10px;
-    min-width: 20px;
+button:hover{
+    opacity:50%;
+   
 }
+/*
+.infos_etudiant_tab>tr{     
+     border: none;
+}*/

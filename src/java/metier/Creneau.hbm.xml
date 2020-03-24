@@ -35,6 +35,7 @@
         <property name="commantaire" type="string">
             <column name="commantaire" length="25" />
         </property>
+
         <set name="affecters" table="Affecter" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idCreneau" length="25" not-null="true" />

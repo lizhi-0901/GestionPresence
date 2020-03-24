@@ -142,9 +142,11 @@ function getEtudiant ()
         var min=parseInt(document.getElementById("minute").value);
         var heure=heureSaisir*60+min;
         var duree=document.getElementById("duree").value;
+        var typeCours=document.getElementById("typeCours").value;
+        alert(typeCours);
         
         var xhr = new XMLHttpRequest();
-        xhr.open("GET","ServletCreneau"+"?cours="+cours+"&heure="+heure+"&date="+date+"&duree="+duree,true);
+        xhr.open("GET","ServletCreneau"+"?cours="+cours+"&heure="+heure+"&date="+date+"&duree="+duree+"&typeCours="+typeCours,true);
             xhr.send();
         };
     
@@ -195,6 +197,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	document.getElementById("groupe").addEventListener("change",getEtudiant);
         document.getElementById("formation").addEventListener("change",getCours);
         document.getElementById("btn_valider").addEventListener("click",valider);
-        document.getElementById("duree").addEventListener("change",creationCreneau);
+        document.getElementById("typeCours").addEventListener("change",creationCreneau);
 });
 

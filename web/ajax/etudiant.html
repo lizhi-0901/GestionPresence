@@ -4,9 +4,10 @@
         <title>Saisir Presence Etudiant</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href='saisirpresenceetudiant.css' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <link rel="stylesheet" href="/resources/demos/style.css">
+        <link href='ajax/cssetudiant.css' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> 
+        <link rel="stylesheet" href="/resources/demos/style.css"> 
+        
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
@@ -15,17 +16,28 @@
             } );
         </script>
     </head>
-     <h1>Saisissez vos heures de presence</h1>
+     
      <body>
+        <div class="top_decor">
+            <div class="logo"><img src="" alt="">(logo)</div>
+        </div>
+        
+        <h2>Saisissez vos heures de presence</h2>
+
+
          <div class="infos_etudiant">
-            <Table class="infos_etudiant_tab" border="1">
-                <tr>
-                    <th>Bienvenu</th>
-                    <th id="prenom">prenom</th>
-                    <th id="nom">Nom</th>
-                    <th><img alt="" src="" >(photo)</th>
-                </tr>
-            </table>       
+            <div class="infos_etudiant_tab" border="1">
+                <div>
+                    
+                    <h3>Bienvenu</h3>                   
+                    <div class="div_photo_etu info_etu"><img alt="" src="" >(photo)</div>
+                    <ul class="info_etu">
+                     <li>pr&eacute;nom: ${param.prenometudiant}</li>
+                    <li>nom: ${param.nometudiant}</li>
+                    </ul>
+
+                </div>
+            </div>       
         </div>
         <div class="infos_creneau">
             <h3>Selectionnez les informations sur les creneaux que vous souhaitez renseigner</h3>

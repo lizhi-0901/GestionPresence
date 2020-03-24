@@ -223,33 +223,37 @@ public class bd {
          return idCreneau;
      }
      
-     public static void creationCreneau(String idCreneau,Date date,int heureDeb,int duree,String nomCreneau) throws ParseException{
+    public static void creationCreneau(String idCreneau,Date date,int heureDeb,int duree,String nomCreneau,String idEnseignant,String typeCours) throws ParseException{
          session=null;
+//          if(transaction==null){
                 session=HibernateUtil.getSessionFactory().openSession();
                 transaction=session.beginTransaction();
-        
-        
-        Creneau c=new Creneau(idCreneau,date,heureDeb,duree,nomCreneau);
-        
+        Creneau c=new Creneau();
+        c.setIdCreneau(idCreneau);
+        System.out.println(date);
+        c.setDateDeb(date);
+        c.setHeureDeb(heureDeb);
+        c.setDuree(duree);
+        c.setNomCreneau(nomCreneau);
+        c.setTypeActivite(typeCours);
+        c.setEnseignant(idEnseignant);
         session.save(c);
         transaction.commit();
      }
      
      public static void EnregistrerEtat(String idEtudiant, String idCreneau, String etat){
         session=null;
-        
-         if(transaction==null){
+//        if(transaction==null){
+            session=HibernateUtil.getSessionFactory().openSession();
             transaction=session.beginTransaction();
-
-          }
-        session=HibernateUtil.getSessionFactory().openSession();
-           AffecterId id=new AffecterId();
+//        }
+        AffecterId id=new AffecterId();
             id.setIdCreneau(idCreneau);
             id.setIdPersonne(idEtudiant);
             Affecter affecter= new Affecter();
             affecter.setId(id);
             affecter.setEtatPresence(etat);
-            session.save(affecter);
+            session.merge(affecter);
             transaction.commit();
     }
      
@@ -263,22 +267,25 @@ public class bd {
 //        return listaffecter;
 //    }
     
-    public static List<Creneau> getHeurePresent(String idetudiant,String date){
+    public static List<Creneau> getHeurePresent(String idetudiant,String date,String etatPresence){
          if(transaction==null){
             transaction  = session.beginTransaction();
         }
          Query query=session.createSQLQuery("select  c.dateDeb,sum(duree),a.idCreneau "+
                                                           "from Creneau c,Affecter a "+
                                                           "where c.idCreneau=a.idCreneau "+
-                                                          "and a.etatPresence= 'present' "+
+                                                          "and a.etatPresence=:etat "+
                                                           "and a.idPersonne=:id "+
                                                           "and c.dateDeb like :date "+        
                                                           "group by c.dateDeb");
         query.setParameter("id", idetudiant);
         query.setParameter("date", "%"+date+"%");
+        query.setParameter("etat", etatPresence);
         List<Creneau> listcreneau =query.list();
         return listcreneau;
     }
+    
+    
     /**
      * 
      * @param idetudiant
@@ -425,7 +432,9 @@ public class bd {
 
 		{   
                     
-                    bd.creationCreneau("BD202010021402",df.parse("03-01-2020"),9,30,"Big Data");
+                    System.out.println(bd.output(bd.getHeurePresent("21509151", "2020-02", "absent"),0));
+                    System.out.println(bd.output(bd.getHeurePresent("21509151", "2020-02", "present"),0));
+                    System.out.println(bd.output(bd.getHeurePresent("21509151", "2020-02", "retard"),0));
                      
                     
                     }        

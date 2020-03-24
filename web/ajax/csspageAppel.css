@@ -1,111 +1,96 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 2020-3-18, 17:16:47
-    Author     : 18311
-*/
+body {
+	background-color:#f8f4f4;
+	 margin: 20px;
+}
 
+table{
+box-shadow: 1px 1px 1px red;
+font-family:georgia, serif;
+text-align:center;
+}
+caption{
+	background:	 #f6e8e8;
+}
+td {
+	width: 150px;
+	text-align: center
+}
 
-h2{
-    margin-left: 30px;
-    color: green;
+th{
+text-align: center; 
+}
+
+h1 {
+    color: blue;
+}
+
+h2 {
+    color:#0000ff;
+}
+
+.entete{
+	margin: 30px;
+	padding-top: 15px;
+}
+
+.logo{ 
+}
+
+.info_personne{
 }
 
 .info_choisir{
-    display: inline-block;
-    width:200px;   
-    height:100px;     
-    text-align:center;
+
 }
 
-.div_etudiant{
-    float:left;
-    clear:left;
-    border-style: solid ;
-    border-width:1px;
-    border-radius:10px;
-    margin:5px;
-    padding: 2px;
-    display: none;
-}
-.div_photo_etu{
-    border-style: solid ;
-    border-width:1px;
-    width:80px;   
-    height:100px; 
-    margin: 10px ;
-}
-.appel{
-      float:left;
-      display:inline;
+.renseigner_creneau_tab{
+
 }
 
-.btn_present{
-    background-color: greenyellow;
-    width:100px;   
-    height:100px; 
-    text-align:center;
-    line-height: 40px;
-    border-radius: 12px;
-}
-.btn_retard{
-    background-color: yellow;
-    width:100px;   
-    height:100px; 
-    text-align:center;
-    line-height: 40px;  
-    border-radius: 12px;
-    opacity: 0.8;
-}
-.btn_abs_just{
-    background-color: red;
-    width:100px;   
-    height:100px; 
-    text-align:center;
-    line-height: 40px;
-    border-radius: 12px;
-    opacity: 0.8;
-}
-.btn_abs{
-    background-color: grey;
-    width:100px;   
-    height:100px; 
-    text-align:center;
-    line-height: 40px;
-    border-radius: 12px;
-    opacity: 0.8;
+.info_dh{
 }
 
-.info_presence{
-    clear:left;
-    float: left;
-    margin: 10px;
-    opacity: 0.8;
+.info_dh_tab{
 }
 
-.div_commentaire{
-   width:300px;   
-   height:100px; 
-   float: left;
-   margin-left:  10px ;
-   border-style: solid ;
-   border-width:1px;
+.list_etudiant{
+
 }
+
+.listEtudiant{
+}
+
+
 .div_bouton{
-    margin: 10px ;
-    clear:left;
-    float:left;
+	
+
 }
 
-.bouton{
-    margin: 20px ;
-    width:100px;   
-    height:30px;   
+.btn_initialiser {
+	padding:6px 0 6px 0;
+	font:Bold 13px Arial;
+	background:#d34836;
+	color:#cbabab;
+	width:90px;
+	text-align: center;
+	border-radius:2px;
+	border:none;
+	margin-left:20px;
+	margin-bottom: 50px;
+	;
 }
 
 .btn_valider{
-      
+	padding:6px 0 6px 0;
+	font:Bold 13px Arial;
+	background:#d34836;
+	color:#cbabab;
+	width:90px;
+	text-align: center;
+	border-radius:2px;
+	border:none;
+	margin-left:40px;
+	margin-bottom: 50px;
 }
+
+

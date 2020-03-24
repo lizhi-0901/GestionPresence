@@ -26,7 +26,7 @@
         var minute =document.getElementById("minute").value;
         var typeCreneau = document.getElementById("typeCreneau").value;
         var d  =document.getElementById("datepicker").value;
-        var presence=document.getElementById("prsence").value;
+        var presence=document.getElementById("presence").value;
                 
      
 	
@@ -45,8 +45,14 @@
 			// Elément html que l'on va mettre à jour.
                           var nom = document.getElementById("nom");
                           var prenom =document.getElementById("prenom");
-                          
-                          //nom.innerHTML=
+                          var msg =document.getElementById("espace");
+                          var nom=xhr.responseXML.getElementsByTagName("nom");
+                          var prenom=xhr.responseXML.getElementsByTagName("prenom");
+                          var type = xhr.responseXML.getElementsByTagName("typeCreneau");
+                          var etatprsence=xhr.responseXML.getElementsByTagName("presence");
+                          nom.innerHTML=nom[0].firstChild.nodeValue;
+                          prenom.innerHTML= prenom[0].firstChild.nodeValue; 
+                          msg.innerHTML=type[0].firstChild.nodeValue+" "+etatprsence[0].firstChild.nodeValue;
 			}
 		};
 	

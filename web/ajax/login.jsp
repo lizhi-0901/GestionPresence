@@ -5,34 +5,58 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="ajax/css.css" type="text/css" />
     </head>
-<body>
-        
+
+
+    <header>
+           <div class="entete">
+                <div class="logo">
+                <img src="img/logo.png" alt="logo"></img>
+            </div>
+    </header>
+<body>        
 <!-- Where all the magic happens -->
 <!-- LOGIN FORM -->
-<div  style="padding:50px 0">
-	<div >login</div>
+<div class="login">
 	<!-- Main Form -->
 	<form method="get" action="ServletConnection">
-			<div>
+		<table class="login_tab" border="3">
+			<tr>
+				<th>
+					Authentification 
+				</th>
+			</tr>
+			
+	        <tr><td>
 				<label for="lg_username" >Username</label>
-				<input class="login" type="text"  id="lg_username" name="lg_username" >
-			</div>
-			<div >
-				<label for="lg_password" >Password</label>
-				<input class="login" type="password"  id="lg_password" name="lg_password" >
-			</div>
-			<div >
-				<input type="checkbox" id="lg_remember" name="lg_remember">
-				<label for="lg_remember">remember</label>
-			</div>
-            <button class="loginbutton" type="submit"  id="btn_login"><i ></i></button>
-	</form>
-
-		<div>${requestScope.msg_erreur}</div>
-	
-	</div>
-
-
+			</td></tr>
+	        
+	        <tr><td>
+	        	<input class="login" type="text"  id="lg_username" name="lg_username" >
+	        </td></tr>    
+			
+	        <tr><td>
+					<label for="lg_password" >Password</label>
+	        </td></tr>
+	       
+	        <tr><td>
+					<input class="login" type="password"  id="lg_password" name="lg_password" >	
+			</td></tr>
+			
+	        <tr><td>
+					<label for="lg_remember">remember me</label>
+					<input type="checkbox" id="lg_remember" name="lg_remember">	
+			</td></tr>
+			
+			<tr><td>
+	       		 <button class="loginbutton" type="submit"  id="btn_login">login</button>
+	        </td></tr>
+	         
+	         <tr><td>
+				<p>	<i >${requestScope.msg_erreur}</i></p>
+			</td></tr>
+		</table>
+</form>
+</div>
 
 
 <!-- FORGOT PASSWORD FORM -->

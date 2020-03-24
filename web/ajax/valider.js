@@ -31,6 +31,8 @@ function getAffecter ()
                              */
                             var tab_date=xhr.responseXML.getElementsByTagName("date");
                             var tab_heure=xhr.responseXML.getElementsByTagName("heure");
+                            var tab_absheure=xhr.responseXML.getElementsByTagName("absheure");
+                            var tab_reheure=xhr.responseXML.getElementsByTagName("reheure");
                             var tab_creneau=xhr.responseXML.getElementsByTagName("idCreneau");
                             var nom=xhr.responseXML.getElementsByTagName("nom");
                             var prenom =xhr.responseXML.getElementsByTagName("prenom");
@@ -39,7 +41,7 @@ function getAffecter ()
                             document.getElementById("div_etu").className="etudiant_show";
                             var elt_nom=document.getElementById("nom");
                             var elt_pnom=document.getElementById("prenom");
-                            var elt_photo=
+                            //var elt_photo=
                             /**
                              * info etudiant
                              */
@@ -54,7 +56,7 @@ function getAffecter ()
                             var elt = document.getElementById("table_presence");
                             for(i=0;i <tab_date.length;i++){
                                     var tr=document.createElement("tr");//创建行
-                                    for(j=0;j<3; j++){
+                                    for(j=0;j<5; j++){
                                         if(j===0){
                                          var td_1=document.createElement("td");//创建列
                                          td_1.innerText="";
@@ -64,14 +66,20 @@ function getAffecter ()
                                         else if(j===1){
                                          var td_2=document.createElement("td");//创建列
                                          td_2.innerText="";
-                                         td_2.innerText="total minute prsent"+tab_heure[i].firstChild.nodeValue;
+                                         td_2.innerText=tab_heure[i].firstChild.nodeValue;
                                          tr.appendChild(td_2);//向行中添加子节点列
-                                        }else{
+                                        }else if(j===2){
                                          var td_3=document.createElement("td");//创建列
-                                         
+                                         alert(tab_absheure[i].firstChild.nodeValue);
                                          td_3.innerText="";
-                                         
+                                         td_3.innerText=tab_absheure[i].firstChild.nodeValue;
                                          tr.appendChild(td_3);//  
+                                        }else{
+                                         var td_4=document.createElement("td");//创建列
+                                         alert(tab_reheure[i].firstChild.nodeValue);
+                                         td_4.innerText="";
+                                         td_4.innerText=tab_reheure[i].firstChild.nodeValue;
+                                         tr.appendChild(td_4);//   
                                         }
                                     }
 

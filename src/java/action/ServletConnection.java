@@ -23,7 +23,9 @@ public class ServletConnection extends HttpServlet {
      protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 		{
 	    String identifiant = request.getParameter("lg_username");
+            identifiant =identifiant.trim();
             String mdp_p = request.getParameter("lg_password");
+            mdp_p=mdp_p.trim();
             System.out.println("identifiant"+identifiant);
             Personnel p = bd.connection(identifiant);
             if(p==null){
