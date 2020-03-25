@@ -34,18 +34,18 @@ public class ServletInsertEtat extends HttpServlet
     protected void processRequest (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException
         {
             
-            String libelleMatiere = request.getParameter("cours");
-            String heure=request.getParameter("heure");
-            String duree=request.getParameter("duree");
-            String dateString=request.getParameter("date");
-            SimpleDateFormat df = new SimpleDateFormat("yy-mm-dd");
-            Date date = df.parse(dateString);
-            int heureDeb= Integer.parseInt(heure);
-            int dureeInt=Integer.parseInt(duree);
-            String idCreneau=bd.creationIdCreneau(libelleMatiere, date, heureDeb, dureeInt);
+//            String libelleMatiere = request.getParameter("cours");
+//            String heure=request.getParameter("heure");
+//            String duree=request.getParameter("duree");
+//            String dateString=request.getParameter("date");
+//            SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+//            Date date = df.parse(dateString);
+//            int heureDeb= Integer.parseInt(heure);
+//            int dureeInt=Integer.parseInt(duree);
+//            String idCreneau=bd.creationIdCreneau(libelleMatiere, date, heureDeb, dureeInt);
              /*----- Récupération des paramètres -----*/
-//            HttpSession session=request.getSession();
-//            String idCreneau=(String)session.getAttribute("idCreneau");
+            HttpSession session=request.getSession();
+            String idCreneau=(String)session.getAttribute("idCreneau");
             
             System.out.println("idCCCC:"+idCreneau);
             String idEtudiant=request.getParameter("id");

@@ -142,15 +142,16 @@ function getEtudiant ()
         var min=parseInt(document.getElementById("minute").value);
         var heure=heureSaisir*60+min;
         var duree=document.getElementById("duree").value;
+        var typeCours=document.getElementById("typeCours").value;
+        alert(typeCours);
         
         var xhr = new XMLHttpRequest();
-        xhr.open("GET","ServletCreneau"+"?cours="+cours+"&heure="+heure+"&date="+date+"&duree="+duree,true);
+        xhr.open("GET","ServletCreneau"+"?cours="+cours+"&heure="+heure+"&date="+date+"&duree="+duree+"&typeCours="+typeCours,true);
             xhr.send();
         };
     
     function valider(){
         var mytable=document.getElementById("listEtudiant"); 
-        alert(mytable.rows[1].cells[1].innerHTML);
         var nbEtudiant=mytable.rows.length;
         var cours = document.getElementById("cours").value;
         var date  =document.getElementById("datepicker").value;
@@ -158,7 +159,7 @@ function getEtudiant ()
         var min=parseInt(document.getElementById("minute").value);
         var heure=heureSaisir*60+min;
         var duree=document.getElementById("duree").value;
-              
+        
         
         for(var i=1;nbEtudiant-1;i++){
             //obtenir les id et etat des etudiant dans la table
@@ -168,15 +169,14 @@ function getEtudiant ()
             var obj=document.getElementById(idEtat);
             var index = obj.selectedIndex;
             var etat = obj.options[index].text;
-            
             var xhr = new XMLHttpRequest();
             // Requête au serveur avec les paramètres éventuels.
-                xhr.open("GET","ServletInsertEtat?id="+id+"&etat="+etat+"&cours="+cours+"&heure="+heure+"&date="+date+"&duree="+duree,true);
+                xhr.open("GET","ServletInsertEtat"+"?id="+id+"&etat="+etat+"&cours="+cours+"&heure="+heure+"&date="+date+"&duree="+duree,true);
                 
             // Envoie de la requête.
             xhr.send();           
         }
-
+        alert("Validation fini");
     }
     
     
@@ -195,6 +195,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	document.getElementById("groupe").addEventListener("change",getEtudiant);
         document.getElementById("formation").addEventListener("change",getCours);
         document.getElementById("btn_valider").addEventListener("click",valider);
-        document.getElementById("duree").addEventListener("change",creationCreneau);
+        document.getElementById("typeCours").addEventListener("change",creationCreneau);
 });
 

@@ -4,6 +4,7 @@ package metier;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -73,7 +74,16 @@ public class Creneau  implements java.io.Serializable {
         this.heureDeb=heureDeb;
         this.duree=duree;
         this.nomCreneau=nomCreneau;
-        this.justifiers=null;
+    }
+
+    public Creneau(String idCreneau, Date date, int heureDeb, int duree, String nomCreneau, String idEnseignant, String typeCours) {
+        this.idCreneau=idCreneau;
+        this.dateDeb=date;
+        this.heureDeb=heureDeb;
+        this.duree=duree;
+        this.nomCreneau=nomCreneau;
+        this.enseignant=idEnseignant;
+        this.typeActivite=typeCours;
     }
     
     
@@ -168,6 +178,31 @@ public class Creneau  implements java.io.Serializable {
     
     public void setGroupes(Set groupes) {
         this.groupes = groupes;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 73 * hash + Objects.hashCode(this.idCreneau);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Creneau other = (Creneau) obj;
+        if (!Objects.equals(this.idCreneau, other.idCreneau)) {
+            return false;
+        }
+        return true;
     }
 
 

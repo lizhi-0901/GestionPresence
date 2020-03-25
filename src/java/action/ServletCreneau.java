@@ -43,15 +43,19 @@ public class ServletCreneau extends HttpServlet {
             String heure=request.getParameter("heure");
             String duree=request.getParameter("duree");
             String dateString=request.getParameter("date");
-            SimpleDateFormat df = new SimpleDateFormat("yy-mm-dd");
+            String typeCours=request.getParameter("typeCours");
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            
             Date date = df.parse(dateString);
             int heureDeb= Integer.parseInt(heure);
             int dureeInt=Integer.parseInt(duree);
             String idCreneau=bd.creationIdCreneau(libelleMatiere, date, heureDeb, dureeInt);
-            System.out.println("idc"+idCreneau);
-            System.out.println("date"+date);
-            System.out.println("heure"+heureDeb);
-            System.out.println("duree"+dureeInt);
+            
+            HttpSession session = request.getSession(true);
+            session.setAttribute("idCreneau",idCreneau);
+            String identifiant=(String)session.getAttribute("idetudiant");
+            
+            bd.creationCreneau(idCreneau, date, heureDeb, dureeInt, libelleMatiere,identifiant,typeCours);
 
             
             //bd.creationCreneau(idCreneau, date, heureDeb, dureeInt);

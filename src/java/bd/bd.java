@@ -38,7 +38,7 @@ public class bd {
         static Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         static Transaction transaction = null;
     
-        static SimpleDateFormat df = new SimpleDateFormat("dd-mm-yyyy");
+//        static SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
     
      /**
       * c'est une function qui prends en entree comme identifiant 
@@ -223,13 +223,21 @@ public class bd {
          return idCreneau;
      }
      
-     public static void creationCreneau(String idCreneau,Date date,int heureDeb,int duree,String nomCreneau) throws ParseException{
+     public static void creationCreneau(String idCreneau,Date date,int heureDeb,int duree,String nomCreneau,String idEnseignant,String typeCours) throws ParseException{
          session=null;
                 session=HibernateUtil.getSessionFactory().openSession();
                 transaction=session.beginTransaction();
         
         
-        Creneau c=new Creneau(idCreneau,date,heureDeb,duree,nomCreneau);
+        Creneau c=new Creneau();
+        c.setIdCreneau(idCreneau);
+        
+        c.setDateDeb(date);
+        c.setHeureDeb(heureDeb);
+        c.setDuree(duree);
+        c.setNomCreneau(nomCreneau);
+        c.setTypeActivite(typeCours);
+        c.setEnseignant(idEnseignant);
         
         session.save(c);
         transaction.commit();
@@ -237,19 +245,16 @@ public class bd {
      
      public static void EnregistrerEtat(String idEtudiant, String idCreneau, String etat){
         session=null;
-        
-         if(transaction==null){
-            transaction=session.beginTransaction();
-
-          }
         session=HibernateUtil.getSessionFactory().openSession();
-           AffecterId id=new AffecterId();
+        transaction=session.beginTransaction();
+            
+            AffecterId id=new AffecterId();
             id.setIdCreneau(idCreneau);
             id.setIdPersonne(idEtudiant);
             Affecter affecter= new Affecter();
             affecter.setId(id);
             affecter.setEtatPresence(etat);
-            session.save(affecter);
+            session.merge(affecter);
             transaction.commit();
     }
      
@@ -424,8 +429,21 @@ public class bd {
 	public static void main (String[] s) throws ParseException
 
 		{   
-                    
-                    bd.creationCreneau("BD202010021402",df.parse("03-01-2020"),9,30,"Big Data");
+//                      SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+//                      Date date=df.parse("2020-10-01");
+//                      String idEnseignant="alainberro@gamil.com";
+//                      String typeCours="typeCours";
+//                      bd.creationCreneau("BD2020000148090",date,570,90,"Big Data",idEnseignant,typeCours);
+                     List<String> list=new ArrayList<>();
+                     list.add("21613265");
+                     list.add("21509151");
+                     list.add("21511000");
+                     list.add("21511001");
+                     String etat="Retard";
+                     String idCreneau="BD2020000148090";
+                     for(String str:list){
+                         bd.EnregistrerEtat(str, idCreneau, etat);
+                     }
                      
                     
                     }        
