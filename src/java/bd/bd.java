@@ -38,7 +38,7 @@ public class bd {
         static Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         static Transaction transaction = null;
     
-        static SimpleDateFormat df = new SimpleDateFormat("dd-mm-yyyy");
+//        static SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
     
      /**
       * c'est une function qui prends en entree comme identifiant 
@@ -223,31 +223,54 @@ public class bd {
          return idCreneau;
      }
      
+<<<<<<< HEAD
     public static void creationCreneau(String idCreneau,Date date,int heureDeb,int duree,String nomCreneau,String idEnseignant,String typeCours) throws ParseException{
+=======
+     public static void creationCreneau(String idCreneau,Date date,int heureDeb,int duree,String nomCreneau,String idEnseignant,String typeCours) throws ParseException{
+>>>>>>> origin/Arslan
          session=null;
 //          if(transaction==null){
                 session=HibernateUtil.getSessionFactory().openSession();
                 transaction=session.beginTransaction();
+<<<<<<< HEAD
         Creneau c=new Creneau();
         c.setIdCreneau(idCreneau);
         System.out.println(date);
+=======
+        
+        
+        Creneau c=new Creneau();
+        c.setIdCreneau(idCreneau);
+        
+>>>>>>> origin/Arslan
         c.setDateDeb(date);
         c.setHeureDeb(heureDeb);
         c.setDuree(duree);
         c.setNomCreneau(nomCreneau);
         c.setTypeActivite(typeCours);
         c.setEnseignant(idEnseignant);
+<<<<<<< HEAD
+=======
+        
+>>>>>>> origin/Arslan
         session.save(c);
         transaction.commit();
      }
      
      public static void EnregistrerEtat(String idEtudiant, String idCreneau, String etat){
         session=null;
+<<<<<<< HEAD
 //        if(transaction==null){
             session=HibernateUtil.getSessionFactory().openSession();
             transaction=session.beginTransaction();
 //        }
         AffecterId id=new AffecterId();
+=======
+        session=HibernateUtil.getSessionFactory().openSession();
+        transaction=session.beginTransaction();
+            
+            AffecterId id=new AffecterId();
+>>>>>>> origin/Arslan
             id.setIdCreneau(idCreneau);
             id.setIdPersonne(idEtudiant);
             Affecter affecter= new Affecter();
@@ -431,10 +454,28 @@ public class bd {
 	public static void main (String[] s) throws ParseException
 
 		{   
+<<<<<<< HEAD
                     
 //                    System.out.println(bd.output(bd.getHeurePresent("21509151", "2020-02", "absent"),0));
 //                    System.out.println(bd.output(bd.getHeurePresent("21509151", "2020-02", "present"),0));
                     System.out.println(bd.output(bd.getHeurePresent("21509151", "2019-10", "retard"),1));
+=======
+//                      SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+//                      Date date=df.parse("2020-10-01");
+//                      String idEnseignant="alainberro@gamil.com";
+//                      String typeCours="typeCours";
+//                      bd.creationCreneau("BD2020000148090",date,570,90,"Big Data",idEnseignant,typeCours);
+                     List<String> list=new ArrayList<>();
+                     list.add("21613265");
+                     list.add("21509151");
+                     list.add("21511000");
+                     list.add("21511001");
+                     String etat="Retard";
+                     String idCreneau="BD2020000148090";
+                     for(String str:list){
+                         bd.EnregistrerEtat(str, idCreneau, etat);
+                     }
+>>>>>>> origin/Arslan
                      
                     
                     }        

@@ -2,6 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/hibernate.cfg.xml</file>
             <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/metier/Affecter.java</file>
@@ -14,5 +15,8 @@
             <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/web/ajax/validationResp.html</file>
             <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/bd/bd.java</file>
         </group>
+=======
+        <group/>
+>>>>>>> origin/Arslan
     </open-files>
 </project-private>

@@ -89,46 +89,49 @@ public class ServletRespon extends HttpServlet {
                                 list=retalist;
                             }
                         }
+                        //date
                         for(String str :bd.output(list,0)){
                             out.println("<date>" + str + "</date>");
                         }
+                        //heure presence
                         for(int i=0;i<max;i++){
-                            System.out.println("heure"+i+" "+bd.output(clist, 1).get(i));
-                            String str=bd.output(clist, 1).get(i);
-                            //不能这样因为本来这个list就没有这么长
                             int ecart=max-clist.size();
-                            if(str==null){
-                                str="0";
+                            
+                            for(int j=i;j<ecart;j++){
+                                System.out.println("heure"+i+" "+bd.output(clist, 1).get(j));
+                                String str=bd.output(clist, 1).get(j);
                                 out.println("<heure>" + (Integer.parseInt(str)/60) + "</heure>");
-                            }else{
-                                out.println("<heure>" + (Integer.parseInt(str)/60) + "</heure>");
+                            }
+                            for(int j=ecart;j<max;j++){
+                                out.println("<heure>" + 0 + "</heure>");
                             }
                             
-                        }  
-                        for(int i=0;i<max;i++){
-                            String str=bd.output(retalist, 1).get(i);
-                            if(str==null){
-                                str="0";
-                                out.println("<reheure>" + (Integer.parseInt(str)/60) + "</reheure>");
-                            }else{
-                                out.println("<reheure>" + (Integer.parseInt(str)/60) + "</reheure>");
-                            }
-                            
-                        }  
-                        for(int i=0;i<max;i++){
-                            String str=bd.output(abslist, 1).get(i);
-                            if(str==null){
-                                str="0";
-                                out.println("<absheure>" + (Integer.parseInt(str)/60) + "</absheure>");
-                            }else{
-                                out.println("<absheure>" + (Integer.parseInt(str)/60) + "</absheure>");
-                            }
-                            
-                        }  
-                        for(String str :bd.getHeurePresentidCreneau(idetudiant, anneemois)){
-                            out.println("<idCreneau>" + str + "</idCreneau>");
-                            listCreneau.add(str);
-                        }  
+                           }  
+                        
+//                        for(int i=0;i<max;i++){
+//                            String str=bd.output(retalist, 1).get(i);
+//                            if(str==null){
+//                                str="0";
+//                                out.println("<reheure>" + (Integer.parseInt(str)/60) + "</reheure>");
+//                            }else{
+//                                out.println("<reheure>" + (Integer.parseInt(str)/60) + "</reheure>");
+//                            }
+//                            
+//                        }  
+//                        for(int i=0;i<max;i++){
+//                            String str=bd.output(abslist, 1).get(i);
+//                            if(str==null){
+//                                str="0";
+//                                out.println("<absheure>" + (Integer.parseInt(str)/60) + "</absheure>");
+//                            }else{
+//                                out.println("<absheure>" + (Integer.parseInt(str)/60) + "</absheure>");
+//                            }
+//                            
+//                        }  
+//                        for(String str :bd.getHeurePresentidCreneau(idetudiant, anneemois)){
+//                            out.println("<idCreneau>" + str + "</idCreneau>");
+//                            listCreneau.add(str);
+//                        }  
                         HttpSession session = request.getSession(true);
                         session.setAttribute("id", listCreneau);
                         out.println("</liste_etatpresence>");

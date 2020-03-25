@@ -13,7 +13,7 @@
             </key-property>
         </composite-id>
         <many-to-one name="creneau" class="metier.Creneau" update="false" insert="false" fetch="select">
-            <column name="idCreneau" length="25" not-null="true" />
+            <column name="idCreneau" length="25" />
         </many-to-one>
         <many-to-one name="personnel" class="metier.Personnel" update="false" insert="false" fetch="select">
             <column name="idPersonne" length="25"/>

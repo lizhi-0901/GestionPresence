@@ -31,8 +31,8 @@ function getAffecter ()
                              */
                             var tab_date=xhr.responseXML.getElementsByTagName("date");
                             var tab_heure=xhr.responseXML.getElementsByTagName("heure");
-                            var tab_absheure=xhr.responseXML.getElementsByTagName("absheure");
-                            var tab_reheure=xhr.responseXML.getElementsByTagName("reheure");
+//                            var tab_absheure=xhr.responseXML.getElementsByTagName("absheure");
+//                            var tab_reheure=xhr.responseXML.getElementsByTagName("reheure");
                             var tab_creneau=xhr.responseXML.getElementsByTagName("idCreneau");
                             var nom=xhr.responseXML.getElementsByTagName("nom");
                             var prenom =xhr.responseXML.getElementsByTagName("prenom");
@@ -71,36 +71,26 @@ function getAffecter ()
                                          td_2.innerText="";
                                          td_2.innerText=tab_heure[i].firstChild.nodeValue;
                                          alert("la "+i+"row "+j+" col"+tab_heure[i].firstChild.nodeValue);
-                                         tr.appendChild(td_2);//向行中添加子节点列
-                                        }else if(j===2){
-                                         var td_3=document.createElement("td");//创建列
-                                         td_3.innerText="";
-                                         td_3.innerText=tab_absheure[i].firstChild.nodeValue;
-                                         alert("la "+i+"row "+j+" col"+tab_absheure[i].firstChild.nodeValue);
-                                         tr.appendChild(td_3);//  
-                                        }else{
-                                         var td_4=document.createElement("td");//创建列
-                                         td_4.innerText="";
-                                         td_4.innerText=tab_reheure[i].firstChild.nodeValue;
-                                         alert("la "+i+"row "+j+" col"+tab_reheure[i].firstChild.nodeValue);
-                                         tr.appendChild(td_4);//   
-                                        }
+                                         tr.appendChild(td_2);}//向行中添加子节点列
+//                                        }else if(j===2){
+//                                         var td_3=document.createElement("td");//创建列
+//                                         td_3.innerText="";
+//                                         td_3.innerText=tab_absheure[i].firstChild.nodeValue;
+//                                         alert("la "+i+"row "+j+" col"+tab_absheure[i].firstChild.nodeValue);
+//                                         tr.appendChild(td_3);//  
+//                                        }else{
+//                                         var td_4=document.createElement("td");//创建列
+//                                         td_4.innerText="";
+//                                         td_4.innerText=tab_reheure[i].firstChild.nodeValue;
+//                                         alert("la "+i+"row "+j+" col"+tab_reheure[i].firstChild.nodeValue);
+//                                         tr.appendChild(td_4);//   
+//                                        }
                                     }
 
                                          elt.appendChild(tr);//添加子节点tr
                                 }
                                 
-//                            const divs = document.getElementsByClassName("btn_v");
-//                            for (const div of divs) {
-//                                alert("u click valider");
-//                                div.addEventListener("click",valider(tab_c));
-//                            }
-//                            const dis = document.getElementsByClassName("btn_n");
-//                            for (const div of dis) {
-//                                alert("u click non valider");
-//                                div.addEventListener("click",valider(tab_c));
-//                            }  
-//                            
+//                          
 //                            
 			}
 		};
@@ -109,7 +99,7 @@ function getAffecter ()
 	xhr.send();
 	
 	}       
-        
+    
  function valider ()
         {
           
