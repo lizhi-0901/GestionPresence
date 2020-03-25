@@ -9,7 +9,7 @@
             <generator class="assigned" />
         </id>
         <many-to-one name="matiere" class="metier.Matiere" fetch="select">
-            <column name="libelleMatiere" length="25" not-null="true" />
+            <column name="libelleMatiere" length="25"  />
         </many-to-one>
         <property name="nomCreneau" type="string">
             <column name="nomCreneau" length="25"  />
@@ -20,8 +20,8 @@
         <property name="enseignant" type="string">
             <column name="enseignant" length="25"  />
         </property>
-        <property name="dateDeb" type="date">
-            <column name="dateDeb" length="10" not-null="true" />
+        <property name="dateDeb" type="string">
+            <column name="dateDeb" length="15" not-null="true" />
         </property>
         <property name="heureDeb" type="int">
             <column name="heureDeb" not-null="true" />

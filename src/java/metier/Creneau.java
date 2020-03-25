@@ -18,7 +18,7 @@ public class Creneau  implements java.io.Serializable {
      private String nomCreneau;
      private String salle;
      private String enseignant;
-     private Date dateDeb;
+     private String dateDeb;
      private int heureDeb;
      private int duree;
      private String typeActivite;
@@ -34,7 +34,7 @@ public class Creneau  implements java.io.Serializable {
         this.idCreneau=idCreneau;
     }
 	
-    public Creneau(String idCreneau, Matiere matiere, String nomCreneau, String salle, String enseignant, Date dateDeb, int heureDeb, int duree, String typeActivite, String commantaire) {
+    public Creneau(String idCreneau, Matiere matiere, String nomCreneau, String salle, String enseignant, String dateDeb, int heureDeb, int duree, String typeActivite, String commantaire) {
         this.idCreneau = idCreneau;
         this.matiere = matiere;
         this.nomCreneau = nomCreneau;
@@ -46,7 +46,7 @@ public class Creneau  implements java.io.Serializable {
         this.typeActivite = typeActivite;
         this.commantaire = commantaire;
     }
-    public Creneau(String idCreneau, Matiere matiere, String nomCreneau, String salle, String enseignant, Date dateDeb, int heureDeb, int duree, String typeActivite, String commantaire, Set affecters, Set justifiers, Set groupes) {
+    public Creneau(String idCreneau, Matiere matiere, String nomCreneau, String salle, String enseignant, String dateDeb, int heureDeb, int duree, String typeActivite, String commantaire, Set affecters, Set justifiers, Set groupes) {
        this.idCreneau = idCreneau;
        this.matiere = matiere;
        this.nomCreneau = nomCreneau;
@@ -61,14 +61,14 @@ public class Creneau  implements java.io.Serializable {
        this.justifiers = justifiers;
        this.groupes = groupes;
     }
-    public Creneau(String idCreneau,Date dateDeb, int heureDeb, int duree){
+    public Creneau(String idCreneau,String dateDeb, int heureDeb, int duree){
         this.idCreneau=idCreneau;
         this.dateDeb=dateDeb;
         this.heureDeb=heureDeb;
         this.duree=duree;
         this.justifiers=null;
     }
-    public Creneau(String idCreneau,Date dateDeb, int heureDeb, int duree,String nomCreneau){
+    public Creneau(String idCreneau,String dateDeb, int heureDeb, int duree,String nomCreneau){
         this.idCreneau=idCreneau;
         this.dateDeb=dateDeb;
         this.heureDeb=heureDeb;
@@ -76,7 +76,7 @@ public class Creneau  implements java.io.Serializable {
         this.nomCreneau=nomCreneau;
     }
 
-    public Creneau(String idCreneau, Date date, int heureDeb, int duree, String nomCreneau, String idEnseignant, String typeCours) {
+    public Creneau(String idCreneau, String date, int heureDeb, int duree, String nomCreneau, String idEnseignant, String typeCours) {
         this.idCreneau=idCreneau;
         this.dateDeb=date;
         this.heureDeb=heureDeb;
@@ -86,16 +86,16 @@ public class Creneau  implements java.io.Serializable {
         this.typeActivite=typeCours;
     }
 
-    public Creneau(String idCreneau, Date date, int heureDeb, int duree, String nomCreneau, String idEnseignant, String typeCours) {
-        this.idCreneau=idCreneau;
-        this.dateDeb=date;
-        this.heureDeb=heureDeb;
-        this.duree=duree;
-        this.nomCreneau=nomCreneau;
-        this.enseignant=idEnseignant;
-        this.typeActivite=typeCours;
-        
-    }
+//    public Creneau(String idCreneau, Date date, int heureDeb, int duree, String nomCreneau, String idEnseignant, String typeCours) {
+//        this.idCreneau=idCreneau;
+//        this.dateDeb=date;
+//        this.heureDeb=heureDeb;
+//        this.duree=duree;
+//        this.nomCreneau=nomCreneau;
+//        this.enseignant=idEnseignant;
+//        this.typeActivite=typeCours;
+//        
+//    }
     
     
    
@@ -134,11 +134,11 @@ public class Creneau  implements java.io.Serializable {
     public void setEnseignant(String enseignant) {
         this.enseignant = enseignant;
     }
-    public Date getDateDeb() {
+    public String getDateDeb() {
         return this.dateDeb;
     }
     
-    public void setDateDeb(Date dateDeb) {
+    public void setDateDeb(String dateDeb) {
         this.dateDeb = dateDeb;
     }
     public int getHeureDeb() {

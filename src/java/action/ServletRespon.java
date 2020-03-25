@@ -72,42 +72,46 @@ public class ServletRespon extends HttpServlet {
                         out.println("<prenom>" + prenom + "</prenom>");
                         out.println("<photo>" + photo + "</photo>"); 
                         
-                        int max=0;
-                        List<Creneau> list=new ArrayList<>();
-                        max=clist.size();
-                        list=clist;
-                        if(max<abslist.size()){
-                            max=abslist.size();
-                            list=abslist;
-                            if(max<retalist.size()){
-                                max=retalist.size();
-                                list=retalist;
-                            }
-                        }else{
-                            if(max<retalist.size()){
-                                max=retalist.size();
-                                list=retalist;
-                            }
+//                        int max=0;
+//                        
+//                        max=clist.size();
+//                        list=clist;
+//                        if(max<abslist.size()){
+//                            max=abslist.size();
+//                            list=abslist;
+//                            if(max<retalist.size()){
+//                                max=retalist.size();
+//                                list=retalist;
+//                            }
+//                        }else{
+//                            if(max<retalist.size()){
+//                                max=retalist.size();
+//                                list=retalist;
+//                            }
+//                        }
+                        List<String> list=new ArrayList<>();
+                        for(String str:bd.output(list,0)){
+                            
                         }
                         //date
                         for(String str :bd.output(list,0)){
                             out.println("<date>" + str + "</date>");
                         }
                         //heure presence
-                        for(int i=0;i<max;i++){
-                            int ecart=max-clist.size();
-                            
-                            for(int j=i;j<ecart;j++){
-                                System.out.println("heure"+i+" "+bd.output(clist, 1).get(j));
-                                String str=bd.output(clist, 1).get(j);
-                                out.println("<heure>" + (Integer.parseInt(str)/60) + "</heure>");
-                            }
-                            for(int j=ecart;j<max;j++){
-                                out.println("<heure>" + 0 + "</heure>");
-                            }
-                            
-                           }  
-                        
+//                        for(int i=0;i<max;i++){
+//                            int ecart=max-clist.size();
+//                            
+//                            for(int j=i;j<ecart;j++){
+//                                System.out.println("heure"+i+" "+bd.output(clist, 1).get(j));
+//                                String str=bd.output(clist, 1).get(j);
+//                                out.println("<heure>" + (Integer.parseInt(str)/60) + "</heure>");
+//                            }
+//                            for(int j=ecart;j<max;j++){
+//                                out.println("<heure>" + 0 + "</heure>");
+//                            }
+//                            
+//                           }  
+//                        
 //                        for(int i=0;i<max;i++){
 //                            String str=bd.output(retalist, 1).get(i);
 //                            if(str==null){

@@ -46,7 +46,7 @@ public class ServletInsertEtat extends HttpServlet
              /*----- Récupération des paramètres -----*/
             HttpSession session=request.getSession();
             String idCreneau=(String)session.getAttribute("idCreneau");
-            
+            System.out.println("action.ServletInsertEtat.processRequest()"+idCreneau);
             System.out.println("idCCCC:"+idCreneau);
             String idEtudiant=request.getParameter("id");
             String etat=request.getParameter("etat");

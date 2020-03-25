@@ -153,19 +153,20 @@ function getEtudiant ()
     function valider(){
         var mytable=document.getElementById("listEtudiant"); 
         var nbEtudiant=mytable.rows.length;
-        var cours = document.getElementById("cours").value;
-        var date  =document.getElementById("datepicker").value;
-        var heureSaisir = parseInt(document.getElementById("heure").value);
-        var min=parseInt(document.getElementById("minute").value);
-        var heure=heureSaisir*60+min;
-        var duree=document.getElementById("duree").value;
-        
+//        var cours = document.getElementById("cours").value;
+//        var date  =document.getElementById("datepicker").value;
+//        var heureSaisir = parseInt(document.getElementById("heure").value);
+//        var min=parseInt(document.getElementById("minute").value);
+//        var heure=heureSaisir*60+min;
+//        var duree=document.getElementById("duree").value;
+        alert(nbEtudiant);
         
         for(var i=1;nbEtudiant-1;i++){
             //obtenir les id et etat des etudiant dans la table
-
+            
             var id=mytable.rows[i].cells[1].innerHTML;
             var idEtat="etatPre"+i;
+            alert(idEtat);
             var obj=document.getElementById(idEtat);
             var index = obj.selectedIndex;
             var etat = obj.options[index].text;
