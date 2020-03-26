@@ -30,9 +30,9 @@ function getAffecter ()
                              * recuperer les valeurs
                              */
                             var tab_date=xhr.responseXML.getElementsByTagName("date");
-                            var tab_heure=xhr.responseXML.getElementsByTagName("heure");
-//                            var tab_absheure=xhr.responseXML.getElementsByTagName("absheure");
-//                            var tab_reheure=xhr.responseXML.getElementsByTagName("reheure");
+                            var tab_heure=xhr.responseXML.getElementsByTagName("Eheure");
+                            var tab_absheure=xhr.responseXML.getElementsByTagName("absheure");
+                            var tab_reheure=xhr.responseXML.getElementsByTagName("Dheure");
                             var tab_creneau=xhr.responseXML.getElementsByTagName("idCreneau");
                             var nom=xhr.responseXML.getElementsByTagName("nom");
                             var prenom =xhr.responseXML.getElementsByTagName("prenom");
@@ -53,38 +53,55 @@ function getAffecter ()
                              * table 
                              */
                             var tab_c=[];
-                            var elt = document.getElementById("table_presence");
-                            alert("tab_length"+tab_date.length);
+                            var elt = document.getElementById("tab_feuille");
+                            
                             for(i=0;i <tab_date.length;i++){
-                                    alert("la "+i+"fois");
+                                    
                                     var tr=document.createElement("tr");//创建行
-                                    for(j=0;j<4; j++){
+                                    for(j=0;j<14; j++){
                                         if(j===0){
                                          var td_1=document.createElement("td");//创建列
                                          td_1.innerText="";
                                          td_1.innerText=tab_date[i].firstChild.nodeValue;
-                                         alert("la "+i+"row "+j+" col"+tab_date[i].firstChild.nodeValue);
+//                                         alert("la "+i+"row "+j+" col"+tab_date[i].firstChild.nodeValue);
                                          tr.appendChild(td_1);//向行中添加子节点列
                                          }
                                         else if(j===1){
                                          var td_2=document.createElement("td");//创建列
                                          td_2.innerText="";
                                          td_2.innerText=tab_heure[i].firstChild.nodeValue;
-                                         alert("la "+i+"row "+j+" col"+tab_heure[i].firstChild.nodeValue);
-                                         tr.appendChild(td_2);}//向行中添加子节点列
-//                                        }else if(j===2){
-//                                         var td_3=document.createElement("td");//创建列
-//                                         td_3.innerText="";
-//                                         td_3.innerText=tab_absheure[i].firstChild.nodeValue;
+//                                         alert("la "+i+"row "+j+" col"+tab_heure[i].firstChild.nodeValue);
+                                         tr.appendChild(td_2);//向行中添加子节点列
+                                        }else if(j===3){
+                                         var td_3=document.createElement("td");//创建列
+                                         td_3.innerText="";
+                                         td_3.innerText=tab_absheure[i].firstChild.nodeValue;
 //                                         alert("la "+i+"row "+j+" col"+tab_absheure[i].firstChild.nodeValue);
-//                                         tr.appendChild(td_3);//  
-//                                        }else{
-//                                         var td_4=document.createElement("td");//创建列
-//                                         td_4.innerText="";
-//                                         td_4.innerText=tab_reheure[i].firstChild.nodeValue;
+                                         tr.appendChild(td_3);//  
+                                        }else if(j===4){
+                                         var td_4=document.createElement("td");//创建列
+                                         td_4.innerText="";
+                                         td_4.innerText=tab_reheure[i].firstChild.nodeValue;
 //                                         alert("la "+i+"row "+j+" col"+tab_reheure[i].firstChild.nodeValue);
-//                                         tr.appendChild(td_4);//   
-//                                        }
+                                         tr.appendChild(td_4);//   
+                                        }else if(j===5){
+                                         var td_5=document.createElement("td");//创建列
+                                         //signature
+                                         td_5.innerText="";
+                                         tr.appendChild(td_5);//   
+                                        }else if(j===6){
+                                         var td_6=document.createElement("td");//创建列
+                                         td_6.innerText="UT1";
+                                         //site
+                                         tr.appendChild(td_6);//   
+                                        }else if(j===7){
+                                         var td_7=document.createElement("td");//创建列
+                                         td_7.innerText="";
+                                         td_7.innerText=tab_reheure[i].firstChild.nodeValue;
+                                         
+                                         tr.appendChild(td_7);//   
+                                        }
+                                        
                                     }
 
                                          elt.appendChild(tr);//添加子节点tr

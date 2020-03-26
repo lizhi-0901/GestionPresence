@@ -6,6 +6,7 @@
 package action;
 
 import bd.bd;
+import bd.util;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -57,11 +58,11 @@ public class ServletRespon extends HttpServlet {
                         out.println("<liste_etatpresence>");
 //                        System.out.println(idetudiant);
                         //present
-                        List<Creneau> clist =bd.getHeurePresent(idetudiant,anneemois,"present");
+                        List<Creneau> clist =bd.getHeureE(idetudiant,anneemois);
                         //absent
                         List<Creneau> abslist =bd.getHeurePresent(idetudiant,anneemois,"absent");
                         //retard
-                        List<Creneau> retalist =bd.getHeurePresent(idetudiant,anneemois,"retard");
+                        List<Creneau> dlist =bd.getHeureD(idetudiant,anneemois);
                         Personnel p =bd.getEtudiantinfo(idetudiant);
                         String nom =p.getNom();
                         String prenom =p.getPrenom();
@@ -90,13 +91,83 @@ public class ServletRespon extends HttpServlet {
 //                            }
 //                        }
                         List<String> list=new ArrayList<>();
-                        for(String str:bd.output(list,0)){
-                            
-                        }
+                        //ajouter tous les elements de trois tables dans list
+                        util.addlist(list, bd.output(clist, 0));
+                        util.addlist(list, bd.output(abslist,0));
+                        util.addlist(list, bd.output(dlist,0));
+                        //eliminer les duplicate
+                        list=util.removeDuplicate(list);
                         //date
-                        for(String str :bd.output(list,0)){
-                            out.println("<date>" + str + "</date>");
+                        
+                        for(int i=0;i<list.size();i++){
+                            out.println("<date>" + list.get(i) + "</date>");
                         }
+                        // heure prsence 
+                        int s=clist.size();
+                        for(int i=0;i<list.size();i++){
+                               if(i<s){
+                                    String str=list.get(i);
+                                    if((bd.output(clist,0)).contains(str)){
+                                        for(String st:((bd.output(clist,1)))){
+                                            int heure=Integer.parseInt(st);
+                                            out.println("<Eheure>" + (heure/60) + "</Eheure>");
+                                        }
+                                    }
+                                    else{
+                                        out.println("<Eheure>" + 0 + "</Eheure>");
+                                        s++;
+                                    }
+                                }
+                                else{
+                                    out.println("<Eheure>" + 0 + "</Eheure>");
+                                }
+                                
+                            }
+                        int sizere=clist.size();
+                        for(int i=0;i<list.size();i++){
+                                if(i<sizere){
+                                    String str=list.get(i);
+                                    if((bd.output(dlist,0)).contains(str)){
+                                        for(String st:((bd.output(dlist,1)))){
+                                            int heure=Integer.parseInt(st);
+                                            out.println("<Dheure>" + (heure/60) + "</Dheure>");
+                                        }
+                                    }
+                                    else{
+                                        out.println("<Dheure>" + 0 + "</Dheure>");
+                                        sizere++;
+                                        }
+                                }
+                                else{
+                                    out.println("<Dheure>" + 0 + "</Dheure>");
+                                }
+                                
+                            }
+                        int sizeabs=clist.size();
+                        for(int i=0;i<list.size();i++){
+                              if(i<sizeabs){
+                                    String str=list.get(i);
+                                    if((bd.output(abslist,0)).contains(str)){
+                                        for(String st:((bd.output(abslist,1)))){
+                                            int heure=Integer.parseInt(st);
+                                            out.println("<absheure>" + (heure/60) + "</absheure>");
+                                        }
+                                    }
+                                    else{
+                                        out.println("<absheure>" + 0 + "</absheure>");
+                                        sizeabs++;
+                                    }
+                                }
+                                else{
+                                    
+                                    out.println("<absheure>" + 0 + "</absheure>");
+                                }
+                                
+                            }
+                        
+                        
+                        
+                        
                         //heure presence
 //                        for(int i=0;i<max;i++){
 //                            int ecart=max-clist.size();
@@ -111,7 +182,7 @@ public class ServletRespon extends HttpServlet {
 //                            }
 //                            
 //                           }  
-//                        
+                        
 //                        for(int i=0;i<max;i++){
 //                            String str=bd.output(retalist, 1).get(i);
 //                            if(str==null){

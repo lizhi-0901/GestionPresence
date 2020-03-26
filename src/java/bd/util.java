@@ -23,5 +23,29 @@ public class util {
         list = new ArrayList<>((Collection<?>)obj);
     }
     return list;
+    }
+    
+   public static List removeDuplicate(List list){
+       for(int i=0; i<list.size()-1; i++){
+           for(int j=list.size()-1;j>i;j--){
+               if(list.get(j).equals(list.get(i))){
+                   list.remove(j);
+               }
+           }
+       }
+       return list;
+   }
+   
+   public static List addlist(List list, List lista){
+       for(int i=0; i<lista.size();i++){
+           list.add(lista.get(i));
+       }
+       return list;
+   }
+    
+    
+    
 }
-}
+
+
+

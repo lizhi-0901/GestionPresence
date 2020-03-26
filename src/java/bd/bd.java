@@ -391,7 +391,42 @@ public class bd {
                     }
                   } 
             
+         public static List<Creneau> getHeureE(String idetudiant,String date){
+         if(transaction==null){
+            transaction  = session.beginTransaction();
+        }
+         Query query=session.createSQLQuery("select  c.dateDeb,sum(duree),a.idCreneau "+
+                                                          "from Creneau c,Affecter a "+
+                                                          "where c.idCreneau=a.idCreneau "+
+                                                          "and c.typeActivite in('Cours','TD','Exam') "+
+                                                          "and a.idPersonne=:id "+
+                                                          "and c.dateDeb like :date "+        
+                                                          "group by c.dateDeb");
+        query.setParameter("id", idetudiant);
+        query.setParameter("date", "%"+date+"%");
+       
+        List<Creneau> listcreneau =query.list();
+        return listcreneau;
+        } 
            
+         public static List<Creneau> getHeureD(String idetudiant,String date){
+         if(transaction==null){
+            transaction  = session.beginTransaction();
+        }
+         Query query=session.createSQLQuery("select  c.dateDeb,sum(duree),a.idCreneau "+
+                                                          "from Creneau c,Affecter a "+
+                                                          "where c.idCreneau=a.idCreneau "+
+                                                          "and c.typeActivite in('projet','conference') "+
+                                                          "and a.idPersonne=:id "+
+                                                          "and c.dateDeb like :date "+        
+                                                          "group by c.dateDeb");
+        query.setParameter("id", idetudiant);
+        query.setParameter("date", "%"+date+"%");
+       
+        List<Creneau> listcreneau =query.list();
+        return listcreneau;
+        }
+         
 	/*----------------------------*/
 	/* Programme principal (test) */
 	/*----------------------------*/
@@ -440,16 +475,17 @@ public class bd {
                    // System.out.println(idCreneau);
                     //bd.creationCreneau(idCreneau, "2020-04-20", 570, 60, "Big Data", "alainberro@gmail.com", "TD");
                     //bd.EnregistrerEtat("", idCreneau, idCreneau);
-                    List<String> list=new ArrayList<>();
-                     list.add("21613265");
-                     list.add("21509151");
-                     list.add("21511000");
-                     list.add("21511001");
-                     String etat="Retard";
-                     String idCreneau="DAI2020050184030";
-                     for(String str:list){
-                         bd.EnregistrerEtat(str, idCreneau, etat);
-                     }
+                    
+                    List<Creneau> l=bd.getHeureE("21509151", "2020-02");
+                    List<Creneau> ld=bd.getHeureD("21509151", "2020-02");
+                    List<Creneau> iabs=bd.getHeurePresent("21509151", "2020-02", "absent");
+                    System.out.println("date"+bd.output(l, 0));
+                    System.out.println("heure"+bd.output(l, 1));
+                    System.out.println("date"+bd.output(ld, 0));
+                    System.out.println("heure"+bd.output(ld, 1));
+                    System.out.println("date"+bd.output(iabs, 0));
+                    System.out.println("heure"+bd.output(iabs, 1));
+                    
                     }        
  
 }
