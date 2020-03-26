@@ -11,7 +11,7 @@ function getAffecter ()
         var idetudiant = document.getElementById("idetudiant").value;
         var mois =document.getElementById("mois").value;
         var annee = document.getElementById("annee").value;
-        alert(annee);
+        
 	// Objet XMLHttpRequest.
 	var xhr = new XMLHttpRequest();
 
@@ -24,15 +24,17 @@ function getAffecter ()
 		// Si la requête http s'est bien passée.
 		if (xhr.status === 200)
 			{
-			// Elément html que l'on va mettre à jour.
-                            
-                            /**
-                             * recuperer les valeurs
-                             */
-                            var tab_date=xhr.responseXML.getElementsByTagName("date");
-                            var tab_heure=xhr.responseXML.getElementsByTagName("Eheure");
-                            var tab_absheure=xhr.responseXML.getElementsByTagName("absheure");
-                            var tab_reheure=xhr.responseXML.getElementsByTagName("Dheure");
+			    var tab_date=xhr.responseXML.getElementsByTagName("date");
+                            alert(tab_date[1].firstChild.nodeValue);
+                            var tab_heureetotal=xhr.responseXML.getElementsByTagName("Eheuretotal");
+                            var tab_heureem=xhr.responseXML.getElementsByTagName("Eheurematin");
+                            var tab_heureea=xhr.responseXML.getElementsByTagName("Eheureapres");
+                            var tab_absheuretotal=xhr.responseXML.getElementsByTagName("absheuretotal");
+                            var tab_absheurem=xhr.responseXML.getElementsByTagName("absheurem");
+                            var tab_absheurea=xhr.responseXML.getElementsByTagName("absheurea");
+                            var tab_heuredtotal=xhr.responseXML.getElementsByTagName("Dheuretotal");
+                            var tab_heuredm=xhr.responseXML.getElementsByTagName("heuredmatin");
+                            var tab_heureda=xhr.responseXML.getElementsByTagName("heureda");
                             var tab_creneau=xhr.responseXML.getElementsByTagName("idCreneau");
                             var nom=xhr.responseXML.getElementsByTagName("nom");
                             var prenom =xhr.responseXML.getElementsByTagName("prenom");
@@ -48,14 +50,12 @@ function getAffecter ()
                             elt_nom.innerHTML=nom[0].firstChild.nodeValue;
                             elt_pnom.innerHTML=prenom[0].firstChild.nodeValue;
                             
-                            
                             /**
                              * table 
                              */
                             var tab_c=[];
                             var elt = document.getElementById("tab_feuille");
-                            
-                            for(i=0;i <tab_date.length;i++){
+                            for(i=0;i <6;i++){
                                     
                                     var tr=document.createElement("tr");//创建行
                                     for(j=0;j<14; j++){
@@ -69,54 +69,114 @@ function getAffecter ()
                                         else if(j===1){
                                          var td_2=document.createElement("td");//创建列
                                          td_2.innerText="";
-                                         td_2.innerText=tab_heure[i].firstChild.nodeValue;
+                                         td_2.innerText=tab_heureem[i].firstChild.nodeValue;
 //                                         alert("la "+i+"row "+j+" col"+tab_heure[i].firstChild.nodeValue);
                                          tr.appendChild(td_2);//向行中添加子节点列
-                                        }else if(j===3){
+                                        }else if(j===2){
                                          var td_3=document.createElement("td");//创建列
                                          td_3.innerText="";
-                                         td_3.innerText=tab_absheure[i].firstChild.nodeValue;
+                                         td_3.innerText=tab_heuredm[i].firstChild.nodeValue;
 //                                         alert("la "+i+"row "+j+" col"+tab_absheure[i].firstChild.nodeValue);
                                          tr.appendChild(td_3);//  
-                                        }else if(j===4){
+                                        }else if(j===3){
                                          var td_4=document.createElement("td");//创建列
                                          td_4.innerText="";
-                                         td_4.innerText=tab_reheure[i].firstChild.nodeValue;
+                                         td_4.innerText=tab_absheurem[i].firstChild.nodeValue;
 //                                         alert("la "+i+"row "+j+" col"+tab_reheure[i].firstChild.nodeValue);
                                          tr.appendChild(td_4);//   
-                                        }else if(j===5){
+                                        }else if(j===4){
                                          var td_5=document.createElement("td");//创建列
                                          //signature
                                          td_5.innerText="";
                                          tr.appendChild(td_5);//   
-                                        }else if(j===6){
+                                        }else if(j===5){
                                          var td_6=document.createElement("td");//创建列
                                          td_6.innerText="UT1";
                                          //site
                                          tr.appendChild(td_6);//   
-                                        }else if(j===7){
+                                        }else if(j===6){
                                          var td_7=document.createElement("td");//创建列
                                          td_7.innerText="";
-                                         td_7.innerText=tab_reheure[i].firstChild.nodeValue;
+                                         td_7.innerText=tab_heureea[i].firstChild.nodeValue;
                                          
                                          tr.appendChild(td_7);//   
+                                        }else if(j===7){
+                                         var td_8=document.createElement("td");//创建列
+                                         td_8.innerText="";
+                                         td_8.innerText=tab_heureda[i].firstChild.nodeValue;
+                                         
+                                         tr.appendChild(td_8);//   
+                                        }else if(j===8){
+                                         var td_9=document.createElement("td");//创建列
+                                         td_9.innerText="";
+                                         td_9.innerText=tab_absheurea[i].firstChild.nodeValue;
+                                         
+                                         tr.appendChild(td_9);//   
+                                        }else if(j===9){
+                                         var td_10=document.createElement("td");//创建列
+                                         td_10.innerText="";
+                                         tr.appendChild(td_10);//   
+                                        }else if(j===10){
+                                         var td_11=document.createElement("td");//创建列
+                                         td_11.innerText="UT1";
+                                         tr.appendChild(td_11);//   
+                                        }else if(j===11){
+                                         var td_12=document.createElement("td");//创建列
+                                         td_12.innerText="";
+                                         td_12.innerText=tab_heureetotal[i].firstChild.nodeValue;
+                                         tr.appendChild(td_12);//   
+                                        }else if(j===12){
+                                         var td_13=document.createElement("td");//创建列
+                                         td_13.innerText="";
+                                         td_1.innerText=tab_heuredtotal[i].firstChild.nodeValue;
+                                         
+                                         tr.appendChild(td_13);//   
+                                        }else{
+                                         var td_14=document.createElement("td");//创建列
+                                         td_14.innerText="";
+                                         td_14.innerText=tab_absheuretotal[i].firstChild.nodeValue;
+                                         
+                                         tr.appendChild(td_14);// 
                                         }
                                         
                                     }
 
                                          elt.appendChild(tr);//添加子节点tr
                                 }
-                                
-//                          
-//                            
-			}
-		};
-	
+                                var trbas=document.createElement("tr");
+                                for(j=0;j<2; j++){
+                                            if(j===0){
+                                             var td1=document.createElement("td");//创建列
+                                             td1.colspan="5";
+                                             td1.innerText="*Nombre d'heure par type d'activit&eacute"+ 
+                                            "E : pour enseignements"+
+                                            "(TD-TP-PT-accompagnement ou examen)"+
+                                            "D: pour Documentation sur site"+
+                                            "Abs: pour Absence";
+
+
+    //                                         alert("la "+i+"row "+j+" col"+tab_date[i].firstChild.nodeValue);
+                                             trbas.appendChild(td1);//向行中添加子节点列
+                                             }else{
+                                             var td2=document.createElement("td");//创建列
+                                             td2.colspan="5";
+                                             td2.innerText="**Indiquez pour chaque demi-journ&eacutee le"+
+                                            "site de l'activit&eacute:"+
+                                            "UT1"+
+                                            "Lieu du Stage"+
+                                            "IUT Rodez";
+                                             trbas.appendChild(td2);
+                                             }
+
+                                             elt.appendChild(trbas);
+                                         }
+		}
+            };
 	// Envoie de la requête.
 	xhr.send();
 	
 	}       
-    
+        
  function valider ()
         {
           

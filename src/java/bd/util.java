@@ -8,6 +8,7 @@ package bd;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -42,8 +43,19 @@ public class util {
        }
        return list;
    }
+   
+   public static HashMap<String, String> addMap(List liste){
+       HashMap<String, String> map = new HashMap<String, String>();
+                        for(int i=0;i<liste.size();i++){
+                            String st=bd.output(liste,0).get(i);
+                            String str=bd.output(liste,1).get(i);
+                            map.put(st,str );
+                        }
+      return map;
+   }
+   
     
-    
+   
     
 }
 

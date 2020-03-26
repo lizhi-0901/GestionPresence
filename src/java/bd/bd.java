@@ -2,13 +2,16 @@ package bd;
 
 
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import metier.Affecter;
 import metier.AffecterId;
@@ -287,6 +290,44 @@ public class bd {
         return listcreneau;
     }
     
+    public static List<Creneau> getHeurePresentapres(String idetudiant,String date,String etatPresence){
+         if(transaction==null){
+            transaction  = session.beginTransaction();
+        }
+         Query query=session.createSQLQuery("select  c.dateDeb,sum(duree),a.idCreneau "+
+                                                          "from Creneau c,Affecter a "+
+                                                          "where c.idCreneau=a.idCreneau "+
+                                                          "and a.etatPresence=:etat "+
+                                                          "and a.idPersonne=:id "+
+                                                          "and c.dateDeb like :date "+
+                                                          "and c.heureDeb> 720 "+
+                                                          "group by c.dateDeb");
+        query.setParameter("id", idetudiant);
+        query.setParameter("date", "%"+date+"%");
+        query.setParameter("etat", etatPresence);
+        List<Creneau> listcreneau =query.list();
+        return listcreneau;
+    }
+    
+    public static List<Creneau> getHeurePresentmatin(String idetudiant,String date,String etatPresence){
+         if(transaction==null){
+            transaction  = session.beginTransaction();
+        }
+         Query query=session.createSQLQuery("select  c.dateDeb,sum(duree),a.idCreneau "+
+                                                          "from Creneau c,Affecter a "+
+                                                          "where c.idCreneau=a.idCreneau "+
+                                                          "and a.etatPresence=:etat "+
+                                                          "and a.idPersonne=:id "+
+                                                          "and c.dateDeb like :date "+
+                                                          "and c.heureDeb< 630 "+
+                                                          "group by c.dateDeb");
+        query.setParameter("id", idetudiant);
+        query.setParameter("date", "%"+date+"%");
+        query.setParameter("etat", etatPresence);
+        List<Creneau> listcreneau =query.list();
+        return listcreneau;
+    }
+    
     
     /**
      * 
@@ -390,8 +431,8 @@ public class bd {
                         throw e;
                     }
                   } 
-            
-         public static List<Creneau> getHeureE(String idetudiant,String date){
+         
+          public static List<Creneau> getHeureE(String idetudiant,String date){
          if(transaction==null){
             transaction  = session.beginTransaction();
         }
@@ -400,7 +441,26 @@ public class bd {
                                                           "where c.idCreneau=a.idCreneau "+
                                                           "and c.typeActivite in('Cours','TD','Exam') "+
                                                           "and a.idPersonne=:id "+
-                                                          "and c.dateDeb like :date "+        
+                                                          "and c.dateDeb like :date "+
+                                                          "group by c.dateDeb");
+        query.setParameter("id", idetudiant);
+        query.setParameter("date", "%"+date+"%");
+       
+        List<Creneau> listcreneau =query.list();
+        return listcreneau;
+        }
+          
+         public static List<Creneau> getHeureEmatin(String idetudiant,String date){
+         if(transaction==null){
+            transaction  = session.beginTransaction();
+        }
+         Query query=session.createSQLQuery("select  c.dateDeb,sum(duree),a.idCreneau "+
+                                                          "from Creneau c,Affecter a "+
+                                                          "where c.idCreneau=a.idCreneau "+
+                                                          "and c.typeActivite in('Cours','TD','Exam') "+
+                                                          "and a.idPersonne=:id "+
+                                                          "and c.dateDeb like :date "+
+                                                          "and c.heureDeb< 630 "+
                                                           "group by c.dateDeb");
         query.setParameter("id", idetudiant);
         query.setParameter("date", "%"+date+"%");
@@ -408,7 +468,25 @@ public class bd {
         List<Creneau> listcreneau =query.list();
         return listcreneau;
         } 
-           
+          
+         public static List<Creneau> getHeureEApre(String idetudiant,String date){
+         if(transaction==null){
+            transaction  = session.beginTransaction();
+        }
+         Query query=session.createSQLQuery("select  c.dateDeb,sum(duree),a.idCreneau "+
+                                                          "from Creneau c,Affecter a "+
+                                                          "where c.idCreneau=a.idCreneau "+
+                                                          "and c.typeActivite in('Cours','TD','Exam') "+
+                                                          "and a.idPersonne=:id "+
+                                                          "and c.dateDeb like :date "+
+                                                          "and c.heureDeb> 720 "+
+                                                          "group by c.dateDeb");
+        query.setParameter("id", idetudiant);
+        query.setParameter("date", "%"+date+"%");
+       
+        List<Creneau> listcreneau =query.list();
+        return listcreneau;
+        }
          public static List<Creneau> getHeureD(String idetudiant,String date){
          if(transaction==null){
             transaction  = session.beginTransaction();
@@ -426,6 +504,45 @@ public class bd {
         List<Creneau> listcreneau =query.list();
         return listcreneau;
         }
+        
+         public static List<Creneau> getHeureDmatin(String idetudiant,String date){
+         if(transaction==null){
+            transaction  = session.beginTransaction();
+        }
+         Query query=session.createSQLQuery("select  c.dateDeb,sum(duree),a.idCreneau "+
+                                                          "from Creneau c,Affecter a "+
+                                                          "where c.idCreneau=a.idCreneau "+
+                                                          "and c.typeActivite in('projet','conference') "+
+                                                          "and a.idPersonne=:id "+
+                                                          "and c.dateDeb like :date "+
+                                                          "and c.heureDeb< 630 "+
+                                                          "group by c.dateDeb");
+        query.setParameter("id", idetudiant);
+        query.setParameter("date", "%"+date+"%");
+       
+        List<Creneau> listcreneau =query.list();
+        return listcreneau;
+        }
+         
+         public static List<Creneau> getHeureDApres(String idetudiant,String date){
+         if(transaction==null){
+            transaction  = session.beginTransaction();
+        }
+         Query query=session.createSQLQuery("select  c.dateDeb,sum(duree),a.idCreneau "+
+                                                          "from Creneau c,Affecter a "+
+                                                          "where c.idCreneau=a.idCreneau "+
+                                                          "and c.typeActivite in('projet','conference') "+
+                                                          "and a.idPersonne=:id "+
+                                                          "and c.dateDeb like :date "+
+                                                          "and c.heureDeb> 720 "+
+                                                          "group by c.dateDeb");
+        query.setParameter("id", idetudiant);
+        query.setParameter("date", "%"+date+"%");
+       
+        List<Creneau> listcreneau =query.list();
+        return listcreneau;
+        }
+         
          
 	/*----------------------------*/
 	/* Programme principal (test) */
@@ -475,16 +592,222 @@ public class bd {
                    // System.out.println(idCreneau);
                     //bd.creationCreneau(idCreneau, "2020-04-20", 570, 60, "Big Data", "alainberro@gmail.com", "TD");
                     //bd.EnregistrerEtat("", idCreneau, idCreneau);
-                    
-                    List<Creneau> l=bd.getHeureE("21509151", "2020-02");
-                    List<Creneau> ld=bd.getHeureD("21509151", "2020-02");
-                    List<Creneau> iabs=bd.getHeurePresent("21509151", "2020-02", "absent");
-                    System.out.println("date"+bd.output(l, 0));
-                    System.out.println("heure"+bd.output(l, 1));
-                    System.out.println("date"+bd.output(ld, 0));
-                    System.out.println("heure"+bd.output(ld, 1));
-                    System.out.println("date"+bd.output(iabs, 0));
-                    System.out.println("heure"+bd.output(iabs, 1));
+                    String idetudiant="21509151";
+                    String anneemois="2020-02";
+                    //heureE
+                        List<Creneau> listem =bd.getHeureEmatin(idetudiant,anneemois);
+//                        List<Creneau> listea =bd.getHeureEApre(idetudiant,anneemois);
+                        List<Creneau> liste =bd.getHeureE(idetudiant,anneemois);
+                        //absent
+                        List<Creneau> abslistm =bd.getHeurePresentmatin(idetudiant,anneemois,"absent");
+                        List<Creneau> abslista =bd.getHeurePresentapres(idetudiant,anneemois,"absent");
+                        List<Creneau> abslist =bd.getHeurePresent(idetudiant,anneemois,"absent");
+                        //heureD
+                        List<Creneau> listdm =bd.getHeureDmatin(idetudiant,anneemois);
+//                        List<Creneau> listda =bd.getHeureDApres(idetudiant,anneemois);
+                        List<Creneau> listd =bd.getHeureD(idetudiant,anneemois);
+                        
+                        List<String> list=new ArrayList<>();
+                        List<String> listm=new ArrayList<>();
+                        //ajouter tous les elements de trois tables dans list
+//                        util.addlist(list, bd.output(listem, 0));
+//                        util.addlist(list, bd.output(abslistm,0));
+//                        util.addlist(list, bd.output(listea,0));
+//                        util.addlist(list, bd.output(listdm, 0));
+//                        util.addlist(list, bd.output(abslista,0));
+//                        util.addlist(list, bd.output(listda,0));
+                        util.addlist(list, bd.output(listd,0));
+                        util.addlist(list, bd.output(liste,0));
+                        util.addlist(list, bd.output(abslist,0));
+                        
+                        util.addlist(listm, bd.output(listem, 0));
+                        util.addlist(listm, bd.output(abslistm,0));
+                        util.addlist(listm, bd.output(listdm, 0));
+                        //eliminer les duplicate
+                        list=util.removeDuplicate(list);
+                        listm=util.removeDuplicate(list);
+
+                        //date
+                        System.out.println("size"+list.size());
+                        for(int i=0;i<list.size();i++){
+                            System.out.println("<date>" + list.get(i) + "</date>");
+                        }
+                        
+                        HashMap<String, String> mape =new HashMap<>();
+                        mape=util.addMap(liste);
+                        HashMap<String, String> mapd =new HashMap<>();
+                        mapd=util.addMap(listd);
+                        HashMap<String, String> mapabs =new HashMap<>();
+                        mapabs=util.addMap(abslist);
+                        
+                         HashMap<String, String> mapem =new HashMap<>();
+                        mapem=util.addMap(listem);
+                        HashMap<String, String> mapdm =new HashMap<>();
+                        mapdm=util.addMap(listdm);
+                        HashMap<String, String> mapabsm =new HashMap<>();
+                        mapabsm=util.addMap(abslistm);
+                        
+//                        for (Map.Entry<String, String> entry : mape.entrySet()) {
+// 
+//                        System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+// 
+//}
+//  
+//                        System.out.println(mape.get("2020-02-01"));
+                        // heuretotal
+                        	    //设置保留位数
+ 
+	                DecimalFormat df=new DecimalFormat("0.00");
+                        int sizee=liste.size();
+                        for(int i=0;i<list.size();i++){
+                               if(i<sizee){
+                                    String str=list.get(i);
+                                    System.out.println(str);
+                                    if((bd.output(liste,0)).contains(str)){
+                                        
+                                        String st=mape.get(str);
+                                            int heure=Integer.parseInt(st);
+                                            System.out.println("<Eheuretotal>" + df.format((float)heure/60) + "</Eheuretotal>");
+                                        
+                                    }
+                                    else{
+                                        
+                                        System.out.println("<Eheuretotal>" + 0 + "</Eheuretotal>");
+                                        sizee++;
+                                    }
+                                }
+                                else{
+                                    System.out.println("<Eheuretotal>" + 0 + "</Eheuretotal>");
+                                }
+                                
+                            }
+                        // heureabs
+                        int sizeabs=abslist.size();
+                        for(int i=0;i<list.size();i++){
+                               if(i<sizee){
+                                    String str=list.get(i);
+                                    if((bd.output(abslist,0)).contains(str)){
+                                        String st=mapabs.get(str);
+                                        int heure=Integer.parseInt(st);
+                                        System.out.println("<absheuretotal>" + df.format((float)heure/60) + "</absheuretotal>");
+                                        
+                                    }
+                                    else{
+                                        System.out.println("<absheuretotal>" + 0 + "</absheuretotal>");
+                                        sizeabs++;
+                                    }
+                                }
+                                else{
+                                    System.out.println("<absheuretotal>" + 0 + "</absheuretotal>");
+                                }
+                                
+                            }
+                        
+                        
+                        // heuredtotal
+                        int sized=listd.size();
+                        for(int i=0;i<list.size();i++){
+                               if(i<sizee){
+                                    String str=list.get(i);
+                                    if((bd.output(listd,0)).contains(str)){
+                                            String st=mapd.get(str);
+                                            int heure=Integer.parseInt(st);
+                                            System.out.println("<Dheuretotal>" + df.format((float)heure/60) + "</Dheuretotal>");
+                                    }
+                                    else{
+                                        System.out.println("<Dheuretotal>" + 0 + "</Dheuretotal>");
+                                        sizeabs++;
+                                    }
+                                }
+                                else{
+                                    System.out.println("<Dheuretotal>" + 0 + "</Dheuretotal>");
+                                }
+                                
+                            }
+                        int sizeem=listem.size();
+                        for(int i=0;i<listm.size();i++){
+                               if(i<sizeem){
+                                    String str=listm.get(i);
+                                    if((bd.output(listem,0)).contains(str)){
+                                            String st=mapem.get(str);
+                                            int heure=Integer.parseInt(st);
+                                            System.out.println("<Eheurematin>" +df.format((float)heure/60) + "</Eheurematin>");
+                                        
+                                    }
+                                    else{
+                                        System.out.println("<Eheurematin>" + 0 + "</Eheurematin>");
+                                        sizeem++;
+                                    }
+                                }
+                                else{
+                                    System.out.println("<Eheurematin>" + 0 + "</Eheurematin>");
+                                }
+                                
+                            }
+                        // heuredmatin
+                        int sizedm=listdm.size();
+                        for(int i=0;i<listm.size();i++){
+                              if(i<sizedm){
+                                    String str=listm.get(i);
+                                    if((bd.output(listdm,0)).contains(str)){
+                                            String st=mapdm.get(str);
+                                            int heure=Integer.parseInt(st);
+                                            System.out.println("<heuredmatin>" + df.format((float)heure/60) + "</heuredmatin>");
+                                     }
+                                    else{
+                                        System.out.println("<heuredmatin>" + 0 + "</heuredmatin>");
+                                        sizedm++;
+                                    }
+                                }
+                                else{
+                                    System.out.println("<heuredmatin>" + 0 + "</heuredmatin>");
+                                }
+                                
+                            }
+                        
+                        
+                        // heureabsmatin
+                        int sizeabsm=abslistm.size();
+                        for(int i=0;i<listm.size();i++){
+                              if(i<sizeabsm){
+                                    String str=listm.get(i);
+                                    if((bd.output(abslistm,0)).contains(str)){
+                                        String st=mapabsm.get(str);
+                                            int heure=Integer.parseInt(st);
+                                            System.out.println("<absheurem>" + df.format((float)heure/60)+ "</absheurem>");
+                                        
+                                    }
+                                    else{
+                                        System.out.println("<absheurem>" + 0 + "</absheurem>");
+                                        sizeabsm++;
+                                    }
+                                }
+                                else{
+                                    
+                                    System.out.println("<absheurem>" + 0 + "</absheurem>");
+                                }
+                                
+                            }
+                        
+//                    System.out.println("date"+bd.output(listem, 0));
+//                    System.out.println("heure"+bd.output(listem, 1));
+//                    System.out.println("date"+bd.output(listea, 0));
+//                    System.out.println("heure"+bd.output(listea, 1));
+//                    System.out.println("date"+bd.output(liste, 0));
+//                    System.out.println("heure"+bd.output(liste, 1));
+//                    System.out.println("date"+bd.output(abslistm, 0));
+//                    System.out.println("heure"+bd.output(abslistm, 1));
+//                    System.out.println("date"+bd.output(abslista, 0));
+//                    System.out.println("heure"+bd.output(abslista, 1));
+//                    System.out.println("date"+bd.output(abslist, 0));
+//                    System.out.println("heure"+bd.output(abslist, 1));
+//                    System.out.println("date"+bd.output(listdm, 0));
+//                    System.out.println("heure"+bd.output(listdm, 1));
+//                     System.out.println("date"+bd.output(listda, 0));
+//                    System.out.println("heure"+bd.output(listda, 1));
+//                    System.out.println("date"+bd.output(listd, 0));
+//                    System.out.println("heure"+bd.output(listd, 1));
+//                  
                     
                     }        
  

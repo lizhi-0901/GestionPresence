@@ -10,11 +10,13 @@ import bd.util;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,131 +44,315 @@ public class ServletRespon extends HttpServlet {
 			{
 			/*----- Ecriture de la page XML -----*/
 			out.println("<?xml version=\"1.0\"?>");
+                        DecimalFormat df=new DecimalFormat("0.00");
+                        
+                        
                         
                         Calendar cal = Calendar.getInstance();
                         int year = cal.get(Calendar.YEAR);
                         String idetudiant = request.getParameter("idetudiant");
-                        String mois = request.getParameter("mois");
-                        String annee =request.getParameter("annee");
-                        String anneemois =""; 
-                        if(annee.equals(null)){
-                            System.out.println("not select year");
-                             anneemois = Integer.toString(year)+"-"+mois;
-                        }else{
-                             anneemois =annee+"-"+mois;
-                        }
-                        out.println("<liste_etatpresence>");
-//                        System.out.println(idetudiant);
-                        //present
-                        List<Creneau> clist =bd.getHeureE(idetudiant,anneemois);
-                        //absent
-                        List<Creneau> abslist =bd.getHeurePresent(idetudiant,anneemois,"absent");
-                        //retard
-                        List<Creneau> dlist =bd.getHeureD(idetudiant,anneemois);
                         Personnel p =bd.getEtudiantinfo(idetudiant);
                         String nom =p.getNom();
                         String prenom =p.getPrenom();
                         String photo =p.getPhoto();
                         List<String> listCreneau= new ArrayList<>();    
                         
+                       
+                        String mois = request.getParameter("mois");
+                        String annee =request.getParameter("annee");
+                        String anneemois =""; 
+                        
+                        if(annee.equals(null)){
+                            System.out.println("not select year");
+                             anneemois = Integer.toString(year)+"-"+mois;
+                        }else{
+                             anneemois =annee+"-"+mois;
+                        }
+                        
+                        
+                        out.println("<liste_etatpresence>");
                         out.println("<nom>" + nom + "</nom>");
                         out.println("<prenom>" + prenom + "</prenom>");
                         out.println("<photo>" + photo + "</photo>"); 
+//                        System.out.println(idetudiant);
+                        //heureE
+                        List<Creneau> listem =bd.getHeureEmatin(idetudiant,anneemois);
+                        List<Creneau> listea =bd.getHeureEApre(idetudiant,anneemois);
+                        List<Creneau> liste =bd.getHeureE(idetudiant,anneemois);
+                        //absent
+                        List<Creneau> abslistm =bd.getHeurePresentmatin(idetudiant,anneemois,"absent");
+                        List<Creneau> abslista =bd.getHeurePresentapres(idetudiant,anneemois,"absent");
+                        List<Creneau> abslist =bd.getHeurePresent(idetudiant,anneemois,"absent");
+                        //heureD
+                        List<Creneau> listdm =bd.getHeureDmatin(idetudiant,anneemois);
+                        List<Creneau> listda =bd.getHeureDApres(idetudiant,anneemois);
+                        List<Creneau> listd =bd.getHeureD(idetudiant,anneemois);
                         
-//                        int max=0;
-//                        
-//                        max=clist.size();
-//                        list=clist;
-//                        if(max<abslist.size()){
-//                            max=abslist.size();
-//                            list=abslist;
-//                            if(max<retalist.size()){
-//                                max=retalist.size();
-//                                list=retalist;
-//                            }
-//                        }else{
-//                            if(max<retalist.size()){
-//                                max=retalist.size();
-//                                list=retalist;
-//                            }
-//                        }
+                        
+
+                        List<String> listm=new ArrayList<>();
+                        List<String> lista=new ArrayList<>();
                         List<String> list=new ArrayList<>();
                         //ajouter tous les elements de trois tables dans list
-                        util.addlist(list, bd.output(clist, 0));
+                        util.addlist(listm, bd.output(listem, 0));
+                        util.addlist(listm, bd.output(abslistm,0));
+                        util.addlist(listm, bd.output(listdm, 0));
+                        
+                        util.addlist(lista, bd.output(abslista,0));
+                        util.addlist(lista, bd.output(listda,0));
+                        util.addlist(lista, bd.output(listea,0));
+                        
+                        
+                        util.addlist(list, bd.output(listd,0));
+                        util.addlist(list, bd.output(liste,0));
                         util.addlist(list, bd.output(abslist,0));
-                        util.addlist(list, bd.output(dlist,0));
                         //eliminer les duplicate
                         list=util.removeDuplicate(list);
-                        //date
+                        listm=util.removeDuplicate(list);
+                        lista=util.removeDuplicate(list);
+                        
+                        // creation hashmap
+                        HashMap<String, String> mapem =new HashMap<>();
+                        mapem=util.addMap(listem);
+                        HashMap<String, String> mapdm =new HashMap<>();
+                        mapdm=util.addMap(listdm);
+                        HashMap<String, String> mapabsm =new HashMap<>();
+                        mapabsm=util.addMap(abslistm);
+                        
+                        HashMap<String, String> mapea =new HashMap<>();
+                        mapea=util.addMap(listea);
+                        HashMap<String, String> mapda =new HashMap<>();
+                        mapda=util.addMap(listda);
+                        HashMap<String, String> mapabsa =new HashMap<>();
+                        mapabsa=util.addMap(abslista);
+                        
+                        
+                        HashMap<String, String> mape =new HashMap<>();
+                        mape=util.addMap(liste);
+                        HashMap<String, String> mapd =new HashMap<>();
+                        mapd=util.addMap(listd);
+                        HashMap<String, String> mapabs =new HashMap<>();
+                        mapabs=util.addMap(abslist);
+                        
+                        
+                        
                         
                         for(int i=0;i<list.size();i++){
                             out.println("<date>" + list.get(i) + "</date>");
                         }
-                        // heure prsence 
-                        int s=clist.size();
+                        
+                        // heuretotal
+                        int sizee=liste.size();
                         for(int i=0;i<list.size();i++){
-                               if(i<s){
+                            
+                               if(i<sizee){
                                     String str=list.get(i);
-                                    if((bd.output(clist,0)).contains(str)){
-                                        for(String st:((bd.output(clist,1)))){
-                                            int heure=Integer.parseInt(st);
-                                            out.println("<Eheure>" + (heure/60) + "</Eheure>");
-                                        }
+                                    
+                                    if((bd.output(liste,0)).contains(str)){
+                                        String st=mape.get(str);
+                                        int heure=Integer.parseInt(st);
+                                        out.println("<Eheuretotal>" + df.format((float)heure/60) + "</Eheuretotal>");
+                                        
                                     }
                                     else{
-                                        out.println("<Eheure>" + 0 + "</Eheure>");
-                                        s++;
+                                        
+                                        out.println("<Eheuretotal>" + 0 + "</Eheuretotal>");
+                                        sizee++;
                                     }
                                 }
                                 else{
-                                    out.println("<Eheure>" + 0 + "</Eheure>");
+                                    out.println("<Eheuretotal>" + 0 + "</Eheuretotal>");
                                 }
                                 
                             }
-                        int sizere=clist.size();
+                        
+                        // heureabs
+                        int sizeabs=abslist.size();
                         for(int i=0;i<list.size();i++){
-                                if(i<sizere){
-                                    String str=list.get(i);
-                                    if((bd.output(dlist,0)).contains(str)){
-                                        for(String st:((bd.output(dlist,1)))){
-                                            int heure=Integer.parseInt(st);
-                                            out.println("<Dheure>" + (heure/60) + "</Dheure>");
-                                        }
-                                    }
-                                    else{
-                                        out.println("<Dheure>" + 0 + "</Dheure>");
-                                        sizere++;
-                                        }
-                                }
-                                else{
-                                    out.println("<Dheure>" + 0 + "</Dheure>");
-                                }
-                                
-                            }
-                        int sizeabs=clist.size();
-                        for(int i=0;i<list.size();i++){
-                              if(i<sizeabs){
+                               if(i<sizee){
                                     String str=list.get(i);
                                     if((bd.output(abslist,0)).contains(str)){
-                                        for(String st:((bd.output(abslist,1)))){
-                                            int heure=Integer.parseInt(st);
-                                            out.println("<absheure>" + (heure/60) + "</absheure>");
-                                        }
+                                        String st=mapabs.get(str);
+                                        int heure=Integer.parseInt(st);
+                                        out.println("<absheuretotal>" + df.format((float)heure/60) + "</absheuretotal>");
+                                        
                                     }
                                     else{
-                                        out.println("<absheure>" + 0 + "</absheure>");
+                                        out.println("<absheuretotal>" + 0 + "</absheuretotal>");
                                         sizeabs++;
                                     }
                                 }
                                 else{
-                                    
-                                    out.println("<absheure>" + 0 + "</absheure>");
+                                    out.println("<absheuretotal>" + 0 + "</absheuretotal>");
                                 }
                                 
                             }
                         
                         
+                        // heuredtotal
+                        int sized=listd.size();
+                        for(int i=0;i<list.size();i++){
+                               if(i<sizee){
+                                    String str=list.get(i);
+                                    if((bd.output(listd,0)).contains(str)){
+                                            String st=mapd.get(str);
+                                            int heure=Integer.parseInt(st);
+                                            out.println("<Dheuretotal>" + df.format((float)heure/60) + "</Dheuretotal>");
+                                    }
+                                    else{
+                                        out.println("<Dheuretotal>" + 0 + "</Dheuretotal>");
+                                        sizeabs++;
+                                    }
+                                }
+                                else{
+                                    out.println("<Dheuretotal>" + 0 + "</Dheuretotal>");
+                                }
+                                
+                            }
                         
+                        //--------------------------------------------------------------------------------------------//
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        // heureematin
+                        int sizeem=listem.size();
+                        for(int i=0;i<listm.size();i++){
+                               if(i<sizeem){
+                                    String str=listm.get(i);
+                                    if((bd.output(listem,0)).contains(str)){
+                                            String st=mapem.get(str);
+                                            int heure=Integer.parseInt(st);
+                                            out.println("<Eheurematin>" +df.format((float)heure/60) + "</Eheurematin>");
+                                        
+                                    }
+                                    else{
+                                        out.println("<Eheurematin>" + 0 + "</Eheurematin>");
+                                        sizeem++;
+                                    }
+                                }
+                                else{
+                                    out.println("<Eheurematin>" + 0 + "</Eheurematin>");
+                                }
+                                
+                            }
+                        // heuredmatin
+                        int sizedm=listdm.size();
+                        for(int i=0;i<listm.size();i++){
+                              if(i<sizedm){
+                                    String str=listm.get(i);
+                                    if((bd.output(listdm,0)).contains(str)){
+                                            String st=mapdm.get(str);
+                                            int heure=Integer.parseInt(st);
+                                            out.println("<heuredmatin>" + df.format((float)heure/60) + "</heuredmatin>");
+                                     }
+                                    else{
+                                        out.println("<heuredmatin>" + 0 + "</heuredmatin>");
+                                        sizedm++;
+                                    }
+                                }
+                                else{
+                                    out.println("<heuredmatin>" + 0 + "</heuredmatin>");
+                                }
+                                
+                            }
+                        
+                        
+                        // heureabsmatin
+                        int sizeabsm=abslistm.size();
+                        for(int i=0;i<listm.size();i++){
+                              if(i<sizeabsm){
+                                    String str=listm.get(i);
+                                    if((bd.output(abslistm,0)).contains(str)){
+                                        String st=mapabsm.get(str);
+                                            int heure=Integer.parseInt(st);
+                                            out.println("<absheurem>" + df.format((float)heure/60)+ "</absheurem>");
+                                        
+                                    }
+                                    else{
+                                        out.println("<absheurem>" + 0 + "</absheurem>");
+                                        sizeabsm++;
+                                    }
+                                }
+                                else{
+                                    
+                                    out.println("<absheurem>" + 0 + "</absheurem>");
+                                }
+                                
+                            }
+                        
+                        
+                        //--------------------------------------------------------------------------------//
+                        //heureeapresmidi
+                        int sizeea=listea.size();
+                        for(int i=0;i<lista.size();i++){
+                                if(i<sizeea){
+                                    String str=lista.get(i);
+                                    if((bd.output(listea,0)).contains(str)){
+                                            String st=mapea.get(str);
+                                            int heure=Integer.parseInt(st);
+                                            out.println("<Eheureapres>" + df.format((float)heure/60) + "</Eheureapres>");
+                                        
+                                    }
+                                    else{
+                                        out.println("<Eheureapres>" + 0 + "</Eheureapres>");
+                                        sizeea++;
+                                        }
+                                }
+                                else{
+                                    out.println("<Eheureapres>" + 0 + "</Eheureapres>");
+                                }
+                                
+                            }
+                        // heureabsapres
+                        int sizeabsa=abslista.size();
+                        for(int i=0;i<lista.size();i++){
+                              if(i<sizeabsa){
+                                    String str=lista.get(i);
+                                    if((bd.output(abslista,0)).contains(str)){
+                                            String st=mapabsa.get(str);
+                                            int heure=Integer.parseInt(st);
+                                            out.println("<absheurea>" + df.format((float)heure/60)+ "</absheurea>");
+                                        
+                                    }
+                                    else{
+                                        out.println("<absheurea>" + 0 + "</absheurea>");
+                                        sizeabsa++;
+                                    }
+                                }
+                                else{
+                                    
+                                    out.println("<absheurea>" + 0 + "</absheurea>");
+                                }
+                                
+                            }
+                        
+                        
+                        // heuredapres
+                        int sizeda=listda.size();
+                        for(int i=0;i<lista.size();i++){
+                              if(i<sizeda){
+                                    String str=lista.get(i);
+                                    if((bd.output(listda,0)).contains(str)){
+                                            String st=mapda.get(str);
+                                            int heure=Integer.parseInt(st);
+                                            out.println("<heureda>" + df.format((float)heure/60) + "</heureda>");
+                                        
+                                    }
+                                    else{
+                                        out.println("<heureda>" + 0 + "</heureda>");
+                                        sizeda++;
+                                    }
+                                }
+                                else{
+                                    
+                                    out.println("<heureda>" + 0 + "</heureda>");
+                                }
+                                
+                            }
                         
                         //heure presence
 //                        for(int i=0;i<max;i++){
