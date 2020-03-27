@@ -1,5 +1,5 @@
 package metier;
-// Generated Mar 18, 2020 6:08:12 PM by Hibernate Tools 4.3.1
+// Generated Mar 27, 2020 12:45:14 PM by Hibernate Tools 4.3.1
 
 
 
@@ -53,11 +53,6 @@ public class AffecterId  implements java.io.Serializable {
          result = 37 * result + ( getIdCreneau() == null ? 0 : this.getIdCreneau().hashCode() );
          return result;
    }   
-
-    @Override
-    public String toString() {
-        return "AffecterId{" + "idPersonne=" + idPersonne + ", idCreneau=" + idCreneau + '}';
-    }
 
 
 }

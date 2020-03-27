@@ -40,19 +40,21 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-reverse-engineering>
-  <schema-selection match-catalog="db_21613265"/>
-  <table-filter match-name="Avoir"/>
-  <table-filter match-name="Affecter"/>
-  <table-filter match-name="Personnel"/>
-  <table-filter match-name="Justifier"/>
-  <table-filter match-name="Creneau"/>
-  <table-filter match-name="Fonction"/>
-  <table-filter match-name="Enseigner"/>
+  <schema-selection match-catalog="db_21201682"/>
   <table-filter match-name="UE"/>
-  <table-filter match-name="Matiere"/>
-  <table-filter match-name="Formation"/>
-  <table-filter match-name="Groupe"/>
-  <table-filter match-name="AffecterGroupe"/>
+  <table-filter match-name="Affecter"/>
+  <table-filter match-name="AppartenirGroupe"/>
+  <table-filter match-name="Personnel"/>
+  <table-filter match-name="Enseigner"/>
   <table-filter match-name="Inscrir"/>
+  <table-filter match-name="Formation"/>
+  <table-filter match-name="Justifier"/>
   <table-filter match-name="Appartenir"/>
+  <table-filter match-name="Fonction"/>
+  <table-filter match-name="Groupe"/>
+  <table-filter match-name="Periode"/>
+  <table-filter match-name="Matiere"/>
+  <table-filter match-name="AffecterGroupe"/>
+  <table-filter match-name="Creneau"/>
+  <table-filter match-name="Avoir"/>
 </hibernate-reverse-engineering>

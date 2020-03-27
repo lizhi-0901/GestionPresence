@@ -1,24 +1,24 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 18, 2020 6:08:12 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Mar 27, 2020 12:45:15 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="metier.Creneau" table="Creneau" catalog="db_21613265" optimistic-lock="version">
+    <class name="metier.Creneau" table="Creneau" catalog="db_21201682" optimistic-lock="version">
         <id name="idCreneau" type="string">
             <column name="idCreneau" length="25" />
             <generator class="assigned" />
         </id>
         <many-to-one name="matiere" class="metier.Matiere" fetch="select">
-            <column name="libelleMatiere" length="25"  />
+            <column name="libelleMatiere" length="50" />
         </many-to-one>
         <property name="nomCreneau" type="string">
-            <column name="nomCreneau" length="25"  />
+            <column name="nomCreneau" length="50" />
         </property>
         <property name="salle" type="string">
             <column name="salle" length="25" />
         </property>
         <property name="enseignant" type="string">
-            <column name="enseignant" length="25"  />
+            <column name="enseignant" length="25" />
         </property>
         <property name="dateDeb" type="string">
             <column name="dateDeb" length="15" not-null="true" />
@@ -30,12 +30,11 @@
             <column name="duree" not-null="true" />
         </property>
         <property name="typeActivite" type="string">
-            <column name="typeActivite" length="25"/>
+            <column name="typeActivite" length="25" />
         </property>
         <property name="commantaire" type="string">
             <column name="commantaire" length="25" />
         </property>
-
         <set name="affecters" table="Affecter" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idCreneau" length="25" not-null="true" />

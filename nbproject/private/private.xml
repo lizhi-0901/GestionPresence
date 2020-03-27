@@ -3,23 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/hibernate.cfg.xml</file>
-            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/web/ajax/valider.js</file>
-            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/hibernate.reveng.xml</file>
-            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/bd/TestHibernate.java</file>
-            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/action/ServletCreneau.java</file>
-            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/metier/Creneau.java</file>
-            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/action/ServletInsertEtat.java</file>
-            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/action/ServletEtudiant.java</file>
-            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/metier/Matiere.java</file>
-            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/metier/Matiere.hbm.xml</file>
-            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/web/ajax/faireappel.js</file>
-            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/bd/HibernateUtil.java</file>
-            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/action/ServletRespon.java</file>
-            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/web/ajax/faireappel.html</file>
-            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/metier/Creneau.hbm.xml</file>
-            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/metier/Affecter.hbm.xml</file>
-            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/bd/bd.java</file>
+            <file>file:/C:/Users/Arsla/Desktop/GestionPresence/GestionPresence/GestionPresence/src/java/hibernate.cfg.xml</file>
         </group>
     </open-files>
 </project-private>

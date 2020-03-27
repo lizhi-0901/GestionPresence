@@ -28,7 +28,7 @@ function getCours ()
 			{
 			// Elément html que l'on va mettre à jour.
                             var elt = document.getElementById("cours");
-                            var tab=xhr.responseXML.getElementsByTagName("matiere")
+                            var tab=xhr.responseXML.getElementsByTagName("matiere");
                             elt.innerHTML="";
                             for ( i=0;i<tab.length;i++)
                             {
@@ -135,15 +135,12 @@ function getEtudiant ()
         //recuperer la valeur
         
         var cours = document.getElementById("cours").value;
-        alert(cours);
         var date  =document.getElementById("datepicker").value;
-        alert(date);
         var heureSaisir = parseInt(document.getElementById("heure").value);
         var min=parseInt(document.getElementById("minute").value);
         var heure=heureSaisir*60+min;
         var duree=document.getElementById("duree").value;
         var typeCours=document.getElementById("typeCours").value;
-        alert(typeCours);
         
         var xhr = new XMLHttpRequest();
         xhr.open("GET","ServletCreneau"+"?cours="+cours+"&heure="+heure+"&date="+date+"&duree="+duree+"&typeCours="+typeCours,true);
@@ -151,33 +148,27 @@ function getEtudiant ()
         };
     
     function valider(){
+        //Recuperer le nombre d'etudiant
         var mytable=document.getElementById("listEtudiant"); 
         var nbEtudiant=mytable.rows.length;
-//        var cours = document.getElementById("cours").value;
-//        var date  =document.getElementById("datepicker").value;
-//        var heureSaisir = parseInt(document.getElementById("heure").value);
-//        var min=parseInt(document.getElementById("minute").value);
-//        var heure=heureSaisir*60+min;
-//        var duree=document.getElementById("duree").value;
-        alert(nbEtudiant);
         
         for(var i=1;nbEtudiant-1;i++){
             //obtenir les id et etat des etudiant dans la table
             
             var id=mytable.rows[i].cells[1].innerHTML;
             var idEtat="etatPre"+i;
-            alert(idEtat);
             var obj=document.getElementById(idEtat);
             var index = obj.selectedIndex;
             var etat = obj.options[index].text;
+//            alert(etat);
             var xhr = new XMLHttpRequest();
             // Requête au serveur avec les paramètres éventuels.
-                xhr.open("GET","ServletInsertEtat"+"?id="+id+"&etat="+etat+"&cours="+cours+"&heure="+heure+"&date="+date+"&duree="+duree,true);
+                xhr.open("GET","ServletInsertEtat"+"?id="+id+"&etat="+etat,true);
                 
             // Envoie de la requête.
             xhr.send();           
         }
-        alert("Validation fini");
+        alert("Validation finir");
     }
     
     

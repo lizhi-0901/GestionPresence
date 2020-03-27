@@ -42,22 +42,22 @@ Contributor(s):
 <hibernate-configuration>
   <session-factory>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3307/db_21613265</property>
-    <property name="hibernate.connection.username">21613265</property>
-    <property name="hibernate.connection.password">R026G8</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/db_21201682</property>
+    <property name="hibernate.connection.username">21201682</property>
+    <property name="hibernate.connection.password">M002F1</property>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.show_sql">true</property>
-    <property name="hibernate.format_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
-    <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
-    <mapping resource="metier/Formation.hbm.xml"/>
-    <mapping resource="metier/Affecter.hbm.xml"/>
-    <mapping resource="metier/Personnel.hbm.xml"/>
+    <property name="hibernate.hbm2ddl.auto">update</property>
     <mapping resource="metier/Groupe.hbm.xml"/>
-    <mapping resource="metier/Fonction.hbm.xml"/>
-    <mapping class="" file="" jar="" package="" resource="metier/Creneau.hbm.xml"/>
     <mapping resource="metier/Ue.hbm.xml"/>
+    <mapping resource="metier/Formation.hbm.xml"/>
+    <mapping resource="metier/Periode.hbm.xml"/>
+    <mapping resource="metier/Personnel.hbm.xml"/>
     <mapping resource="metier/Matiere.hbm.xml"/>
     <mapping resource="metier/Justifier.hbm.xml"/>
+    <mapping resource="metier/Affecter.hbm.xml"/>
+    <mapping resource="metier/Fonction.hbm.xml"/>
+    <mapping resource="metier/Creneau.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

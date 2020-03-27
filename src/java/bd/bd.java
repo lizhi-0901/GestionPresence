@@ -1,6 +1,10 @@
 package bd;
 
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,17 +14,22 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import javax.transaction.Transactional;
 import metier.Affecter;
 import metier.AffecterId;
 import metier.Creneau;
 import metier.Groupe;
 import metier.Matiere;
+import metier.Periode;
 import metier.Personnel;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Transaction;
 import org.hibernate.Session;
+import org.hibernate.criterion.Expression;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -37,6 +46,14 @@ public class bd {
 
         static Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         static Transaction transaction = null;
+        
+//
+//	/*----- Données de connexion -----*/
+	private static final String URL ="jdbc:mysql://localhost:3306/db_21613265";
+	private static final String LOGIN = "21613265";
+	private static final String PASSWORD = "R026G8";
+        
+        private static Connection cx = null;
     
 //        static SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
     
@@ -46,6 +63,30 @@ public class bd {
       * @param identifiant
       * @return 
       */
+        
+        /**
+	 * Crée la connexion avec la base de données.
+	 */
+    private static void connexion() throws ClassNotFoundException, SQLException
+            {
+            /*----- Chargement du pilote pour la BD -----*/
+            try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    }
+            catch (ClassNotFoundException ex)
+                    {
+                    throw new ClassNotFoundException("Exception connexion() : Pilote MySql introuvable - " + ex.getMessage());
+                    }
+
+            /*----- Ouverture de la connexion -----*/
+            try {
+                    bd.cx = DriverManager.getConnection(URL,LOGIN,PASSWORD);
+                    }
+            catch (SQLException ex)
+                    {
+                    throw new SQLException("Exception connexion() : Problème de connexion à la base de données - " + ex.getMessage());
+                    }
+            }
      
     public static Personnel connection(String identifiant){
 
@@ -142,6 +183,7 @@ public class bd {
     }
 
      return listEtudiants;
+     
     }
     
     
@@ -261,13 +303,7 @@ public class bd {
      
     
     
-//    public static List<String> getAffecter(String idetudiant){
-//        List<String> listaffecter =session.createSQLQuery("select a.idCreneau "+
-//                                                          "from Affecter a "+
-//                                                          "where a.etatPresence= 'present' ").list();
-//       
-//        return listaffecter;
-//    }
+
     
     public static List<Creneau> getHeurePresent(String idetudiant,String date,String etatPresence){
          if(transaction==null){
@@ -314,6 +350,8 @@ public class bd {
     
     
     
+    
+    
     public static Personnel getEtudiantinfo(String idetudiant){
         if(transaction==null){
             transaction  = session.beginTransaction();
@@ -321,6 +359,231 @@ public class bd {
         
         Personnel etu =(Personnel)session.get(Personnel.class, idetudiant);
         return etu;
+    }
+    
+    public static String existEnseignant (String nom,String prenom,String type) throws ClassNotFoundException, SQLException
+		{
+		/*----- Création de la connexion à la base de données -----*/
+		if (bd.cx == null)
+			bd.connexion();
+
+		/*----- Requête SQL -----*/
+		String sql = "SELECT nom,prenom FROM Personnel WHERE nom=? AND prenom=? AND type=?";
+
+		/*----- Ouverture de l'espace de requête -----*/
+		try (PreparedStatement st = bd.cx.prepareStatement(sql))
+			{
+			/*----- Exécution de la requête -----*/
+			st.setString(1, nom);
+                        st.setString(2, prenom);
+                        st.setString(3,type);
+			try (ResultSet rs = st.executeQuery())
+				{
+				/*----- Lecture du contenu du ResultSet -----*/
+				if (rs.next())
+					return "true";
+				else
+					return "false";
+				}
+			}
+		catch (SQLException ex)
+			{
+			throw new SQLException("Exception existPersonne() : Problème SQL - " + ex.getMessage());
+			}
+		}
+    
+    
+    /**
+     * Fonction permet de consulter les infos d'un enseignant.
+     * @param nom
+     * @param prenom
+     * @return 
+     */
+    public static List<Personnel> consulterEnseignant(String nom,String prenom){
+        if(transaction==null){
+            transaction  = session.beginTransaction();
+        }
+
+        List list=session.createCriteria(Personnel.class)
+                                .add(Restrictions.like("nom", nom))
+                                .add(Restrictions.like("prenom", prenom))
+                                .add(Restrictions.or(Restrictions.like("type","enseignant"),Restrictions.like("type","responsable"))).list();
+
+        return list;       
+    }
+    /**
+     * Fonction permet de consulter les infos d'un etudiant.
+     * @param nom
+     * @param prenom
+     * @return 
+     */
+    public static List<Personnel> consulterEtudiant(String nom,String prenom){
+        if(transaction==null){
+            transaction  = session.beginTransaction();
+        }
+
+        List list=session.createCriteria(Personnel.class)
+                                .add(Restrictions.like("nom", nom))
+                                .add(Restrictions.like("prenom", prenom))
+                                .add(Restrictions.like("type","etudiant")).list();
+
+        return list;       
+    }
+    
+    public static List<Matiere> consulterMatiere(String libelleMatiere){
+        if(transaction==null){
+            transaction  = session.beginTransaction();
+        }
+        
+         List list=session.createCriteria(Matiere.class)
+                                .add(Restrictions.like("libelleMatiere",libelleMatiere )).list();
+
+        return list;
+    }
+    
+    
+    
+    
+    
+    /**
+     * Fonction permet d'ajouter un enseignant
+     * @param nom
+     * @param prenom
+     * @param mail
+     * @param numTel 
+     */
+    public static void ajouterEnseignant(String nom,String prenom,String mail,String numTel){
+            session=null;
+                session=HibernateUtil.getSessionFactory().openSession();
+                transaction=session.beginTransaction();
+            String idP=nom+prenom;
+            Personnel p=new Personnel();
+            p.setIdPersonne(idP);
+            p.setNom(nom);
+            p.setPrenom(prenom);
+            p.setAdresseMail(mail);
+            p.setNumTel(numTel);
+            p.setType("Enseignant");
+            p.setMotDePasse("123456");
+            
+            System.out.println(p.getNom());
+            System.out.println(p.getPrenom());
+            System.out.println(p.getAdresseMail());
+            System.out.println(p.getNumTel());
+            System.out.println(p.getType());
+            
+            session.save(p);
+            transaction.commit();
+        
+    }
+    /**
+     * Fonction permet d'ajouter un etudiant 
+     * @param nom
+     * @param prenom
+     * @param mail
+     * @param numTel 
+     */
+    public static void ajouterEtudiant(String nom,String prenom,String mail,String numTel){
+            session=null;
+                session=HibernateUtil.getSessionFactory().openSession();
+                transaction=session.beginTransaction();
+            String idP=nom+prenom;
+            Personnel p=new Personnel();
+            p.setIdPersonne(idP);
+            p.setNom(nom);
+            p.setPrenom(prenom);
+            p.setAdresseMail(mail);
+            p.setNumTel(numTel);
+            p.setType("Etudiant");
+            p.setMotDePasse("123456");
+            
+            System.out.println(p.getNom());
+            System.out.println(p.getPrenom());
+            System.out.println(p.getAdresseMail());
+            System.out.println(p.getNumTel());
+            System.out.println(p.getType());
+            
+            session.save(p);
+            transaction.commit();
+        
+    }
+    
+    
+    public static void ajouterMatiere(String libelleMatiere,String idFormation){
+        session=null;
+            try {
+                session = HibernateUtil.getSessionFactory().getCurrentSession();
+                transaction  = session.beginTransaction();
+                Query query =session.createSQLQuery("INSERT INTO Matiere(libelleMatiere,codeUE,idFormation,initiale) VALUES(:libelleMatiere,:codeUE,:idFormation,:initiale) ");
+                
+                String initiale=libelleMatiere.substring(0, 4);
+                query.setParameter("libelleMatiere", libelleMatiere);
+                
+                String codeUE="IPM201901";
+                query.setParameter("codeUE",codeUE );
+                query.setParameter("idFormation", idFormation);
+                query.setParameter("initiale", initiale);
+                query.executeUpdate();
+                transaction.commit();
+            }
+            catch (RuntimeException e) {
+                transaction.rollback();
+                throw e;
+            }
+    }
+    
+//     public static void ajouterPeriode(String dateDeb,String dateFin,String,String typePeriode){
+//        session=null;
+//            try {
+//                session = HibernateUtil.getSessionFactory().getCurrentSession();
+//                transaction  = session.beginTransaction();
+//                Query query =session.createSQLQuery("INSERT INTO Matiere(libelleMatiere,codeUE,idFormation,initiale) VALUES(:libelleMatiere,:codeUE,:idFormation,:initiale) ");
+//                
+//                String initiale=libelleMatiere.substring(0, 4);
+//                query.setParameter("libelleMatiere", libelleMatiere);
+//                
+//                String codeUE="IPM201901";
+//                query.setParameter("codeUE",codeUE );
+//                query.setParameter("idFormation", idFormation);
+//                query.setParameter("initiale", initiale);
+//                query.executeUpdate();
+//                transaction.commit();
+//            }
+//            catch (RuntimeException e) {
+//                transaction.rollback();
+//                throw e;
+//            }
+//    }
+            
+    public static void SupprimerEnseignant(String nom,String prenom){
+        session=null;
+        session=HibernateUtil.getSessionFactory().openSession();
+        transaction=session.beginTransaction();
+        
+        String idP=nom+prenom;
+        Personnel p=(Personnel)session.get(Personnel.class, idP);
+        System.out.println("Supprimer   "+p.getNom());
+        
+        session.delete(p);
+        transaction.commit();
+        
+    }
+    
+    public static void ModifierEnseignant(String nom,String prenom,String numTel,String eMail){
+        session=null;
+        session=HibernateUtil.getSessionFactory().openSession();
+        transaction=session.beginTransaction();
+        
+        Query query=session.createQuery("update Personnel p set p.numTel=:numTel, p.adresseMail=:eMail "+
+                                        "where p.nom=:nom "+
+                                        "and p.prenom=:prenom ");
+        query.setParameter("nom", nom);
+        query.setParameter("prenom", prenom);
+        query.setParameter("numTel", numTel);
+        query.setParameter("eMail", eMail);
+        
+        query.executeUpdate();    
+        transaction.commit();
     }
     
 
@@ -331,15 +594,7 @@ public class bd {
                     try {
                       session = HibernateUtil.getSessionFactory().getCurrentSession();
                       transaction  = session.beginTransaction();
-////                    
-//                    Query query =session.createSQLQuery("update Affecter set etatValide=:etat "+
-//                                                     "where idPersonne=:idP "+
-//                                                     "and idCreneau=:idC ");
-//                    query.setParameter("etat", etatValide);
-//                    query.setParameter("idP", idetudiant);
-//                    query.setParameter("idC", idCreneau);
-//                    query.executeUpdate();
-//                    session.getTransaction().commit();
+
                       AffecterId id=new AffecterId();
                       id.setIdCreneau(idCreneau);
                       id.setIdPersonne(idetudiant);
@@ -389,7 +644,9 @@ public class bd {
                         transaction.rollback();
                         throw e;
                     }
-                  } 
+                  }
+            
+            
             
            
 	/*----------------------------*/
@@ -440,16 +697,31 @@ public class bd {
                    // System.out.println(idCreneau);
                     //bd.creationCreneau(idCreneau, "2020-04-20", 570, 60, "Big Data", "alainberro@gmail.com", "TD");
                     //bd.EnregistrerEtat("", idCreneau, idCreneau);
-                    List<String> list=new ArrayList<>();
-                     list.add("21613265");
-                     list.add("21509151");
-                     list.add("21511000");
-                     list.add("21511001");
-                     String etat="Retard";
-                     String idCreneau="DAI2020050184030";
-                     for(String str:list){
-                         bd.EnregistrerEtat(str, idCreneau, etat);
-                     }
-                    }        
+//                    List<String> list=new ArrayList<>();
+//                     list.add("21613265");
+//                     list.add("21509151");
+//                     list.add("21511000");
+//                     list.add("21511001");
+//                     String etat="PPPPPPP";
+//                     String idCreneau="DAI2020032651099";
+//                     for(String str:list){
+//                         bd.EnregistrerEtat(str, idCreneau, etat);
+//                     }
+//                List<Personnel> l1=bd.consulterEtudiant("arslan", "a");
+////                bd.affichage(l1);
+//                for(Personnel p:l1){
+////                    System.out.println(p);
+//                    System.out.println(p.getNom());
+//                    System.out.println(p.getPrenom());
+//                    System.out.println(p.getAdresseMail());
+//                    System.out.println(p.getNumTel());
+//                }
+//                    bd.ajouterEnseignant("lebrone", "Lebrone", "asdasdasdasd@gmail.com", 71232844);
+//                    bd.ModifierEnseignant("berro", "alain","123123123","1111@gmail.com");
+//                    bd.ajouterMatiere("PProjet", "MIAGEIPM");
+//                
+
+                    
+                }        
  
 }

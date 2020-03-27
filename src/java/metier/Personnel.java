@@ -1,8 +1,7 @@
 package metier;
-// Generated Mar 18, 2020 6:08:12 PM by Hibernate Tools 4.3.1
+// Generated Mar 27, 2020 12:45:14 PM by Hibernate Tools 4.3.1
 
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,13 +15,17 @@ public class Personnel  implements java.io.Serializable {
      private String motDePasse;
      private String nom;
      private String prenom;
-     private Date dateNaissance;
+     private String dateNaissance;
      private String type;
      private String photo;
      private String adresseMail;
-     private int numTel;
+     private String numTel;
      private String prenomUsage;
      private String adresse;
+     private String entreprise;
+     private Integer contactTel;
+     private Integer contactMail;
+     private String typeformation;
      private Set fonctions = new HashSet(0);
      private Set groupes = new HashSet(0);
      private Set matieres = new HashSet(0);
@@ -32,27 +35,17 @@ public class Personnel  implements java.io.Serializable {
 
     public Personnel() {
     }
-    
-    public Personnel(String idPersonne,String nom,String prenom,String photo){
-        this.idPersonne = idPersonne;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.photo = photo;
-    }
 
 	
-    public Personnel(String idPersonne, String motDePasse, String nom, String prenom, Date dateNaissance, String type, String adresseMail, int numTel, String adresse) {
+    public Personnel(String idPersonne, String motDePasse, String nom, String prenom, String type, String adresseMail) {
         this.idPersonne = idPersonne;
         this.motDePasse = motDePasse;
         this.nom = nom;
         this.prenom = prenom;
-        this.dateNaissance = dateNaissance;
         this.type = type;
         this.adresseMail = adresseMail;
-        this.numTel = numTel;
-        this.adresse = adresse;
     }
-    public Personnel(String idPersonne, String motDePasse, String nom, String prenom, Date dateNaissance, String type, String photo, String adresseMail, int numTel, String prenomUsage, String adresse, Set fonctions, Set groupes, Set matieres, Set justifiers, Set affecters, Set formations) {
+    public Personnel(String idPersonne, String motDePasse, String nom, String prenom, String dateNaissance, String type, String photo, String adresseMail, String numTel, String prenomUsage, String adresse, String entreprise, Integer contactTel, Integer contactMail, String typeformation, Set fonctions, Set groupes, Set matieres, Set justifiers, Set affecters, Set formations) {
        this.idPersonne = idPersonne;
        this.motDePasse = motDePasse;
        this.nom = nom;
@@ -64,6 +57,10 @@ public class Personnel  implements java.io.Serializable {
        this.numTel = numTel;
        this.prenomUsage = prenomUsage;
        this.adresse = adresse;
+       this.entreprise = entreprise;
+       this.contactTel = contactTel;
+       this.contactMail = contactMail;
+       this.typeformation = typeformation;
        this.fonctions = fonctions;
        this.groupes = groupes;
        this.matieres = matieres;
@@ -100,11 +97,11 @@ public class Personnel  implements java.io.Serializable {
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
-    public Date getDateNaissance() {
+    public String getDateNaissance() {
         return this.dateNaissance;
     }
     
-    public void setDateNaissance(Date dateNaissance) {
+    public void setDateNaissance(String dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
     public String getType() {
@@ -128,11 +125,11 @@ public class Personnel  implements java.io.Serializable {
     public void setAdresseMail(String adresseMail) {
         this.adresseMail = adresseMail;
     }
-    public int getNumTel() {
+    public String getNumTel() {
         return this.numTel;
     }
     
-    public void setNumTel(int numTel) {
+    public void setNumTel(String numTel) {
         this.numTel = numTel;
     }
     public String getPrenomUsage() {
@@ -148,6 +145,34 @@ public class Personnel  implements java.io.Serializable {
     
     public void setAdresse(String adresse) {
         this.adresse = adresse;
+    }
+    public String getEntreprise() {
+        return this.entreprise;
+    }
+    
+    public void setEntreprise(String entreprise) {
+        this.entreprise = entreprise;
+    }
+    public Integer getContactTel() {
+        return this.contactTel;
+    }
+    
+    public void setContactTel(Integer contactTel) {
+        this.contactTel = contactTel;
+    }
+    public Integer getContactMail() {
+        return this.contactMail;
+    }
+    
+    public void setContactMail(Integer contactMail) {
+        this.contactMail = contactMail;
+    }
+    public String getTypeformation() {
+        return this.typeformation;
+    }
+    
+    public void setTypeformation(String typeformation) {
+        this.typeformation = typeformation;
     }
     public Set getFonctions() {
         return this.fonctions;

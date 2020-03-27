@@ -1,10 +1,8 @@
 package metier;
-// Generated Mar 18, 2020 6:08:12 PM by Hibernate Tools 4.3.1
+// Generated Mar 27, 2020 12:45:14 PM by Hibernate Tools 4.3.1
 
 
-import java.util.Date;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -29,22 +27,13 @@ public class Creneau  implements java.io.Serializable {
 
     public Creneau() {
     }
-    
-    public Creneau(String idCreneau) {
-        this.idCreneau=idCreneau;
-    }
+
 	
-    public Creneau(String idCreneau, Matiere matiere, String nomCreneau, String salle, String enseignant, String dateDeb, int heureDeb, int duree, String typeActivite, String commantaire) {
+    public Creneau(String idCreneau, String dateDeb, int heureDeb, int duree) {
         this.idCreneau = idCreneau;
-        this.matiere = matiere;
-        this.nomCreneau = nomCreneau;
-        this.salle = salle;
-        this.enseignant = enseignant;
         this.dateDeb = dateDeb;
         this.heureDeb = heureDeb;
         this.duree = duree;
-        this.typeActivite = typeActivite;
-        this.commantaire = commantaire;
     }
     public Creneau(String idCreneau, Matiere matiere, String nomCreneau, String salle, String enseignant, String dateDeb, int heureDeb, int duree, String typeActivite, String commantaire, Set affecters, Set justifiers, Set groupes) {
        this.idCreneau = idCreneau;
@@ -61,43 +50,6 @@ public class Creneau  implements java.io.Serializable {
        this.justifiers = justifiers;
        this.groupes = groupes;
     }
-    public Creneau(String idCreneau,String dateDeb, int heureDeb, int duree){
-        this.idCreneau=idCreneau;
-        this.dateDeb=dateDeb;
-        this.heureDeb=heureDeb;
-        this.duree=duree;
-        this.justifiers=null;
-    }
-    public Creneau(String idCreneau,String dateDeb, int heureDeb, int duree,String nomCreneau){
-        this.idCreneau=idCreneau;
-        this.dateDeb=dateDeb;
-        this.heureDeb=heureDeb;
-        this.duree=duree;
-        this.nomCreneau=nomCreneau;
-    }
-
-    public Creneau(String idCreneau, String date, int heureDeb, int duree, String nomCreneau, String idEnseignant, String typeCours) {
-        this.idCreneau=idCreneau;
-        this.dateDeb=date;
-        this.heureDeb=heureDeb;
-        this.duree=duree;
-        this.nomCreneau=nomCreneau;
-        this.enseignant=idEnseignant;
-        this.typeActivite=typeCours;
-    }
-
-//    public Creneau(String idCreneau, Date date, int heureDeb, int duree, String nomCreneau, String idEnseignant, String typeCours) {
-//        this.idCreneau=idCreneau;
-//        this.dateDeb=date;
-//        this.heureDeb=heureDeb;
-//        this.duree=duree;
-//        this.nomCreneau=nomCreneau;
-//        this.enseignant=idEnseignant;
-//        this.typeActivite=typeCours;
-//        
-//    }
-    
-    
    
     public String getIdCreneau() {
         return this.idCreneau;
@@ -189,31 +141,6 @@ public class Creneau  implements java.io.Serializable {
     
     public void setGroupes(Set groupes) {
         this.groupes = groupes;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 73 * hash + Objects.hashCode(this.idCreneau);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Creneau other = (Creneau) obj;
-        if (!Objects.equals(this.idCreneau, other.idCreneau)) {
-            return false;
-        }
-        return true;
     }
 
 

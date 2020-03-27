@@ -60,6 +60,26 @@
         <servlet-name>ServletInsertEtat</servlet-name>
         <servlet-class>action.ServletInsertEtat</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletVerifierEnseignant</servlet-name>
+        <servlet-class>action.ServletVerifierEnseignant</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GestionEnseignant</servlet-name>
+        <jsp-file>/ajax/GestionEnseignant.html</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>GestionEtudiant</servlet-name>
+        <jsp-file>/ajax/GestionEtudiant.html</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>GestionCours</servlet-name>
+        <jsp-file>/ajax/GestionCours.html</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>GestionPeriode</servlet-name>
+        <jsp-file>/ajax/GestionPeriode.html</jsp-file>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletConnection</servlet-name>
         <url-pattern>/ServletConnection</url-pattern>
@@ -119,6 +139,26 @@
     <servlet-mapping>
         <servlet-name>ServletInsertEtat</servlet-name>
         <url-pattern>/ServletInsertEtat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletVerifierEnseignant</servlet-name>
+        <url-pattern>/ServletVerifierEnseignant</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GestionEnseignant</servlet-name>
+        <url-pattern>/GestionEnseignant</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GestionEtudiant</servlet-name>
+        <url-pattern>/GestionEtudiant</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GestionCours</servlet-name>
+        <url-pattern>/GestionCours</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GestionPeriode</servlet-name>
+        <url-pattern>/GestionPeriode</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

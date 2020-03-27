@@ -1,5 +1,5 @@
 package metier;
-// Generated Mar 18, 2020 6:08:12 PM by Hibernate Tools 4.3.1
+// Generated Mar 27, 2020 12:45:14 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,9 +12,9 @@ public class Matiere  implements java.io.Serializable {
 
 
      private String libelleMatiere;
-     private String initiale;
      private Formation formation;
      private Ue ue;
+     private String initiale;
      private Set personnels = new HashSet(0);
      private Set creneaus = new HashSet(0);
 
@@ -22,27 +22,19 @@ public class Matiere  implements java.io.Serializable {
     }
 
 	
-    public Matiere(String libelleMatiere, Formation formation, Ue ue,String initiale) {
+    public Matiere(String libelleMatiere, Formation formation, Ue ue, String initiale) {
         this.libelleMatiere = libelleMatiere;
         this.formation = formation;
         this.ue = ue;
-        this.initiale=initiale;
+        this.initiale = initiale;
     }
-    public Matiere(String libelleMatiere, Formation formation, Ue ue, Set personnels, Set creneaus,String initiale) {
+    public Matiere(String libelleMatiere, Formation formation, Ue ue, String initiale, Set personnels, Set creneaus) {
        this.libelleMatiere = libelleMatiere;
        this.formation = formation;
        this.ue = ue;
+       this.initiale = initiale;
        this.personnels = personnels;
        this.creneaus = creneaus;
-       this.initiale=initiale;
-    }
-
-    public void setInitiale(String initiale) {
-        this.initiale = initiale;
-    }
-
-    public String getInitiale() {
-        return initiale;
     }
    
     public String getLibelleMatiere() {
@@ -65,6 +57,13 @@ public class Matiere  implements java.io.Serializable {
     
     public void setUe(Ue ue) {
         this.ue = ue;
+    }
+    public String getInitiale() {
+        return this.initiale;
+    }
+    
+    public void setInitiale(String initiale) {
+        this.initiale = initiale;
     }
     public Set getPersonnels() {
         return this.personnels;
