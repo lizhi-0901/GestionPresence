@@ -49,9 +49,9 @@ public class bd {
         
 //
 //	/*----- Données de connexion -----*/
-	private static final String URL ="jdbc:mysql://localhost:3306/db_21613265";
-	private static final String LOGIN = "21613265";
-	private static final String PASSWORD = "R026G8";
+	private static final String URL ="jdbc:mysql://localhost:3306/db_21201682_2";
+	private static final String LOGIN = "21201682";
+	private static final String PASSWORD = "M002F1";
         
         private static Connection cx = null;
     
