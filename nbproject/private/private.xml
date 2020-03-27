@@ -3,7 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Arsla/Desktop/GestionPresence/GestionPresence/GestionPresence/src/java/metier/Personnel.hbm.xml</file>
+            <file>file:/C:/Users/Arsla/Desktop/GestionPresence/GestionPresence/GestionPresence/src/java/metier/Ue.hbm.xml</file>
+            <file>file:/C:/Users/Arsla/Desktop/GestionPresence/GestionPresence/GestionPresence/src/java/metier/Fonction.hbm.xml</file>
             <file>file:/C:/Users/Arsla/Desktop/GestionPresence/GestionPresence/GestionPresence/src/java/hibernate.cfg.xml</file>
+            <file>file:/C:/Users/Arsla/Desktop/GestionPresence/GestionPresence/GestionPresence/src/java/metier/Periode.hbm.xml</file>
+            <file>file:/C:/Users/Arsla/Desktop/GestionPresence/GestionPresence/GestionPresence/src/java/metier/Creneau.hbm.xml</file>
+            <file>file:/C:/Users/Arsla/Desktop/GestionPresence/GestionPresence/GestionPresence/src/java/metier/Formation.hbm.xml</file>
+            <file>file:/C:/Users/Arsla/Desktop/GestionPresence/GestionPresence/GestionPresence/src/java/metier/hibernate.reveng.xml</file>
+            <file>file:/C:/Users/Arsla/Desktop/GestionPresence/GestionPresence/GestionPresence/src/java/metier/Groupe.hbm.xml</file>
+            <file>file:/C:/Users/Arsla/Desktop/GestionPresence/GestionPresence/GestionPresence/src/java/metier/Matiere.hbm.xml</file>
+            <file>file:/C:/Users/Arsla/Desktop/GestionPresence/GestionPresence/GestionPresence/src/java/metier/Justifier.hbm.xml</file>
         </group>
     </open-files>
 </project-private>

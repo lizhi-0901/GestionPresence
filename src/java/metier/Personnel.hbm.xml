@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Mar 27, 2020 12:45:15 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="metier.Personnel" table="Personnel" catalog="db_21201682" optimistic-lock="version">
+    <class name="metier.Personnel" table="Personnel" catalog="db_21201682_2" optimistic-lock="version">
         <id name="idPersonne" type="string">
             <column name="idPersonne" length="25" />
             <generator class="assigned" />
@@ -41,11 +41,11 @@
         <property name="entreprise" type="string">
             <column name="entreprise" length="50" />
         </property>
-        <property name="contactTel" type="java.lang.Integer">
-            <column name="contactTel" />
+        <property name="contactTel" type="string">
+            <column name="contactTel" length="15" />
         </property>
-        <property name="contactMail" type="java.lang.Integer">
-            <column name="contactMail" />
+        <property name="contactMail" type="string">
+            <column name="contactMail" length="50" />
         </property>
         <property name="typeformation" type="string">
             <column name="typeformation" length="5" />
@@ -58,7 +58,7 @@
                 <column name="fonction" length="25" not-null="true" />
             </many-to-many>
         </set>
-        <set name="groupes" table="Appartenir" inverse="false" lazy="true" fetch="select">
+        <set name="groupes" table="Appartenir" inverse="false" lazy="false" fetch="select">
             <key>
                 <column name="idPersonne" length="25" not-null="true" />
             </key>
@@ -66,7 +66,7 @@
                 <column name="idGroupe" length="25" not-null="true" />
             </many-to-many>
         </set>
-        <set name="matieres" table="Enseigner" inverse="false" lazy="true" fetch="select">
+        <set name="matieres" table="Enseigner" inverse="false" lazy="false" fetch="select">
             <key>
                 <column name="idPersonne" length="25" not-null="true" />
             </key>
@@ -74,19 +74,19 @@
                 <column name="libelleMatiere" length="50" not-null="true" />
             </many-to-many>
         </set>
-        <set name="justifiers" table="Justifier" inverse="true" lazy="true" fetch="select">
+        <set name="justifiers" table="Justifier" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="idPersonne" length="25" not-null="true" />
             </key>
             <one-to-many class="metier.Justifier" />
         </set>
-        <set name="affecters" table="Affecter" inverse="true" lazy="true" fetch="select">
+        <set name="affecters" table="Affecter" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="idPersonne" length="25" not-null="true" />
             </key>
             <one-to-many class="metier.Affecter" />
         </set>
-        <set name="formations" table="Inscrir" inverse="false" lazy="true" fetch="select">
+        <set name="formations" table="Inscrir" inverse="false" lazy="false" fetch="select">
             <key>
                 <column name="idPersonne" length="25" not-null="true" />
             </key>

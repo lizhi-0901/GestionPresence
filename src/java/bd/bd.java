@@ -408,7 +408,6 @@ public class bd {
                                 .add(Restrictions.like("nom", nom))
                                 .add(Restrictions.like("prenom", prenom))
                                 .add(Restrictions.or(Restrictions.like("type","enseignant"),Restrictions.like("type","responsable"))).list();
-
         return list;       
     }
     /**
@@ -719,8 +718,19 @@ public class bd {
 //                    bd.ajouterEnseignant("lebrone", "Lebrone", "asdasdasdasd@gmail.com", 71232844);
 //                    bd.ModifierEnseignant("berro", "alain","123123123","1111@gmail.com");
 //                    bd.ajouterMatiere("PProjet", "MIAGEIPM");
-//                
-
+//                  
+                    
+                    Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+                    Transaction t = session.beginTransaction();
+                
+                    String id="alainberro@gmail.com";
+                    Personnel p=(Personnel)session.load(Personnel.class,id);
+//
+////                    Periode p=(Periode)session.load(Periode.class, 1);
+                    System.out.println(p.getNom());
+//                    t.commit();
+                    
+                    
                     
                 }        
  
