@@ -49,21 +49,24 @@ public class ServletSaisir extends HttpServlet {
                          String typeCreneau =request.getParameter("typeCreneau");
                          String heure =request.getParameter("heure");
                          String presence =request.getParameter("presence");
-                         int heureinute=Integer.parseInt(heure+minute);
-//                            System.out.println(nom);
-//                            System.out.println(prenom);
-//                            System.out.println(date);
-//                             System.out.println(heure);
-//                            System.out.println(minute);
-                        System.out.println(heureinute);
+                         
+                         int heureint=Integer.parseInt(heure.substring(1));
+                         int minuteint =Integer.parseInt(minute);
+                         int heureminute =(heureint*60)+minuteint;
+                          
+                        
                         out.println("<liste_etatpresence>");
                         out.println("<nom>" + nom + "</nom>");
                         out.println("<prenom>" + prenom + "</prenom>");
                         out.println("<presence>" + presence + "</presence>");
                         out.println("<typeCreneau>" + typeCreneau + "</typeCreneau>");
-                        Creneau cre = bd.getCreneau(date, typeCreneau,heureinute );
-                        String idCreneau=cre.getIdCreneau();
-                        bd.EnregistereSaisirheure(idCreneau,identifiant, presence);
+                            System.out.println("date"+date);
+                            System.out.println("heureminute"+heureminute);
+                            System.out.println(typeCreneau);
+                        Creneau cre = bd.getCreneau(date, typeCreneau,heureminute );
+                        //String idCreneau=cre.getIdCreneau();
+                           // System.out.println(idCreneau);
+                        bd.EnregistereSaisirheure("PJ20200327",identifiant, presence);
                         out.println("</liste_etatpresence>");
                        
     }    

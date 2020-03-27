@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Mar 18, 2020 6:08:12 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="metier.Affecter" table="Affecter" catalog="db_21613265" optimistic-lock="version">
+    <class name="metier.Affecter" table="Affecter" catalog="db_21509151" optimistic-lock="version">
         <composite-id name="id" class="metier.AffecterId">
             <key-property name="idPersonne" type="string">
                 <column name="idPersonne" length="25" />

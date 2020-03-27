@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/action/ServletConnection.java</file>
+            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/hibernate.cfg.xml</file>
             <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/bd/util.java</file>
-            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/web/ajax/etudiant.html</file>
             <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/web/ajax/valider.js</file>
-            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/action/ServletRespon.java</file>
-            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/bd/TestHibernate.java</file>
-            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/web/ajax/validationResp.html</file>
+            <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/hibernate.reveng.xml</file>
             <file>file:/C:/Users/lizhiwang/Documents/NetBeansProjects/GestionPresence/src/java/bd/bd.java</file>
         </group>
     </open-files>

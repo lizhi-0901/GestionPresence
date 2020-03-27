@@ -44,7 +44,7 @@ public class ServletRespon extends HttpServlet {
 			{
 			/*----- Ecriture de la page XML -----*/
 			out.println("<?xml version=\"1.0\"?>");
-                        DecimalFormat df=new DecimalFormat("0.00");
+                        DecimalFormat df=new DecimalFormat("0.0");
                         
                         
                         

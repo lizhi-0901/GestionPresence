@@ -19,18 +19,18 @@
      
      <body>
         <div class="top_decor">
-            <div class="logo"><img src="" alt="">(logo)</div>
+            <div class="logo"><img src="" alt="" class="logoImg"></div>
         </div>
         
         <h2>Saisissez vos heures de presence</h2>
 
 
          <div class="infos_etudiant">
-            <div class="infos_etudiant_tab" border="1">
+            <div class="infos_etudiant_tab" >
                 <div>
                     
                     <h3>Bienvenu</h3>                   
-                    <div class="div_photo_etu info_etu"><img alt="" src="" >(photo)</div>
+                    <div class="div_photo_etu info_etu"><img alt="" src="" class="photo_etu">(photo)</div>
                     <ul class="info_etu">
                      <li>pr&eacute;nom: ${param.prenometudiant}</li>
                     <li>nom: ${param.nometudiant}</li>
@@ -48,10 +48,7 @@
                         </th>
                         <th>
                             Choisir heure 
-                        </th>
-                        <th>
-                            Choisir minute
-                        </th>
+                        </th>                       
                         <th>
                             Choisir type creneau
                         </th>
@@ -63,13 +60,18 @@
                         <td>
                             <input type="text" id="datepicker">
                         </td>
-                        <td>
+                     <!--  <td>
                             <input type="text" id="heureDeb">
                         </td>
                         <td>
                             <input type="text" id="minute">
-                        </td>
-                            
+                        </td> -->
+                        <td>
+                        <label for="time" class="timePicker">Start Time</label>
+                            <input type="time" name="time" id="heureDeb" class="timePicker" required/>
+                            <span id="msg_timeErr">input time between 8h and 20h, button padlock !</span>
+                         </td>
+                     
                         <td>
                             <select name="typeCreneau" id="typeCreneau">
                                 <option value="">--Choisissez un type de creneau--</option>
@@ -78,13 +80,18 @@
                             </select>
                         </td>
                         <td>
-                            <input type="text" id="prsence">
+                           
+                            <select name="presence" id="presence">
+                                <option value="">--Choisissez presence--</option>
+                                <option value="present">present</option>
+                                <option value="absent">absent</option>
+                            </select>
                         </td>
                     </tr>
                     
                 </Table>
         </div>
-   
+        <div id="espace"></div>
         <br>
         <div class="div_bouton">
             <button id="btn_valider">Valider</button>

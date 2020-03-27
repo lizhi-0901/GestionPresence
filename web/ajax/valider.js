@@ -25,7 +25,7 @@ function getAffecter ()
 		if (xhr.status === 200)
 			{
 			    var tab_date=xhr.responseXML.getElementsByTagName("date");
-                            alert(tab_date[1].firstChild.nodeValue);
+                          //  alert("tab_date[0]"+tab_date[0].firstChild.nodeValue);
                             var tab_heureetotal=xhr.responseXML.getElementsByTagName("Eheuretotal");
                             var tab_heureem=xhr.responseXML.getElementsByTagName("Eheurematin");
                             var tab_heureea=xhr.responseXML.getElementsByTagName("Eheureapres");
@@ -61,6 +61,7 @@ function getAffecter ()
                                     for(j=0;j<14; j++){
                                         if(j===0){
                                          var td_1=document.createElement("td");//创建列
+                                        // alert("j===0"+tab_date[i].firstChild.nodeValue);
                                          td_1.innerText="";
                                          td_1.innerText=tab_date[i].firstChild.nodeValue;
 //                                         alert("la "+i+"row "+j+" col"+tab_date[i].firstChild.nodeValue);
@@ -128,14 +129,12 @@ function getAffecter ()
                                         }else if(j===12){
                                          var td_13=document.createElement("td");//创建列
                                          td_13.innerText="";
-                                         td_1.innerText=tab_heuredtotal[i].firstChild.nodeValue;
-                                         
+                                         td_13.innerText=tab_heuredtotal[i].firstChild.nodeValue;
                                          tr.appendChild(td_13);//   
                                         }else{
                                          var td_14=document.createElement("td");//创建列
                                          td_14.innerText="";
                                          td_14.innerText=tab_absheuretotal[i].firstChild.nodeValue;
-                                         
                                          tr.appendChild(td_14);// 
                                         }
                                         
@@ -147,19 +146,17 @@ function getAffecter ()
                                 for(j=0;j<2; j++){
                                             if(j===0){
                                              var td1=document.createElement("td");//创建列
-                                             td1.colspan="5";
+                                             td1.colspan="2";
                                              td1.innerText="*Nombre d'heure par type d'activit&eacute"+ 
-                                            "E : pour enseignements"+
-                                            "(TD-TP-PT-accompagnement ou examen)"+
-                                            "D: pour Documentation sur site"+
-                                            "Abs: pour Absence";
-
-
-    //                                         alert("la "+i+"row "+j+" col"+tab_date[i].firstChild.nodeValue);
+                                             "E : pour enseignements"+
+                                             "(TD-TP-PT-accompagnement ou examen)"+
+                                             "D: pour Documentation sur site"+
+                                             "Abs: pour Absence";
+                                             //alert("la "+i+"row "+j+" col"+tab_date[i].firstChild.nodeValue);
                                              trbas.appendChild(td1);//向行中添加子节点列
                                              }else{
                                              var td2=document.createElement("td");//创建列
-                                             td2.colspan="5";
+                                             td2.colspan="2";
                                              td2.innerText="**Indiquez pour chaque demi-journ&eacutee le"+
                                             "site de l'activit&eacute:"+
                                             "UT1"+

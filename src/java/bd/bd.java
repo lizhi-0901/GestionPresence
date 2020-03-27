@@ -367,8 +367,9 @@ public class bd {
 
             
             public static void Valide(String etatValide, String idetudiant, String idCreneau){
-                session=null;
-               // transaction=null;
+                if(transaction==null){
+                transaction  = session.beginTransaction();
+                    }
                     try {
                       session = HibernateUtil.getSessionFactory().getCurrentSession();
                       transaction  = session.beginTransaction();
@@ -414,11 +415,14 @@ public class bd {
             
             
             public static void EnregistereSaisirheure(String idCreneau,String idEtudiant,String etatPresence){
-                session=null;
-               // transaction=null;
+                
+                 if(transaction==null){
+                        transaction  = session.beginTransaction();
+                                     }
+                
                     try {
-                      session = HibernateUtil.getSessionFactory().getCurrentSession();
-                      transaction  = session.beginTransaction();
+                      //session = HibernateUtil.getSessionFactory().getCurrentSession();
+                      //transaction  = session.beginTransaction();
                       Query query =session.createSQLQuery("INSERT INTO Affecter(idPersonne,idCreneau,etatPresence) VALUES(:idEtudiant,:idCreneau,:etatPresence) ");
                       query.setParameter("idEtudiant", idEtudiant);
                        query.setParameter("idCreneau", idCreneau);
@@ -426,8 +430,8 @@ public class bd {
                         query.executeUpdate();
                         transaction.commit();
                     }
-                    catch (RuntimeException e) {
-                        transaction.rollback();
+                    catch (Exception e) {
+                        System.out.println("erruer"+e);
                         throw e;
                     }
                   } 
