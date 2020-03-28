@@ -10,7 +10,7 @@
     <header>
            <div class="entete">
                 <div class="logo">
-                <img src="img/logo.png" alt="logo"></img>
+                <img src="ajax/ut1.png" alt="logo"></img>
             </div>
     </header>
 <body>        

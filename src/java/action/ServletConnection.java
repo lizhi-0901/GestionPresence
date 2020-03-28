@@ -57,11 +57,11 @@ public class ServletConnection extends HttpServlet {
 					switch(type)
 						{
 						case "Etudiant": 
-							request.getRequestDispatcher("etudiantPage").forward(request, response);
+							request.getRequestDispatcher("etudiantnav").forward(request, response);
 							break;
 						case "Enseignant":
                                                         //System.out.println("=============================");
-                                                        request.getRequestDispatcher("faireappelPage").forward(request, response);
+                                                        request.getRequestDispatcher("getionE").forward(request, response);
 							break;
                                                 case "Responsable":
                                                         request.getRequestDispatcher("GestionEnseignant").forward(request, response);

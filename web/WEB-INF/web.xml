@@ -64,6 +64,22 @@
         <servlet-name>GestionEnseignant</servlet-name>
         <jsp-file>/ajax/GestionEnseignat.html</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>etudiantnav</servlet-name>
+        <jsp-file>/ajax/GestionEtudiant.html</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>Servletetufeuille</servlet-name>
+        <servlet-class>action.Servletetufeuille</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>etufeuille</servlet-name>
+        <jsp-file>/ajax/etufeuille.html</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>gestionE</servlet-name>
+        <jsp-file>/ajax/GestionE.html</jsp-file>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletConnection</servlet-name>
         <url-pattern>/ServletConnection</url-pattern>
@@ -127,6 +143,22 @@
     <servlet-mapping>
         <servlet-name>GestionEnseignant</servlet-name>
         <url-pattern>/GestionEnseignant</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>etudiantnav</servlet-name>
+        <url-pattern>/etudiantnav</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servletetufeuille</servlet-name>
+        <url-pattern>/Servletetufeuille</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>etufeuille</servlet-name>
+        <url-pattern>/etuf</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>gestionE</servlet-name>
+        <url-pattern>/getionE</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -143,9 +143,9 @@ function getEtudiant ()
         //recuperer la valeur
         
         var cours = document.getElementById("cours").value;
-        alert(cours);
+        //alert(cours);
         var date  =document.getElementById("datepicker").value;
-        alert(date);
+        //alert(date);
         //var heureSaisir = parseInt(document.getElementById("heure").value);
         //var min=parseInt(document.getElementById("minute").value);
         var heureSaisir = getheure();
@@ -154,7 +154,7 @@ function getEtudiant ()
         var heure=heureSaisir*60+min;
         var duree=document.getElementById("duree").value;
         var typeCours=document.getElementById("typeCours").value;
-        alert(typeCours);
+        //alert(typeCours);
         
         var xhr = new XMLHttpRequest();
         xhr.open("GET","ServletCreneau"+"?cours="+cours+"&heure="+heure+"&date="+date+"&duree="+duree+"&typeCours="+typeCours,true);
@@ -175,7 +175,7 @@ function getEtudiant ()
 //        var min=parseInt(document.getElementById("minute").value);
 //        var heure=heureSaisir*60+min;
 //        var duree=document.getElementById("duree").value;
-        alert(nbEtudiant);
+       // alert(nbEtudiant);
         
         for(var i=1;nbEtudiant-1;i++){
             //obtenir les id et etat des etudiant dans la table
