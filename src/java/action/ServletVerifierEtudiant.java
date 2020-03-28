@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Arsla
  */
-@WebServlet(name = "ServletVerifierEnseignant", urlPatterns = {"/ServletVerifierEnseignant"})
-public class ServletVerifierEnseignant extends HttpServlet {
+@WebServlet(name = "ServletVerifierEtudiant", urlPatterns = {"/ServletVerifierEtudiant"})
+public class ServletVerifierEtudiant extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,22 +32,22 @@ public class ServletVerifierEnseignant extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            /*----- Type de la réponse -----*/
-            response.setContentType("application/xml;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/xml;charset=UTF-8");
             response.setCharacterEncoding("UTF-8");
             
             try (PrintWriter out = response.getWriter())
 			{
 			/*----- Ecriture de la page XML -----*/
 			out.println("<?xml version=\"1.0\"?>");
-			out.print("<Enseignant>");
+			out.print("<Etudiant>");
 
 			/*----- Récupération des paramètres -----*/
 			String nom = request.getParameter("nom");
                         String prenon = request.getParameter("prenom");
                         System.out.println(nom);
                         System.out.println(prenon);
-                        String type=request.getParameter("type");
+                        String type="Etudiant";
 			try {
 				/*----- Vérification de la présence du mot dans la BD -----*/
 				out.print(bd.bd.existEnseignant(nom, prenon, type));
@@ -57,10 +57,9 @@ public class ServletVerifierEnseignant extends HttpServlet {
 				out.print("Erreur - " + ex.getMessage());
 				}
 
-			out.println("</Enseignant>");
-                }
-        }
-    
+			out.println("</Etudiant>");
+            }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

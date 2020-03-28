@@ -36,7 +36,7 @@ public class ServletAjouterEnseignant extends HttpServlet {
         String prenom=request.getParameter("prenom");
         String numTel=request.getParameter("numTel");
         String eMail=request.getParameter("eMail");
-        bd.bd.ajouterEnseignant(nom, prenom,numTel,eMail);
+        bd.bd.ajouterEnseignant(nom, prenom,eMail,numTel);
         
     }
 

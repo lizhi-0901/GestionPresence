@@ -481,8 +481,12 @@ public class bd {
      * @param prenom
      * @param mail
      * @param numTel 
+     * @param formation 
+     * @param Entreprise 
+     * @param numTelE 
+     * @param mailE 
      */
-    public static void ajouterEtudiant(String nom,String prenom,String mail,String numTel){
+    public static void ajouterEtudiant(String nom,String prenom,String mail,String numTel,String formation,String Entreprise,String numTelE,String mailE){
             session=null;
                 session=HibernateUtil.getSessionFactory().openSession();
                 transaction=session.beginTransaction();
@@ -495,6 +499,10 @@ public class bd {
             p.setNumTel(numTel);
             p.setType("Etudiant");
             p.setMotDePasse("123456");
+            p.setTypeformation(formation);
+            p.setEntreprise(Entreprise);
+            p.setContactTel(numTelE);
+            p.setContactMail(mailE);
             
             System.out.println(p.getNom());
             System.out.println(p.getPrenom());
@@ -515,7 +523,7 @@ public class bd {
                 transaction  = session.beginTransaction();
                 Query query =session.createSQLQuery("INSERT INTO Matiere(libelleMatiere,codeUE,idFormation,initiale) VALUES(:libelleMatiere,:codeUE,:idFormation,:initiale) ");
                 
-                String initiale=libelleMatiere.substring(0, 4);
+                String initiale=libelleMatiere.substring(0, 3);
                 query.setParameter("libelleMatiere", libelleMatiere);
                 
                 String codeUE="IPM201901";
@@ -583,6 +591,30 @@ public class bd {
         
         query.executeUpdate();    
         transaction.commit();
+    }
+    
+    public static void modifierEtudiant(String nom,String prenom,String mail,String numTel,String formation,String entreprise,String numTelE,String mailE){
+            session=null;
+        session=HibernateUtil.getSessionFactory().openSession();
+        transaction=session.beginTransaction();
+        
+        Query query=session.createQuery("update Personnel p set p.numTel=:numTel, p.adresseMail=:eMail, p.typeformation=:typeformation, "+
+                                        "p.entreprise=:entreprise,p.contactTel=:numTelE,p.contactMail=:mailE  "+
+                                        "where p.nom=:nom "+
+                                        "and p.prenom=:prenom ");
+        query.setParameter("nom", nom);
+        query.setParameter("prenom", prenom);
+        query.setParameter("numTel", numTel);
+        query.setParameter("eMail", mail);
+        query.setParameter("typeformation",formation);
+        query.setParameter("entreprise",entreprise);
+        query.setParameter("numTelE",numTelE);
+        query.setParameter("mailE",mailE);
+        
+        
+        query.executeUpdate();    
+        transaction.commit();
+        
     }
     
 
@@ -706,30 +738,19 @@ public class bd {
 //                     for(String str:list){
 //                         bd.EnregistrerEtat(str, idCreneau, etat);
 //                     }
-//                List<Personnel> l1=bd.consulterEtudiant("arslan", "a");
-////                bd.affichage(l1);
-//                for(Personnel p:l1){
-////                    System.out.println(p);
-//                    System.out.println(p.getNom());
-//                    System.out.println(p.getPrenom());
-//                    System.out.println(p.getAdresseMail());
-//                    System.out.println(p.getNumTel());
-//                }
+                List<Personnel> l1=bd.consulterEtudiant("aaaa", "bbbb");
+//                bd.affichage(l1);
+                for(Personnel p:l1){
+//                    System.out.println(p);
+                    System.out.println(p.getNom());
+                    System.out.println(p.getPrenom());
+                    System.out.println(p.getAdresseMail());
+                    System.out.println(p.getNumTel());
+                }
 //                    bd.ajouterEnseignant("lebrone", "Lebrone", "asdasdasdasd@gmail.com", 71232844);
 //                    bd.ModifierEnseignant("berro", "alain","123123123","1111@gmail.com");
 //                    bd.ajouterMatiere("PProjet", "MIAGEIPM");
-//                  
-                    
-                    Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-                    Transaction t = session.beginTransaction();
-                
-                    String id="alainberro@gmail.com";
-                    Personnel p=(Personnel)session.load(Personnel.class,id);
-//
-////                    Periode p=(Periode)session.load(Periode.class, 1);
-                    System.out.println(p.getNom());
-//                    t.commit();
-                    
+
                     
                     
                 }        

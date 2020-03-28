@@ -7,9 +7,7 @@ package action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,8 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Arsla
  */
-@WebServlet(name = "ServletVerifierEnseignant", urlPatterns = {"/ServletVerifierEnseignant"})
-public class ServletVerifierEnseignant extends HttpServlet {
+public class ServletActionEtudiant extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,37 +27,35 @@ public class ServletVerifierEnseignant extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @SuppressWarnings("empty-statement")
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            /*----- Type de la réponse -----*/
-            response.setContentType("application/xml;charset=UTF-8");
-            response.setCharacterEncoding("UTF-8");
-            
-            try (PrintWriter out = response.getWriter())
-			{
-			/*----- Ecriture de la page XML -----*/
-			out.println("<?xml version=\"1.0\"?>");
-			out.print("<Enseignant>");
-
-			/*----- Récupération des paramètres -----*/
-			String nom = request.getParameter("nom");
-                        String prenon = request.getParameter("prenom");
-                        System.out.println(nom);
-                        System.out.println(prenon);
-                        String type=request.getParameter("type");
-			try {
-				/*----- Vérification de la présence du mot dans la BD -----*/
-				out.print(bd.bd.existEnseignant(nom, prenon, type));
-				}
-			catch (ClassNotFoundException | SQLException ex)
-				{
-				out.print("Erreur - " + ex.getMessage());
-				}
-
-			out.println("</Enseignant>");
-                }
+        response.setCharacterEncoding("UTF-8");
+        
+        String nom=request.getParameter("nom");
+        String prenom=request.getParameter("prenom");
+        String numTel=request.getParameter("numTel");
+        String eMail=request.getParameter("eMail");
+        String formation=request.getParameter("formation");
+        String entreprise=request.getParameter("entreprise");
+        String numTelE=request.getParameter("numTelE");
+        String eMailE=request.getParameter("eMailE");
+        
+        String action=request.getParameter("action");
+        System.out.println("---------------AAAA"+action);
+        if("ajouter".equals(action)){
+            System.out.println(action);
+            bd.bd.ajouterEtudiant(nom, prenom, eMail, numTel, formation, entreprise, numTelE, eMailE);
+        };
+        if("modifier".equals(action)){
+                System.out.println("---------------MMMM"+action);
+                bd.bd.modifierEtudiant(nom, prenom, eMail, numTel, formation, entreprise, numTelE, eMailE);
+        };
+        if("supprimer".equals(action)){
+            bd.bd.SupprimerEnseignant(nom, prenom);
         }
-    
+            
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -100,5 +95,9 @@ public class ServletVerifierEnseignant extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void elsif(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

@@ -80,6 +80,14 @@
         <servlet-name>GestionPeriode</servlet-name>
         <jsp-file>/ajax/GestionPeriode.html</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>ServletActionEtudiant</servlet-name>
+        <servlet-class>action.ServletActionEtudiant</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletConsulterEtudiant</servlet-name>
+        <servlet-class>action.ServletConsulterEtudiant</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletConnection</servlet-name>
         <url-pattern>/ServletConnection</url-pattern>
@@ -159,6 +167,14 @@
     <servlet-mapping>
         <servlet-name>GestionPeriode</servlet-name>
         <url-pattern>/GestionPeriode</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletActionEtudiant</servlet-name>
+        <url-pattern>/ServletActionEtudiant</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletConsulterEtudiant</servlet-name>
+        <url-pattern>/ServletConsulterEtudiant</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -18,7 +18,7 @@ function exsitEnseignant(){
 
     // Requête au serveur avec les paramètres éventuels.
     if(nom.length>0 && prenom.length>0){
-       xhr.open("GET","ServletVerifierEnseignant"+"?nom="+nom+"&prenom="+prenom,true);
+       xhr.open("GET","ServletVerifierEnseignant"+"?nom="+nom+"&prenom="+prenom+"&type=Enseignant",true);
     }
     
     
@@ -104,7 +104,6 @@ function validerAjouterEnseignant(){
     var nom=document.getElementById("nomPersonne").value;
     var prenom=document.getElementById("prenomPersonne").value;
     var numTel=document.getElementById("numTel").value;
-    alert(numTel.length);
     var eMail=document.getElementById("eMail").value;
     
     var xhr = new XMLHttpRequest();

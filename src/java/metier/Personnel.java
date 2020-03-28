@@ -23,8 +23,8 @@ public class Personnel  implements java.io.Serializable {
      private String prenomUsage;
      private String adresse;
      private String entreprise;
-     private Integer contactTel;
-     private Integer contactMail;
+     private String contactTel;
+     private String contactMail;
      private String typeformation;
      private Set fonctions = new HashSet(0);
      private Set groupes = new HashSet(0);
@@ -45,7 +45,7 @@ public class Personnel  implements java.io.Serializable {
         this.type = type;
         this.adresseMail = adresseMail;
     }
-    public Personnel(String idPersonne, String motDePasse, String nom, String prenom, String dateNaissance, String type, String photo, String adresseMail, String numTel, String prenomUsage, String adresse, String entreprise, Integer contactTel, Integer contactMail, String typeformation, Set fonctions, Set groupes, Set matieres, Set justifiers, Set affecters, Set formations) {
+    public Personnel(String idPersonne, String motDePasse, String nom, String prenom, String dateNaissance, String type, String photo, String adresseMail, String numTel, String prenomUsage, String adresse, String entreprise, String contactTel, String contactMail, String typeformation, Set fonctions, Set groupes, Set matieres, Set justifiers, Set affecters, Set formations) {
        this.idPersonne = idPersonne;
        this.motDePasse = motDePasse;
        this.nom = nom;
@@ -153,18 +153,18 @@ public class Personnel  implements java.io.Serializable {
     public void setEntreprise(String entreprise) {
         this.entreprise = entreprise;
     }
-    public Integer getContactTel() {
+    public String getContactTel() {
         return this.contactTel;
     }
     
-    public void setContactTel(Integer contactTel) {
+    public void setContactTel(String contactTel) {
         this.contactTel = contactTel;
     }
-    public Integer getContactMail() {
+    public String getContactMail() {
         return this.contactMail;
     }
     
-    public void setContactMail(Integer contactMail) {
+    public void setContactMail(String contactMail) {
         this.contactMail = contactMail;
     }
     public String getTypeformation() {
