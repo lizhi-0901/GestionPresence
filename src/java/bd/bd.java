@@ -578,7 +578,7 @@ public class bd {
     
     public static void ModifierEnseignant(String nom,String prenom,String numTel,String eMail){
         session=null;
-        session=HibernateUtil.getSessionFactory().openSession();
+        session=HibernateUtil.getSessionFactory().getCurrentSession();
         transaction=session.beginTransaction();
         
         Query query=session.createQuery("update Personnel p set p.numTel=:numTel, p.adresseMail=:eMail "+
@@ -594,7 +594,7 @@ public class bd {
     }
     
     public static void modifierEtudiant(String nom,String prenom,String mail,String numTel,String formation,String entreprise,String numTelE,String mailE){
-            session=null;
+        session=null;
         session=HibernateUtil.getSessionFactory().openSession();
         transaction=session.beginTransaction();
         
@@ -616,6 +616,7 @@ public class bd {
         transaction.commit();
         
     }
+
     
 
             
@@ -718,7 +719,7 @@ public class bd {
                 
                 
                 
-	public static void main (String[] s) throws ParseException
+	public static void main (String[] s) throws ParseException, ClassNotFoundException, SQLException
 
 		{   
 //                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -738,20 +739,15 @@ public class bd {
 //                     for(String str:list){
 //                         bd.EnregistrerEtat(str, idCreneau, etat);
 //                     }
-                List<Personnel> l1=bd.consulterEtudiant("aaaa", "bbbb");
-//                bd.affichage(l1);
-                for(Personnel p:l1){
-//                    System.out.println(p);
-                    System.out.println(p.getNom());
-                    System.out.println(p.getPrenom());
-                    System.out.println(p.getAdresseMail());
-                    System.out.println(p.getNumTel());
-                }
 //                    bd.ajouterEnseignant("lebrone", "Lebrone", "asdasdasdasd@gmail.com", 71232844);
 //                    bd.ModifierEnseignant("berro", "alain","123123123","1111@gmail.com");
 //                    bd.ajouterMatiere("PProjet", "MIAGEIPM");
-
-                    
+//                String debCour="D";
+//                ArrayList<String> lc=bd.listerCours(debCour);
+//                for(String c:lc){
+//                    System.out.println(c);
+//                }
+                
                     
                 }        
  

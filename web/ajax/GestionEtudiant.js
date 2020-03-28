@@ -94,7 +94,7 @@ function ajouterEtudiant(){
     }
     
     
-    function consulterEnseignant(){
+    function consulterEtudiant(){
 
         var nom=document.getElementById("nomPersonne").value;
         var prenom=document.getElementById("prenomPersonne").value;
@@ -136,14 +136,32 @@ function ajouterEtudiant(){
             xhr.send();
 
     };
+    
+    function modifierEtudiant(){
+        alert("click ok");
+    var nom=document.getElementById("nomPersonne").value;
+    var prenom=document.getElementById("prenomPersonne").value;
+    var numTel=document.getElementById("numTel").value;
+    var eMail=document.getElementById("eMail").value;
+    var formation=document.getElementById("formation").value;
+    var entreprise=document.getElementById("entreprise").value;
+    var numTelE=document.getElementById("numTelE").value;
+    var eMailE=document.getElementById("eMailE").value;
+    
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET","ServletActionEtudiant"+"?nom="+nom+"&prenom="+prenom+"&numTel="+numTel+"&eMail="+eMail+
+                   "&formation="+formation+"&entreprise="+entreprise+"&numTelE="+numTelE+"&eMailE="+eMailE+"&action=modifier",true);
+            alert("Etudiant Modifie!");
+    xhr.send();
+}
 
 document.addEventListener("DOMContentLoaded", () => {
 
 	document.getElementById("prenomPersonne").addEventListener("change",exsitEtudiant);
         document.getElementById("nomPersonne").addEventListener("change",exsitEtudiant);
-        document.getElementById("btn_consulter").addEventListener("click",consulterEnseignant);
+        document.getElementById("btn_consulter").addEventListener("click",consulterEtudiant);
         document.getElementById("btn_ajouter").addEventListener("click",ajouterEtudiant);
         document.getElementById("btn_valider").addEventListener("click",validerAjouterEtudiant);
         document.getElementById("btn_supprimer").addEventListener("click",suppEtudiant);
-//        document.getElementById("btn_modifier").addEventListener("click",modifierEnseignant);
+        document.getElementById("btn_modifier").addEventListener("click",modifierEtudiant);
 });

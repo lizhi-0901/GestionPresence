@@ -39,7 +39,7 @@ public class ServletConsulterEtudiant extends HttpServlet {
                 /*----- Récupération des paramètres -----*/
                 String nom = request.getParameter("nom");
                 String prenom = request.getParameter("prenom");
-                List<Personnel> listEtudiants=bd.consulterEnseignant(nom, prenom);
+                List<Personnel> listEtudiants=bd.consulterEtudiant(nom, prenom);
                 
                 for(Personnel p:listEtudiants){
                     out.println("<Enseignant>");
