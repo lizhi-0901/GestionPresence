@@ -60,6 +60,10 @@
         <servlet-name>ServletInsertEtat</servlet-name>
         <servlet-class>action.ServletInsertEtat</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GestionEnseignant</servlet-name>
+        <jsp-file>/ajax/GestionEnseignat.html</jsp-file>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletConnection</servlet-name>
         <url-pattern>/ServletConnection</url-pattern>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>ServletInsertEtat</servlet-name>
         <url-pattern>/ServletInsertEtat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GestionEnseignant</servlet-name>
+        <url-pattern>/GestionEnseignant</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
