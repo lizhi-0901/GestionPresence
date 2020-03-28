@@ -17,7 +17,7 @@
         <property name="prenom" type="string">
             <column name="prenom" length="25" not-null="true" />
         </property>
-        <property name="dateNaissance" type="date">
+        <property name="dateNaissance" type="string">
             <column name="dateNaissance" length="10" not-null="true" />
         </property>
         <property name="type" type="string">
@@ -29,7 +29,7 @@
         <property name="adresseMail" type="string">
             <column name="adresseMail" length="25" not-null="true" />
         </property>
-        <property name="numTel" type="int">
+        <property name="numTel" type="string">
             <column name="numTel" not-null="true" />
         </property>
         <property name="prenomUsage" type="string">
@@ -37,6 +37,18 @@
         </property>
         <property name="adresse" type="string">
             <column name="adresse" length="50" not-null="true" />
+        </property>
+        <property name="entreprise" type="string">
+            <column name="entreprise" length="50" />
+        </property>
+        <property name="contactTel" type="string">
+            <column name="contactTel" length="15" />
+        </property>
+        <property name="contactMail" type="string">
+            <column name="contactMail" length="50" />
+        </property>
+        <property name="typeformation" type="string">
+            <column name="typeformation" length="5" />
         </property>
         <set name="fonctions" table="Avoir" inverse="false" lazy="true" fetch="select">
             <key>

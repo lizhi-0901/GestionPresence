@@ -134,13 +134,25 @@ public class ServletRespon extends HttpServlet {
                         HashMap<String, String> mapabs =new HashMap<>();
                         mapabs=util.addMap(abslist);
                         
-                        
-                        
+                        float fe=0f;
+                        for(String value:mape.values()){
+                            fe=fe+Float.parseFloat(value)/60;
+                        }
+                        float fd=0f;
+                        for(String value:mapd.values()){
+                            fd=fd+Float.parseFloat(value)/60;
+                        }
+                        float fabs=0f;
+                        for(String value:mapabs.values()){
+                            fabs=fabs+Float.parseFloat(value)/60;
+                        }
                         
                         for(int i=0;i<list.size();i++){
                             out.println("<date>" + list.get(i) + "</date>");
                         }
-                        
+                        out.println("<E>" + fe + "</E>");
+                        out.println("<D>" + fd + "</D>");
+                        out.println("<abs>" + fabs + "</abs>");
                         // heuretotal
                         int sizee=liste.size();
                         for(int i=0;i<list.size();i++){

@@ -14,11 +14,11 @@
         <property name="typeGroupe" type="string">
             <column name="typeGroupe" length="25" not-null="true" />
         </property>
-        <property name="dateDeb" type="date">
-            <column name="dateDeb" length="10" not-null="true" />
+        <property name="dateDeb" type="string">
+            <column name="dateDeb" length="15" not-null="true" />
         </property>
-        <property name="dateFin" type="date">
-            <column name="dateFin" length="10" not-null="true" />
+        <property name="dateFin" type="string">
+            <column name="dateFin" length="15" not-null="true" />
         </property>
         
         <set name="creneaus" table="AffecterGroupe" inverse="false" lazy="true" fetch="select">

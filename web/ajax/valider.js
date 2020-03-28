@@ -39,6 +39,9 @@ function getAffecter ()
                             var nom=xhr.responseXML.getElementsByTagName("nom");
                             var prenom =xhr.responseXML.getElementsByTagName("prenom");
                             var photo =xhr.responseXML.getElementsByTagName("photo");    
+                            var E =xhr.responseXML.getElementsByTagName("E");    
+                            var D =xhr.responseXML.getElementsByTagName("D");    
+                            var abs=xhr.responseXML.getElementsByTagName("abs");    
                             
                             document.getElementById("div_etu").className="etudiant_show";
                             var elt_nom=document.getElementById("nom");
@@ -55,10 +58,11 @@ function getAffecter ()
                              */
                             var tab_c=[];
                             var elt = document.getElementById("tab_feuille");
+                            
                             for(i=0;i <6;i++){
                                     
                                     var tr=document.createElement("tr");//创建行
-                                    for(j=0;j<14; j++){
+                                   for(j=0;j<14; j++){
                                         if(j===0){
                                          var td_1=document.createElement("td");//创建列
                                         // alert("j===0"+tab_date[i].firstChild.nodeValue);
@@ -143,10 +147,10 @@ function getAffecter ()
                                          elt.appendChild(tr);//添加子节点tr
                                 }
                                 var trbas=document.createElement("tr");
-                                for(j=0;j<2; j++){
+                                for(j=0;j<6; j++){
                                             if(j===0){
                                              var td1=document.createElement("td");//创建列
-                                             td1.colspan="2";
+                                             
                                              td1.innerText="*Nombre d'heure par type d'activit&eacute"+ 
                                              "E : pour enseignements"+
                                              "(TD-TP-PT-accompagnement ou examen)"+
@@ -154,20 +158,45 @@ function getAffecter ()
                                              "Abs: pour Absence";
                                              //alert("la "+i+"row "+j+" col"+tab_date[i].firstChild.nodeValue);
                                              trbas.appendChild(td1);//向行中添加子节点列
-                                             }else{
+                                             }else if(j===1){
                                              var td2=document.createElement("td");//创建列
-                                             td2.colspan="2";
+                                             
                                              td2.innerText="**Indiquez pour chaque demi-journ&eacutee le"+
                                             "site de l'activit&eacute:"+
                                             "UT1"+
                                             "Lieu du Stage"+
                                             "IUT Rodez";
                                              trbas.appendChild(td2);
-                                             }
+                                             }else if(j===2){
+                                              var td3=document.createElement("td");//创建列
+                                              td3.innerText="Sous Tataux";  
+                                              trbas.appendChild(td3);
+                                              
+                                             }else if(j===3){
+                                               var td4=document.createElement("td");//创建列
+                                              td4.innerText=E[0].firstChild.nodeValue;   
+                                              trbas.appendChild(td4);
+                                              }
+                                             else if(j===4){
+                                               var td5=document.createElement("td");//创建列
+                                              td5.innerText=D[0].firstChild.nodeValue;    
+                                              trbas.appendChild(td5);
+                                              }else{
+                                               var td6=document.createElement("td");//创建列
+                                               td6.innerText=abs[0].firstChild.nodeValue;    
+                                               trbas.appendChild(td6);
+                                              }
 
                                              elt.appendChild(trbas);
+                                             
+                                             
                                          }
-		}
+                                var nb=elt.rows.length;
+                                
+                                 for(var i=0;i<2;i++){
+                                            elt.rows[nb-1].cells[i].colSpan="5";
+                                 }
+                                }
             };
 	// Envoie de la requête.
 	xhr.send();

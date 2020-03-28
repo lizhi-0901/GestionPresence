@@ -21,62 +21,102 @@ and open the template in the editor.
         </script>
     </head>
     
+      
+    
     <body>
-        <div><h2>Bonjour</h2> </div>
-        <div>
-            
-                <div class="info_choisir">
-                    <span class=""> Choisir formation </span><br/>
-                    <select name="formation" id="formation">
-                        <option value="Formation">Formation</option>
-                        <option value="MIAGEIPM"> IPM</option>
-                        <option value="MIAGEISIAD"> ISIAD </option>
-                    </select>
-                </div>
+       <header> <!-- title logo-->
+           <div class="entete">                                   
+                    <div class="logo">
+                        <img src="images/logoUti.png" alt="logo" class="logoImg">
+                    </div>
+
+                    <div class="info_personne">
+                        <table class="info_personne_tab" border="1">
+                            <tr>
+                                <th>Bienvenu</th>                                                                   
+                                <th>prenomP</th>                                
+                                <th>NomP</th>                                                                  
+                            </tr>
+                        </table>
+                    </div>            
+             <h2>Feuille de Presence</h2>
+        </div>
+    </header>   
+        
+     <!-- formulaire -->   
+                    
                
-                <div class="info_choisir">
-                 <span> Choisir cours: </span><br/>
-                    <select name="cours" id="cours">
-
-                    </select>
-                 </div><br/>
-             
-                <br/>
-                <div class="info_choisir">
-                    <p>Date: <input type="text" id="datepicker" ></p>
-                </div>
+                    <Table class="renseigner_creneau_tab" border="0">
+                            <caption>Information du creneau</caption> 
+                        <tr>
+                            <th>Choisir formation</th>
+                            <th>Choisir cours</th>
+                            <th>Choisir Date:</th>
+                        </tr>  
+                        <tr> 
+                            <td>                                
+                                <select name="formation" id="formation">
+                                    <option value="Formation">Formation</option>
+                                    <option value="MIAGEIPM"> IPM</option>
+                                    <option value="MIAGEISIAD"> ISIAD </option>
+                                </select>
+                            </td>
+                        
+                            <td>                                                                 
+                                <select name="cours" id="cours">
+                                    <option></option>
+                                </select>                                
+                            </td>
+                         
+                            <td>                                               
+                                <input type="text" id="datepicker" >                               
+                            </td>
+                        </tr>          
+                     </Table>      
                  
-                <div class="info_choisir">
-                    <span> Heure:  </span><input type="text" id="heure" style="width:30px"><br/>
-                    <span> Minute:</span><input type="text" id="minute" style="width:30px"><br/>
-                    <span> Dur&eacutee:</span><input type="text" id="duree" style="width:30px">Mins
-                </div><br/>
-                 
-                 <div class="info_choisir">
-                <span>Choisir groupeTD : </span><br/>
-                    <select name="groupe" id="groupe">                       
-                        <option>IPM1920TD1</option>
-                        <option>IPM1920TD2</option>
-                        <option>IPM1920FI</option>
-                        <option>IPM1920FA</option>
-                    </select>
-                </div>
+               
+                    <table class="info_dh_tab" border="0">                            
+                        <tr>
+                            <th>Heure début</th>
+                            <th>Dur&eacutee: en minutes</th>
+                            <th>Choisir groupeTD :</th>   
+                            <th>Choisir Type</th> 
+                        </tr> 
+                        <tr>
+                            <td>                                
+                                    <!--  <span> Heure:  </span><input type="text" id="heure" style="width:30px"><br/>
+                                   <span> Minute:</span><input type="text" id="minute" style="width:30px"><br/> -->
+                                    <!--<label for="time" class="timePicker">Start Time</label>-->
+                                <input type="time" name="time" id="heureDeb" class="timePicker" required/>
+                                <span id="msg_timeErr"  >input time between 8h and 20h, button padlock !</span>                                
+                            </td>
+                            <td>
+                                <input type="text" id="duree" >Mins
+                            </td>
+                            <td>                                                                 
+                                <select name="groupe" id="groupe">  
+                                    <option></option>
+                                    <option>IPM1920TD1</option>
+                                    <option>IPM1920TD2</option>
+                                    <option>IPM1920FI</option>
+                                    <option>IPM1920FA</option>
+                                </select>                                
+                            </td>
+                            <td>                                
+                                <select name="typeCours" id="typeCours"> 
+                                        <option></option>
+                                        <option>Exam</option>
+                                        <option>Cours</option>
+                                        <option>TD</option>
+                                </select>
+                            </td>
+                        </tr>           
+                    </table>
 
-                <span> Choisir Type :</span>
-                 <select name="typeCours" id="typeCours">                       
-                        <option>Exam</option>
-                        <option>Cours</option>
-                        <option>TD</option>
-                    </select>
-
-                <br/>
-            </form>
-
-
-      </div>           
+                       
 <!--  liste étudiant -->  <hr/>
     <div class="list_etudiant"> 
-        <table id="listEtudiant" border="2">
+        <table id="listEtudiant" border="1" class="listEtudiant">
             <th>Photo</th>
             <th style="display:none;">Identifiant</th>
             <th>Nom</th>
@@ -86,10 +126,10 @@ and open the template in the editor.
 
     </div>  
 
-      <div class = "div_bouton">        
-        <input type="submit" value="valider"  class="bouton btn_valider" id="btn_valider"/>
-      </div>
-     <script type="text/JavaScript" src="ajax/faireappel.js"></script>
+        <div class = "div_bouton">        
+          <input type="submit" value="valider"  class="bouton btn_valider" id="btn_valider"/>
+        </div>
+       <script type="text/JavaScript" src="ajax/faireappel.js"></script>
     </body>
 </html>
                 

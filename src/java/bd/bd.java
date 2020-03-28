@@ -435,7 +435,7 @@ public class bd {
                         throw e;
                     }
                   } 
-         
+          
           public static List<Creneau> getHeureE(String idetudiant,String date){
          if(transaction==null){
             transaction  = session.beginTransaction();

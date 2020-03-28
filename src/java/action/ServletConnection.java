@@ -46,17 +46,21 @@ public class ServletConnection extends HttpServlet {
                       
                             if(! mdp_p.equals(mdp))
 					{
+                                            
+                                            
 					request.setAttribute("msg_erreur", "Mot de passe erroné !");
 					request.getRequestDispatcher("login").forward(request, response);
 					}
                                  else
+                                        //System.out.println("mot de pass correcte");
 					{
 					switch(type)
 						{
 						case "Etudiant": 
 							request.getRequestDispatcher("etudiantPage").forward(request, response);
 							break;
-						case "Enseigant":
+						case "Enseignant":
+                                                        //System.out.println("=============================");
                                                         request.getRequestDispatcher("faireappelPage").forward(request, response);
 							break;
                                                 case "Responsable":

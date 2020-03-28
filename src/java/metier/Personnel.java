@@ -16,13 +16,17 @@ public class Personnel  implements java.io.Serializable {
      private String motDePasse;
      private String nom;
      private String prenom;
-     private Date dateNaissance;
+     private String dateNaissance;
      private String type;
      private String photo;
      private String adresseMail;
-     private int numTel;
+     private String numTel;
      private String prenomUsage;
      private String adresse;
+     private String entreprise;
+     private String  contactTel;
+     private String contactMail;
+     private String typeformation;
      private Set fonctions = new HashSet(0);
      private Set groupes = new HashSet(0);
      private Set matieres = new HashSet(0);
@@ -41,7 +45,7 @@ public class Personnel  implements java.io.Serializable {
     }
 
 	
-    public Personnel(String idPersonne, String motDePasse, String nom, String prenom, Date dateNaissance, String type, String adresseMail, int numTel, String adresse) {
+    public Personnel(String idPersonne, String motDePasse, String nom, String prenom, String dateNaissance, String type, String adresseMail, String numTel, String adresse) {
         this.idPersonne = idPersonne;
         this.motDePasse = motDePasse;
         this.nom = nom;
@@ -52,7 +56,7 @@ public class Personnel  implements java.io.Serializable {
         this.numTel = numTel;
         this.adresse = adresse;
     }
-    public Personnel(String idPersonne, String motDePasse, String nom, String prenom, Date dateNaissance, String type, String photo, String adresseMail, int numTel, String prenomUsage, String adresse, Set fonctions, Set groupes, Set matieres, Set justifiers, Set affecters, Set formations) {
+    public Personnel(String idPersonne, String motDePasse, String nom, String prenom, String dateNaissance, String type, String photo, String adresseMail, String numTel, String prenomUsage, String adresse, Set fonctions, Set groupes, Set matieres, Set justifiers, Set affecters, Set formations) {
        this.idPersonne = idPersonne;
        this.motDePasse = motDePasse;
        this.nom = nom;
@@ -100,11 +104,11 @@ public class Personnel  implements java.io.Serializable {
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
-    public Date getDateNaissance() {
+    public String getDateNaissance() {
         return this.dateNaissance;
     }
     
-    public void setDateNaissance(Date dateNaissance) {
+    public void setDateNaissance(String dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
     public String getType() {
@@ -128,11 +132,11 @@ public class Personnel  implements java.io.Serializable {
     public void setAdresseMail(String adresseMail) {
         this.adresseMail = adresseMail;
     }
-    public int getNumTel() {
+    public String getNumTel() {
         return this.numTel;
     }
     
-    public void setNumTel(int numTel) {
+    public void setNumTel(String numTel) {
         this.numTel = numTel;
     }
     public String getPrenomUsage() {
@@ -190,6 +194,40 @@ public class Personnel  implements java.io.Serializable {
     
     public void setFormations(Set formations) {
         this.formations = formations;
+    }
+
+    public String getEntreprise() {
+        return entreprise;
+    }
+
+    
+
+    public String getTypeformation() {
+        return typeformation;
+    }
+
+    public String getContactTel() {
+        return contactTel;
+    }
+
+    public String getContactMail() {
+        return contactMail;
+    }
+
+    public void setEntreprise(String entreprise) {
+        this.entreprise = entreprise;
+    }
+
+    public void setContactTel(String contactTel) {
+        this.contactTel = contactTel;
+    }
+
+    public void setContactMail(String contactMail) {
+        this.contactMail = contactMail;
+    }
+
+    public void setTypeformation(String typeformation) {
+        this.typeformation = typeformation;
     }
 
 
